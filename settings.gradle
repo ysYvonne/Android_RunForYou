@@ -1,0 +1,3 @@
+include ':app', ':RxVolley','materialintro'
+project(':RxVolley').projectDir = new File('Libary/RxVolley')
+project(':materialintro').projectDir = new File('Libary/materialintro')
