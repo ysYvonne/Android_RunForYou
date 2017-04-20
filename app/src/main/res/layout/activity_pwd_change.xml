@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@id/title_bar3"
-        android:background="@drawable/boarder"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp">
 
@@ -118,22 +117,24 @@
 
         </RelativeLayout>
 
+
+        <TextView
+            android:id="@+id/hint2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="至少使用字母、数字、和符号两种及以上的组合，6-20个字符"
+            android:textColor="@color/gray"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/ok_button2"
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/myPrimaryColor"
+            android:text="确认" />
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/hint2"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:text="至少使用字母、数字、和符号两种及以上的组合，6-20个字符"
-        android:textColor="@color/gray"
-        android:textSize="12dp" />
-
-    <Button
-        android:id="@+id/ok_button2"
-        android:layout_width="358dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/myPrimaryColor"
-        android:text="确认" />
 </LinearLayout>

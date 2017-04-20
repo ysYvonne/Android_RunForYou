@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <xzh.com.materialdesign.view.TitleBar
@@ -12,7 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@id/title_bar2"
-        android:background="@drawable/boarder"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp">
 
@@ -39,8 +39,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/old_pwd_textview2"
-                android:layout_toRightOf="@+id/old_pwd_textview2"
+                android:layout_toEndOf="@+id/new_pwd_textview1"
+                android:layout_toRightOf="@+id/new_pwd_textview1"
                 android:ems="10"
                 android:hint="新密码"
                 android:inputType="textPassword"
@@ -84,22 +84,23 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/hint1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="至少使用字母、数字、和符号两种及以上的组合，6-20个字符"
+            android:textColor="@color/gray"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/ok_button1"
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/myPrimaryColor"
+            android:text="确认" />
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/hint1"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:text="至少使用字母、数字、和符号两种及以上的组合，6-20个字符"
-        android:textColor="@color/gray"
-        android:textSize="12dp" />
-
-    <Button
-        android:id="@+id/ok_button1"
-        android:layout_width="358dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/myPrimaryColor"
-        android:text="确认" />
 </LinearLayout>
