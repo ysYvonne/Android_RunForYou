@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市委书记李达康"
+            android:textColor="@color/base_color_text_black"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/order_detail_avatar"
+            android:layout_toEndOf="@+id/order_detail_avatar"
+            android:layout_marginLeft="18dp"
+            android:layout_marginStart="18dp" />
+
+        <xzh.com.materialdesign.view.CircleImageView
+            android:id="@+id/order_detail_avatar"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/img_user_head" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/male"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignTop="@+id/textView1"
+            android:layout_toRightOf="@+id/textView1"
+            android:layout_toEndOf="@+id/textView1" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="23dp"
+            android:text="悬赏"
+            android:textAlignment="center"
+            android:textColor="@color/base_color_text_black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5元"
+            android:textSize="20dp"
+            android:textColor="@color/base_color_text_black"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_toRightOf="@+id/textView4"
+            android:layout_toEndOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下沉广场的烤肉拌饭，麻辣味嘎嘣脆，味道好极了不吃不是人。"
+            android:textColor="@color/base_color_text_black"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@+id/textView5"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_alignLeft="@+id/textView9"
+            android:layout_alignStart="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView4"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_alignLeft="@+id/textView7"
+            android:layout_alignStart="@+id/textView7"
+            android:text="烤肉拌饭  约14元"
+            android:textColor="@color/base_color_text_black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/base_color_text_black"
+            android:text="物品类型" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/base_color_text_black"
+            android:text="订单详情" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="179dp">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/button2"
+            android:layout_toStartOf="@+id/button2"
+            android:text="物品地点"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/button3"
+            android:layout_alignBottom="@+id/button3"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="94dp"
+            android:layout_marginRight="94dp"
+            android:text="配送地点"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView11"
+            android:layout_alignBottom="@+id/textView11"
+            android:layout_toEndOf="@+id/textView11"
+            android:layout_toRightOf="@+id/textView11"
+            android:ems="10"
+            android:inputType="time" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="13dp"
+            android:text="订单持续时间"
+            android:textColor="@color/base_color_text_black"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
