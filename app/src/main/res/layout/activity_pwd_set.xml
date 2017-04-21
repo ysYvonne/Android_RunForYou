@@ -94,7 +94,7 @@
             android:textSize="12dp" />
 
         <Button
-            android:id="@+id/ok_button1"
+            android:id="@+id/pwd_set_ok_button"
             android:layout_width="358dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
