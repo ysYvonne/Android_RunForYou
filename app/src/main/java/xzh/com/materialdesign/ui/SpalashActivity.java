@@ -1,24 +1,17 @@
 package xzh.com.materialdesign.ui;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,9 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.Api;
-import xzh.com.materialdesign.utils.ImageUtil;
 import xzh.com.materialdesign.utils.SysUtil;
-import xzh.com.materialdesign.utils.UIHelper;
 
 /**
  * Created by xiangzhihong on 2016/3/2 on 12:21.
@@ -77,7 +68,7 @@ public class SpalashActivity extends AppCompatActivity {
             }
         });*/
 
-        startActivity(new Intent(mContext, MainActivity.class));
+        startActivity(new Intent(mContext, LoginActivity.class));
 
         String dimen;
         int width = SysUtil.getScreenWidth(this);

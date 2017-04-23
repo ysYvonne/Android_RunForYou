@@ -9,4 +9,24 @@
     <string name="load_full">已加载全部</string>
     <string name="load_empty">暂无数据</string>
     <string name="load_error">加载数据出错</string>
+
+    "<string name="login_label_username">输入账号</string>
+    "<string name="login_label_phone">输入手机号</string>
+    "<string name="login_label_validNum">输入验证码:</string>
+    "<string name="login_label_password">输入密码</string>
+    "<string name="login_button_send_validation">发送\n验证码</string>
+    "<string name="login_button_signin">登 录 </string>
+    "<string name="login_label_register_link">还没有账号？ 注册</string>
+    "<string name="login_label_account_longin">账号登录</string>
+    "<string name="login_label_phone_longin">手机号登录</string>
+
+    "<string name="register_title">注册新用户</string>
+    "<string name="register_title_1">手机号验证</string>
+    "<string name="register_title_2">实名认证</string>
+    "<string name="register_title_3">成功注册</string>
+    "<string name="register_next">下一步</string>
+    "<string name="register_finish">完成</string>
+    "<string name="register_school">学校</string>
+    "<string name="register_real_name">真实姓名:</string>
+    "<string name="register_email"> 输入邮箱:</string>
 </resources>

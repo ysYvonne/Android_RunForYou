@@ -6,20 +6,22 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <xzh.com.materialdesign.view.TitleBar
-        android:id="@+id/title_bar1"
-        style="@style/title" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/title_bar1"
-        android:background="@drawable/boarder"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        >
+        android:orientation="vertical">
+
+        <include layout="@layout/topbar_layout"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/avatar_info"
@@ -33,20 +35,20 @@
                 android:id="@+id/imgAvatar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/avatar"
-                android:layout_margin="7dp"
-                android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="7dp"
+                android:src="@drawable/avatar" />
 
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/arrow1"
-                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow1" />
 
         </RelativeLayout>
 

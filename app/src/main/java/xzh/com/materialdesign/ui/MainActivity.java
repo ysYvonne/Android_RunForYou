@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private Context mContext;
     private Toolbar mToolbar;
-    private CharSequence mTitle="知乎";
+    private CharSequence mTitle="Run For You 走你";
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private PullToLoadView mPullToLoadView;
     private HomeAdapter mAdapter;
@@ -49,10 +49,12 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main_topdrawer);
         ButterKnife.inject(this);
         EventBus.getDefault().register(this);
         mContext = MainActivity.this;
+
         init();
     }
 
