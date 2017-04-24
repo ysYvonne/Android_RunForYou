@@ -4,23 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <xzh.com.materialdesign.view.TitleBar
-        android:id="@+id/title_bar5"
-        style="@style/title" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_bar5"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:orientation="vertical">
+
+        <include layout="@layout/topbar_layout"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/name_change_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/boarder">
+            android:background="@drawable/boarder"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <TextView
                 android:id="@+id/name_textview"
@@ -60,12 +63,22 @@
             android:textSize="12dp" />
 
         <Button
-            android:id="@+id/ok_button2"
-            android:layout_width="358dp"
+            android:id="@+id/name_ok_button"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="@color/myPrimaryColor"
-            android:text="确认" />
+            android:text="确认"
+            android:clickable="true"/>
+
+        <Button
+            android:id="@+id/name_cancel_button"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/myPrimaryColor"
+            android:text="取消"
+            android:clickable="true"/>
 
     </LinearLayout>
 

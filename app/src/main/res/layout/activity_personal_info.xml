@@ -11,8 +11,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:orientation="vertical">
 
         <include layout="@layout/topbar_layout"/>
@@ -28,6 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/boarder"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:clickable="true"
             android:focusable="true">
 
@@ -57,6 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/boarder"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:clickable="true"
             android:focusable="true">
 
@@ -85,7 +87,8 @@
             android:id="@+id/pwd_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/boarder"
             android:clickable="true"
             android:focusable="true">
@@ -114,7 +117,8 @@
             android:id="@+id/sex_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/boarder"
             android:clickable="true"
             android:focusable="true">
@@ -143,7 +147,8 @@
             android:id="@+id/name_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/boarder"
             android:clickable="true"
             android:focusable="true">
@@ -174,7 +179,8 @@
             android:id="@+id/age_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/boarder"
             android:clickable="true"
             android:focusable="true">
@@ -205,7 +211,8 @@
             android:id="@+id/school_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/boarder"
             android:clickable="true"
             android:focusable="true">
@@ -235,7 +242,8 @@
             android:id="@+id/email_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/boarder"
             android:clickable="true"
             android:focusable="true">
@@ -265,7 +273,8 @@
             android:id="@+id/phone_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/boarder"
             android:clickable="true"
             android:focusable="true">
