@@ -4,23 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <xzh.com.materialdesign.view.TitleBar
-        android:id="@+id/title_bar2"
-        style="@style/title" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/title_bar2"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:orientation="vertical">
+
+        <include layout="@layout/topbar_layout"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/new_pwd_layout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/boarder">
+            android:background="@drawable/boarder"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <TextView
                 android:id="@+id/new_pwd_textview1"
@@ -54,7 +57,9 @@
             android:id="@+id/check_pwd_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/boarder">
+            android:background="@drawable/boarder"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <TextView
                 android:id="@+id/check_pwd_textView1"
@@ -95,11 +100,21 @@
 
         <Button
             android:id="@+id/pwd_set_ok_button"
-            android:layout_width="358dp"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="@color/myPrimaryColor"
-            android:text="确认" />
+            android:text="确认"
+            android:clickable="true"/>
+
+        <Button
+            android:id="@+id/pwd_set_cancel_button"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/myPrimaryColor"
+            android:text="取消"
+            android:clickable="true"/>
 
     </LinearLayout>
 
