@@ -102,6 +102,7 @@
             android:layout_height="40dp"
             android:gravity="center"
             android:text="@string/login_label_register_link"
+            android:clickable="true"
             android:textColor="@color/gray"
             android:textSize="12dp" />
 
@@ -125,6 +126,7 @@
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/gray"
+                android:clickable="true"
                 android:textSize="15dp" />
 
             <TextView
@@ -147,6 +149,7 @@
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/myPrimaryColor"
+                android:clickable="false"
                 android:textSize="15dp" />
         </LinearLayout>
 

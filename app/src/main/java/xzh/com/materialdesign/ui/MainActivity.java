@@ -30,7 +30,7 @@ import xzh.com.materialdesign.view.PullCallback;
 import xzh.com.materialdesign.view.PullToLoadView;
 import xzh.com.materialdesign.view.ThemeManager;
 
-@SuppressLint("NewApi")
+@SuppressLint("NewApi")//屏蔽android lint错误
 public class MainActivity extends AppCompatActivity implements
         NavigationDrawerCallbacks {
 

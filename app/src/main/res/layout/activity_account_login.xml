@@ -48,22 +48,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/signin_button"
             android:layout_width="358dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/password"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:background="@color/myPrimaryColor"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+
+            android:background="@color/myPrimaryColor"
             android:text="@string/login_button_signin"
-            android:textSize="25dp"
-            />
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/register_link"
@@ -71,6 +71,7 @@
             android:layout_height="40dp"
             android:gravity="center"
             android:text="@string/login_label_register_link"
+            android:clickable="true"
             android:textColor="@color/gray"
             android:textSize="12dp" />
 
@@ -90,6 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="@string/login_label_account_longin"
+                android:clickable="false"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_gravity="center_horizontal"
@@ -100,10 +102,10 @@
                 android:id="@+id/divider"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:gravity="center"
                 android:text="  |  "
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_gravity="center_horizontal"
                 android:textColor="@color/gray"
                 android:textSize="30dp" />
 
@@ -111,10 +113,11 @@
                 android:id="@+id/phone_login"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:clickable="true"
                 android:gravity="center"
                 android:text="@string/login_label_phone_longin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_gravity="center_horizontal"
                 android:textColor="@color/myPrimaryColor"
                 android:textSize="15dp" />
         </LinearLayout>

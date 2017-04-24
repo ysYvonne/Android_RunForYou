@@ -68,7 +68,7 @@ public class SpalashActivity extends AppCompatActivity {
             }
         });*/
 
-        startActivity(new Intent(mContext, LoginActivity.class));
+        startActivity(new Intent(mContext, AccountLoginActivity.class));
 
         String dimen;
         int width = SysUtil.getScreenWidth(this);
