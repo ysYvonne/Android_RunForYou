@@ -4,13 +4,16 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <xzh.com.materialdesign.view.TitleBar
+        android:id="@+id/title_bar7"
+        style="@style/title" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include layout="@layout/topbar_layout"/>
+        android:orientation="vertical"
+        android:layout_below="@id/title_bar7">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -30,9 +33,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/boarder"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:background="@drawable/boarder">
 
             <TextView
                 android:id="@+id/new_phone_textView"
@@ -54,7 +55,7 @@
                 android:layout_toRightOf="@+id/new_phone_textView"
                 android:layout_toStartOf="@id/identify_button"
                 android:ems="10"
-                android:inputType="phone"
+                android:inputType="text"
                 android:maxLength="20"
                 android:textColorHint="@color/gray"
                 android:textSize="30px" />
@@ -62,12 +63,14 @@
             <Button
                 android:id="@+id/identify_button"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/new_phone_textView"
+                android:layout_alignBottom="@+id/new_phone_textView"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginRight="14dp"
                 android:backgroundTint="@color/myPrimaryColor"
                 android:text="发送验证码"
                 android:textSize="30px" />
@@ -77,9 +80,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/boarder"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_above="@+id/identify_button"
+            android:layout_weight="0.05"
+            android:background="@drawable/boarder">
 
             <TextView
                 android:id="@+id/identify_textview"
@@ -98,9 +101,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/identify_textview"
                 android:ems="10"
-                android:textSize="30px"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:inputType="phone"
+                android:textSize="30px" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -111,20 +113,12 @@
 
         <Button
             android:id="@+id/phone_ok_button"
-            android:layout_width="360dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_weight="0.05"
             android:backgroundTint="@color/myPrimaryColor"
             android:text="确认" />
-
-        <Button
-            android:id="@+id/phone_cancel_button"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/myPrimaryColor"
-            android:text="取消"
-            android:clickable="true"/>
 
     </LinearLayout>
 
