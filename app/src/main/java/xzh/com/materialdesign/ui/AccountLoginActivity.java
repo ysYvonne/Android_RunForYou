@@ -44,7 +44,7 @@ public class AccountLoginActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
+                ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
                 //加入咱们自己的主界面
             }
         });
