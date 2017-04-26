@@ -18,16 +18,20 @@ public class CellHolder extends RecyclerView.ViewHolder {
 
     @InjectView(R.id.item_view)
     LinearLayout itemView;
-    @InjectView(R.id.item_cator)
-    TextView itemCator;
-    @InjectView(R.id.cardView)
-    CardView cardView;
-    @InjectView(R.id.item_content)
-    TextView itemContent;
-    @InjectView(R.id.item_image)
-    CircleImageView itemImage;
-    @InjectView(R.id.item_count)
-    TextView itemCount;
+//    @InjectView(R.id.item_cator)
+//    TextView itemCator;
+     @InjectView(R.id.cardView)
+        CardView cardView;
+//    @InjectView(R.id.item_content)
+        //TextView itemContent;
+//    @InjectView(R.id.item_image)
+//    CircleImageView itemImage;
+//    @InjectView(R.id.item_count)
+//    TextView itemCount;
+
+
+
+
 
     public CellHolder(View itemView) {
         super(itemView);

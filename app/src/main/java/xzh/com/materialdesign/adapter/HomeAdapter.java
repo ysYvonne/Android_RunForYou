@@ -40,11 +40,13 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> {
 
     @Override
     public void onBindViewHolder(CellHolder cellHolder, int i) {
+        /*
          if (getItemCount()%2==1){
              cellHolder.itemCator.setText("热门回答");
          }else {
              cellHolder.itemCator.setText("知乎回答");
          }
+         */
         initIntro(cellHolder,i);
        cellHolder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override

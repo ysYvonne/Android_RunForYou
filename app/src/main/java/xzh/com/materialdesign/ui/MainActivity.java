@@ -12,9 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import com.ypy.eventbus.EventBus;
 
@@ -56,6 +59,13 @@ public class MainActivity extends AppCompatActivity implements
         mContext = MainActivity.this;
 
         init();
+        ImageButton bt_dial = (ImageButton) findViewById(R.id.img_float_btn);
+        bt_dial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityHelper.startActivity(MainActivity.this,OrderActivity.class);
+            }
+        });
     }
 
     private void init() {

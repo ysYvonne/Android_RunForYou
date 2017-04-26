@@ -24,17 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.PhoneLoginActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
 
         <activity android:name=".ui.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.PhoneLoginActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.RegistPhoneActivity"
         android:screenOrientation="portrait" />
@@ -46,6 +40,12 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.ThemColorChangeActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.OrderActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.ModifyActivity"
+            android:label="更改收货人"
+            android:theme="@style/dialogstyle" />
     </application>
 
 </manifest>

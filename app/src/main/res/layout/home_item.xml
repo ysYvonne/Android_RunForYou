@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,24 +12,17 @@
     <LinearLayout
         android:id="@+id/item_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="141dp"
         android:background="@drawable/card_light"
         android:orientation="horizontal"
-        android:padding="10dp" >
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/item_cator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="热门回答"
-                android:textColor="#787878"
-                android:textSize="12sp" />
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/item_title"
@@ -36,48 +30,85 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:lineSpacingExtra="2dp"
-                android:maxLines="2"
-                android:text="为什么国内安卓APP都不遵循Material Desigh设计规范？"
+                android:maxLines="1"
+                android:text="烤肉拌饭"
                 android:textColor="#1F1F1F"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/item_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="8dp"
-                android:lineSpacingExtra="1dp"
-                android:maxLines="4"
-                android:text="Android 5.0采用了全新的Material Design设计语言，整个操作界面有了较大的变化。它相比以前更为简约，图标与操作方式都有所改进，整体更加扁平化，纸片儿风很多地方都可见"
-                android:textColor="#6B6B6B"
-                android:textSize="14sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/item_order_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/item_order_destination"
+                    android:layout_alignBottom="@+id/item_order_destination"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginRight="31dp"
+                    android:text="逸夫教学楼"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/item_order_destination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="15dp"
+                    android:text="下沉广场"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/item_order_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/item_order_destination"
+                    android:layout_alignStart="@+id/item_order_destination"
+                    android:layout_below="@+id/item_order_destination"
+                    android:text="12.10"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/item_order_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/item_order_time"
+                    android:layout_alignStart="@+id/item_order_time"
+                    android:layout_below="@+id/item_order_time"
+                    android:text="50"
+                    android:textColor="@android:color/black" />
+
+                <Button
+                    android:id="@+id/item_check"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/item_order_money"
+                    android:background="@color/midnight_blue"
+                    android:elevation="0dp"
+                    android:onClick="onClick"
+                    android:text="接单" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
             android:layout_marginLeft="2dp"
-            android:orientation="vertical" >
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
 
-            <xzh.com.materialdesign.view.CircleImageView
-                android:id="@+id/item_image"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/img_user_head" />
-
-            <TextView
-                android:id="@+id/item_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="12dp"
-                android:text="12K"
-                android:textColor="#0076D8"
-                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
 
