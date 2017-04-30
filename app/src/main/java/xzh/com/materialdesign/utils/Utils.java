@@ -7,7 +7,7 @@ import java.util.List;
 import android.content.Context;
 
 import xzh.com.materialdesign.R;
-import xzh.com.materialdesign.model.NavigationItem;
+import xzh.com.materialdesign.renjiade_model.NavigationItem;
 
 public class Utils {
 	private static Utils mDatas;

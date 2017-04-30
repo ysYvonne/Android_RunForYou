@@ -19,10 +19,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.Api;
-import xzh.com.materialdesign.model.DetailEntity;
+import xzh.com.materialdesign.renjiade_model.DetailEntity;
 import xzh.com.materialdesign.utils.JsonUtil;
 import xzh.com.materialdesign.view.UWebView;
 

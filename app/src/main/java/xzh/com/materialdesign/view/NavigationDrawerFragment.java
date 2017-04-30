@@ -24,7 +24,7 @@ import java.util.List;
 
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.adapter.NavigationDrawerAdapter;
-import xzh.com.materialdesign.model.NavigationItem;
+import xzh.com.materialdesign.renjiade_model.NavigationItem;
 import xzh.com.materialdesign.utils.Utils;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
