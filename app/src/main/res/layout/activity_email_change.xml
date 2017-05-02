@@ -70,14 +70,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/email_textView"
-                android:layout_toLeftOf="@+id/email_text"
-                android:layout_toRightOf="@+id/email_textView"
-                android:ems="10"
+                android:textColor="@color/base_color_text_black"
                 android:inputType="text"
                 android:maxLength="20"
                 android:textColorHint="@color/gray"
-                android:textSize="30px" />
+                android:textSize="30px"
+                android:layout_toLeftOf="@+id/email_text"
+                android:layout_toStartOf="@id/email_text"
+                android:layout_toRightOf="@+id/email_textView"
+                android:layout_toEndOf="@+id/email_textView" />
 
             <TextView
                 android:id="@+id/email_text"

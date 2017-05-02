@@ -20,8 +20,8 @@
                 android:id="@+id/phone_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:text="  请输入新手机号"
+                android:layout_centerVertical="true"
                 android:textColor="@color/base_color_text_black"
                 android:textSize="15dp" />
 
@@ -53,10 +53,10 @@
                 android:layout_toLeftOf="@+id/identify_button"
                 android:layout_toRightOf="@+id/new_phone_textView"
                 android:layout_toStartOf="@id/identify_button"
-                android:ems="10"
                 android:inputType="phone"
                 android:maxLength="20"
                 android:textColorHint="@color/gray"
+                android:textColor="@color/base_color_text_black"
                 android:textSize="30px" />
 
             <Button
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/identify_textview"
-                android:ems="10"
+                android:textColor="@color/base_color_text_black"
                 android:textSize="30px"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
