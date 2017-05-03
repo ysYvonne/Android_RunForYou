@@ -18,9 +18,9 @@ public class Utils {
 		mList.add(new NavigationItem("首页", context.getResources().getDrawable(R.drawable.ic_drawer_home_normal),Style.DEFAULT));
 //		mList.add(new NavigationItem("发现", context.getResources().getDrawable(R.drawable.ic_drawer_explore_normal),Style.DEFAULT));
 //		mList.add(new NavigationItem("关注", context.getResources().getDrawable(R.drawable.ic_drawer_follow_normal),Style.DEFAULT));
-		mList.add(new NavigationItem("收藏", context.getResources().getDrawable(R.drawable.ic_drawer_collect_normal),Style.DEFAULT));
-		mList.add(new NavigationItem("圆桌", context.getResources().getDrawable(R.drawable.ic_drawer_draft_normal),Style.DEFAULT));
-		mList.add(new NavigationItem("私信", context.getResources().getDrawable(R.drawable.ic_drawer_register_normal),Style.HASLINE));
+//		mList.add(new NavigationItem("收藏", context.getResources().getDrawable(R.drawable.ic_drawer_collect_normal),Style.DEFAULT));
+		mList.add(new NavigationItem("我的订单", context.getResources().getDrawable(R.drawable.ic_drawer_draft_normal),Style.DEFAULT));
+		mList.add(new NavigationItem("联系我们", context.getResources().getDrawable(R.drawable.ic_drawer_register_normal),Style.HASLINE));
 		mList.add(new NavigationItem("切换主题", null,Style.NO_ICON));
 		mList.add(new NavigationItem("设置", null,Style.NO_ICON));
 	}

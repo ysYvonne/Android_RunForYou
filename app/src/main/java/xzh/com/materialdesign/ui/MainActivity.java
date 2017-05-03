@@ -156,25 +156,26 @@ public class MainActivity extends AppCompatActivity implements
                 mTitle = "首页";
                 break;
             case 1:
-                mTitle = "发现";
+                mTitle = "我的订单";
                 break;
             case 2:
-                mTitle = "关注";
+                mTitle = "联系我们";
                 break;
+//            case 3:
+//                mTitle = "收藏";
+//                break;
+//            case 4:
+//                mTitle = "圆桌";
+//                break;
+//            case 5:
+//                mTitle = "私信";
+//                break;
+            //case 6:
             case 3:
-                mTitle = "收藏";
-                break;
-            case 4:
-                mTitle = "圆桌";
-                break;
-            case 5:
-                mTitle = "私信";
-                break;
-            case 6:
                 ActivityHelper.startActivity(this,ThemColorChangeActivity.class);
              break;
                 default:
-                mTitle="知乎";
+                mTitle="Run For You";
                 break;
         }
         if(mToolbar!=null)
