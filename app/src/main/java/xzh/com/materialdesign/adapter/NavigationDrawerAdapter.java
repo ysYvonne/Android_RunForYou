@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import xzh.com.materialdesign.R;
-import xzh.com.materialdesign.renjiade_model.NavigationItem;
+import xzh.com.materialdesign.model.NavigationItem;
 import xzh.com.materialdesign.utils.Utils.*;
 import xzh.com.materialdesign.view.NavigationDrawerCallbacks;
 

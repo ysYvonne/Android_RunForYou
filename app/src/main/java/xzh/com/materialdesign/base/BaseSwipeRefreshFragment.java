@@ -18,8 +18,8 @@ import java.util.List;
 
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.adapter.CommonAdapter;
-import xzh.com.materialdesign.renjiade_model.Entity;
-import xzh.com.materialdesign.renjiade_model.MessageData;
+import xzh.com.materialdesign.model.Entity;
+import xzh.com.materialdesign.model.MessageData;
 import xzh.com.materialdesign.view.TipInfoLayout;
 
 /**

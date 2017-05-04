@@ -4,8 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,16 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
-import xzh.com.materialdesign.api.Api;
-import xzh.com.materialdesign.renjiade_model.DetailEntity;
-import xzh.com.materialdesign.utils.JsonUtil;
 import xzh.com.materialdesign.view.UWebView;
 
 /**
@@ -54,12 +44,13 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_detail);
-        ButterKnife.inject(this);
+        setContentView(R.layout.order_detail);
+       // ButterKnife.inject(this);
         mContext = DetailsActivity.this;
-        init();
+        //init();
     }
 
+    /*
     private void init() {
         navTitle.setText("详情");
         navBack.setOnClickListener(new View.OnClickListener() {
@@ -131,4 +122,5 @@ public class DetailsActivity extends AppCompatActivity {
                 .append("</html>");
         webview.loadData(builder.toString(), "text/html;charset=UTF-8", "UTF-8");
     }
+    */
 }

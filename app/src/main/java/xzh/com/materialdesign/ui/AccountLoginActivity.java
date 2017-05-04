@@ -57,7 +57,7 @@ public class AccountLoginActivity extends AppCompatActivity {
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                     finish();
                 ActivityHelper.startActivity(AccountLoginActivity.this,PhoneLoginActivity.class);
             }
         });

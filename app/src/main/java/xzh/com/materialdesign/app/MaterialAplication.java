@@ -34,7 +34,7 @@ public class MaterialAplication extends Application{
     }
 
     private void init() {
-//        ImageUtil.init(this, FileManager.getHomeDir());
+        ImageUtil.init(this, FileManager.getHomeDir());
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this));
     }
 

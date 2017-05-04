@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(manager);
         mAdapter = new HomeAdapter(mContext);
+      //  mAdapter.onBindViewHolder(mAdapter.onCreateViewHolder());
         mRecyclerView.setAdapter(mAdapter);
         mPullToLoadView.isLoadMoreEnabled(true);
         mPullToLoadView.setPullCallback(new PullCallback() {
