@@ -24,6 +24,7 @@ import com.ypy.eventbus.EventBus;
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.adapter.HomeAdapter;
+import xzh.com.materialdesign.api.SetTitleTool;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.IntroUtils;
 import xzh.com.materialdesign.utils.UIHelper;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements
     private boolean isLoading = false;
     private boolean isHasLoadedAll = false;
     private int nextPage;
+    private boolean on_off=false;
 
 
     @SuppressLint("NewApi")
@@ -151,33 +153,40 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void setTitleName(int position) {
-        switch (position) {
-            case 0:
-                mTitle = "首页";
-                break;
-            case 1:
-                mTitle = "我的订单";
-                break;
-            case 2:
-                mTitle = "联系我们";
-                break;
-//            case 3:
-//                mTitle = "收藏";
-//                break;
-//            case 4:
-//                mTitle = "圆桌";
-//                break;
-//            case 5:
-//                mTitle = "私信";
-//                break;
-            //case 6:
-            case 3:
-                ActivityHelper.startActivity(this,ThemColorChangeActivity.class);
-             break;
-                default:
-                mTitle="Run For You";
-                break;
+        if(!on_off){
+            mTitle="首页";
+            on_off=true;
+        }else{
+            SetTitleTool.isSetTitleName(this,position);
         }
+
+//        switch (position) {
+//            case 0:
+//                mTitle = "首页";
+//                break;
+//            case 1:
+//                mTitle = "我的订单";
+//                break;
+//            case 2:
+//                mTitle = "联系我们";
+//                break;
+////            case 3:
+////                mTitle = "收藏";
+////                break;
+////            case 4:
+////                mTitle = "圆桌";
+////                break;
+////            case 5:
+////                mTitle = "私信";
+////                break;
+//            //case 6:
+//            case 3:
+//                ActivityHelper.startActivity(this,ThemColorChangeActivity.class);
+//             break;
+//                default:
+//                mTitle="Run For You";
+//                break;
+//        }
         if(mToolbar!=null)
         mToolbar.setTitle(mTitle);
     }

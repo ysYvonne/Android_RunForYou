@@ -46,6 +46,12 @@
         <activity android:name=".ui.ModifyActivity"
             android:label="更改收货人"
             android:theme="@style/dialogstyle" />
+        <activity android:name=".ui.MyOrderActivity"
+            android:label="我的订单"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.ReceiveOrderActivity"
+            android:label="接收订单"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

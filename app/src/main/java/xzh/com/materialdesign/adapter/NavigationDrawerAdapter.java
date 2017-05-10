@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -118,6 +119,7 @@ public class NavigationDrawerAdapter extends
 	}
 
 	public void selectPosition(int position) {
+		System.out.println("this is NaviAdapter.selectPosition"+position);
 		int lastPosition = mSelectedPosition;
 		mSelectedPosition = position;
 		notifyItemChanged(lastPosition);

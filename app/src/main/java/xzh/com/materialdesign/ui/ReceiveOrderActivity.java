@@ -20,6 +20,7 @@ import com.ypy.eventbus.EventBus;
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.adapter.ReceiveOrderAdapter;
+import xzh.com.materialdesign.api.SetTitleTool;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.UIHelper;
 import xzh.com.materialdesign.view.NavigationDrawerCallbacks;
@@ -34,13 +35,14 @@ public class ReceiveOrderActivity extends AppCompatActivity implements
 
     private Context mContext;
     private Toolbar mToolbar;
-    private CharSequence mTitle="接收订单";
+    private CharSequence mTitle;
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private PullToLoadView mPullToLoadView;
     private ReceiveOrderAdapter mAdapter;
     private boolean isLoading = false;
     private boolean isHasLoadedAll = false;
     private int nextPage;
+    private boolean on_off=false;
 
 
     @SuppressLint("NewApi")
@@ -146,32 +148,11 @@ public class ReceiveOrderActivity extends AppCompatActivity implements
     }
 
     private void setTitleName(int position) {
-        switch (position) {
-            case 0:
-                mTitle = "首页";
-                break;
-            case 1:
-                mTitle = "发起订单";
-                break;
-            case 2:
-                mTitle = "接收订单";
-                break;
-            case 3:
-                mTitle = "收藏";
-                break;
-            case 4:
-                mTitle = "圆桌";
-                break;
-            case 5:
-                mTitle = "私信";
-                break;
-            case 6:
-                ActivityHelper.startActivity(this,ThemColorChangeActivity.class);
-                break;
-            default:
-                mTitle="知乎";
-                break;
-        }
+       if(!on_off){
+           mTitle="接收订单";
+       }else{
+           SetTitleTool.isSetTitleName(this,position);
+       }
         if(mToolbar!=null)
             mToolbar.setTitle(mTitle);
     }
