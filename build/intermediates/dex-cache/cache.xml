@@ -2,166 +2,157 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\imagepipeline-v0.9.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7ac5b69890de01df12aecae6adf3728e0f763e0d">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\imagepipeline-v0.9.0_f0f8a58dcf31fc54c65c3fbf0b0ea7083a60e4d4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\imagepipeline-base-v0.9.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="08439bc8bee5b56959c0efa2d726ce040df654df">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\imagepipeline-base-v0.9.0_4d09e2b4e9c66fe5796e4fc243f5f8da2733ee28\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="827340ba88c26de5f89b775da2eaa5c4222bdb0b">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7f7d01d3ab53ef76c7baa1ffac094cfc8d6f14c0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\android-support-v7-recyclerview.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\android-support-v7-recyclerview.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="95c892d244f49414bbdf92c2235a32ea06bc68aa">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-support-v7-recyclerview_0e0a88c81db849b1992c8d745bc90afb483133e7\classes.dex" />
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\android-support-v7-recyclerview_3875b0367e0939723713a0b33a58258287308f47.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\jackson-core-asl-1.9.9.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0b198f9d20dcc5bd2fe211e10f4110639b8243d6">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\jackson-core-asl-1.9.9_c3d2e3caa484a138bcdeb6c506209943998cebd8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\fbcore-v0.9.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8efc624a608fc1cdfc9fb8db8360aea2ea4858dd">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\fbcore-v0.9.0_c2a259c9fac1aa3e8bd8b518fc4aa188efbb26ff\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\universal-image-loader-1.9.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\universal-image-loader-1.9.4_a24a4020a1f746dfa3666642833f4edf111056b8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\okhttp-2.5.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4de2b4ed3445c37ec1720a7d214712e845a24636">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\okhttp-2.5.0_c4e7be310995109417e82b4329afd7eaa048ca22\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\EventBus2.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="bd22c7476d00a86c87e0c6a90cb0ae2cf982532a">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\EventBus2.4_421042373e138531d37caabaa46dccfb6c9430b2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\drawee-v0.9.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="bc55ad41e2642741536d2ae474e02343f3e2b182">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\drawee-v0.9.0_984c2b3bd2df30d060942fb534330a24cd4d5a3c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\fresco-v0.9.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a966d8a08abe95ae5a87b5a4b9d7d96c7debfb42">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\fresco-v0.9.0_c242316e53044e11c45ff35a31656e6443b9dbfe\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\gson-2.2.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a60a5e993c98c864010053cb901b7eab25306568">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\gson-2.2.4_d2a212cdc48fde23dbb8152992d31505503c2fa8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_fc6d54cecd07cea48aed6e13c7a584cb96e01d0c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\android-async-http-1.4.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3bae85a076241828810bf8fbcc12e5891d5fc34c">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-async-http-1.4.4_9254fd59d3fb4c3037fc0e84389feb5d8b44bfcc\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\okio-1.6.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\okio-1.6.0_95984edb0a3b2e6bad8c5a4e576b0e09540670b2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\nineoldandroids-2.4.0.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\nineoldandroids-2.4.0_79f5de782d9b4098e39aad1f364c0829d41341a2\classes.dex" />
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0_c18487a9ad36dde9b00b9c35e83ca06e25a142c2.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\butterknife-6.1.0.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\Libary\materialintro\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2a0894e3adf57ae64c2f6e8dac08023e97ee63e1">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\classes_4994ae4ba53408850a9dff0b82964dab8dac911f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\android-async-http-1.4.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3bae85a076241828810bf8fbcc12e5891d5fc34c">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.4_2787ef2d820bd2bc58f28cf05cdc5b7066db4088.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\imagepipeline-v0.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7ac5b69890de01df12aecae6adf3728e0f763e0d">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\imagepipeline-v0.9.0_c2abc90593fddcca69e23ff510567588878e4bd3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\universal-image-loader-1.9.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.4_f4ef7a9e1a1489fcd3b9a5e092b36cc506f42b26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\butterknife-6.1.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\butterknife-6.1.0_6473667f64fa19c8ac23c32425afb57af32959bb\classes.dex" />
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\butterknife-6.1.0_692e050b6fb0f02eec3dddfdd70637f7d80268e4.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="F:\GitHub\Android_RunForYou\app\libs\android-support-design.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\android-support-design.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="1806f6277f54501203825292e09d82cfadfca397">
-        <dex dex="F:\GitHub\Android_RunForYou\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-support-design_a45a364f27611dabbe91a9c24d04c70aaf42834f\classes.dex" />
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\android-support-design_4d7703a477febd83a0f9c7e61bc453416f12f6bc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\fresco-v0.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a966d8a08abe95ae5a87b5a4b9d7d96c7debfb42">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\fresco-v0.9.0_4a4684a28b9ede93852177e19d92a09916d0ab5e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\gson-2.2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\gson-2.2.4_9ffff0a069b07572d2b0bd8d3a892c4caab64d22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\jackson-core-asl-1.9.9.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0b198f9d20dcc5bd2fe211e10f4110639b8243d6">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\jackson-core-asl-1.9.9_dff9769960e83e8461262bf6c9c41036e806b745.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\imagepipeline-base-v0.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="08439bc8bee5b56959c0efa2d726ce040df654df">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\imagepipeline-base-v0.9.0_fc24e0d51b346439c9cd774f45dbda62d8454f3a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\drawee-v0.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bc55ad41e2642741536d2ae474e02343f3e2b182">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\drawee-v0.9.0_c4e4590ca2c67872e89060b1bce5437486f5c52e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\okhttp-2.5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4de2b4ed3445c37ec1720a7d214712e845a24636">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\okhttp-2.5.0_58a8707d638f541945eb004f58aaff2838ee9e45.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\okio-1.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\okio-1.6.0_4044a900ebdff12824c731fec8e2ae1d09b3a919.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\fbcore-v0.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8efc624a608fc1cdfc9fb8db8360aea2ea4858dd">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\fbcore-v0.9.0_d8ae244e47cfe84b2d117c71936d06b4cc692c4c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\1\Android_RunForYou\app\libs\EventBus2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bd22c7476d00a86c87e0c6a90cb0ae2cf982532a">
+        <dex dex="C:\Users\dz\androidApplication\1\Android_RunForYou\app\build\intermediates\pre-dexed\debug\EventBus2.4_930702853d6829eb9e0cded6a94f7dc8d53ba6f8.jar" />
     </item>
 
 </items>

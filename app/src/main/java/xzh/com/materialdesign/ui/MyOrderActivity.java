@@ -1,31 +1,26 @@
 package xzh.com.materialdesign.ui;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.ypy.eventbus.EventBus;
 
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
-import xzh.com.materialdesign.adapter.HomeAdapter;
+import xzh.com.materialdesign.adapter.MyOrderAdapter;
 import xzh.com.materialdesign.utils.ActivityHelper;
-import xzh.com.materialdesign.utils.IntroUtils;
 import xzh.com.materialdesign.utils.UIHelper;
 import xzh.com.materialdesign.view.NavigationDrawerCallbacks;
 import xzh.com.materialdesign.view.NavigationDrawerFragment;
@@ -34,15 +29,15 @@ import xzh.com.materialdesign.view.PullToLoadView;
 import xzh.com.materialdesign.view.ThemeManager;
 
 @SuppressLint("NewApi")//屏蔽android lint错误
-public class MainActivity extends AppCompatActivity implements
+public class  MyOrderActivity extends AppCompatActivity implements
         NavigationDrawerCallbacks {
 
     private Context mContext;
     private Toolbar mToolbar;
-    private CharSequence mTitle="Run For You 走你";
+    private CharSequence mTitle="发起订单";
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private PullToLoadView mPullToLoadView;
-    private HomeAdapter mAdapter;
+    private MyOrderAdapter mAdapter;
     private boolean isLoading = false;
     private boolean isHasLoadedAll = false;
     private int nextPage;
@@ -56,14 +51,14 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main_topdrawer);
         ButterKnife.inject(this);
         EventBus.getDefault().register(this);
-        mContext = MainActivity.this;
+        mContext = MyOrderActivity.this;
 
         init();
         ImageButton bt_dial = (ImageButton) findViewById(R.id.img_float_btn);
         bt_dial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityHelper.startActivity(MainActivity.this,OrderActivity.class);
+                ActivityHelper.startActivity(MyOrderActivity.this,OrderActivity.class);
             }
         });
     }
@@ -79,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements
         LinearLayoutManager manager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(manager);
-        mAdapter = new HomeAdapter(mContext);
+        mAdapter = new MyOrderAdapter(mContext);
         mRecyclerView.setAdapter(mAdapter);
         mPullToLoadView.isLoadMoreEnabled(true);
         mPullToLoadView.setPullCallback(new PullCallback() {
@@ -118,8 +113,8 @@ public class MainActivity extends AppCompatActivity implements
                 .findFragmentById(R.id.fragment_drawer);
         mNavigationDrawerFragment.setup(R.id.fragment_drawer,
                 (DrawerLayout) findViewById(R.id.drawer), mToolbar);
-         DrawerLayout draw= (DrawerLayout) findViewById(R.id.drawer);
-         mNavigationDrawerFragment.setDrawerLayout(draw);
+        DrawerLayout draw= (DrawerLayout) findViewById(R.id.drawer);
+        mNavigationDrawerFragment.setDrawerLayout(draw);
         mPullToLoadView = (PullToLoadView) findViewById(R.id.pullToLoadView);
 
     }
@@ -146,40 +141,43 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    final public void onNavigationDrawerItemSelected(int position) {
+    public void onNavigationDrawerItemSelected(int position) {
         setTitleName(position);
     }
 
     private void setTitleName(int position) {
         switch (position) {
-            case 0:
+            case 0: {
                 mTitle = "首页";
+                ActivityHelper.startActivity(this,MainActivity.class);
+            }
                 break;
-            case 1:
+            case 1: {
                 mTitle = "我的订单";
+                 ActivityHelper.startActivity(this,MyOrderActivity.class);
+            }
                 break;
             case 2:
-                mTitle = "联系我们";
+                mTitle = "接收订单";
                 break;
-//            case 3:
-//                mTitle = "收藏";
-//                break;
-//            case 4:
-//                mTitle = "圆桌";
-//                break;
-//            case 5:
-//                mTitle = "私信";
-//                break;
-            //case 6:
             case 3:
+                mTitle = "收藏";
+                break;
+            case 4:
+                mTitle = "圆桌";
+                break;
+            case 5:
+                mTitle = "私信";
+                break;
+            case 6:
                 ActivityHelper.startActivity(this,ThemColorChangeActivity.class);
-             break;
-                default:
-                mTitle="Run For You";
+                break;
+            default:
+                mTitle="知乎";
                 break;
         }
         if(mToolbar!=null)
-        mToolbar.setTitle(mTitle);
+            mToolbar.setTitle(mTitle);
     }
 
     @Override
@@ -197,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void run() {
                 if (isHasLoadedAll) {
-                    Toast.makeText(MainActivity.this, "没有更多数据了",
+                    Toast.makeText(MyOrderActivity.this, "没有更多数据了",
                             Toast.LENGTH_SHORT).show();
                 }
                 if (page > 10) {
@@ -215,8 +213,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void onEventMainThread(int color) {
-       if (color!=-1){
-           mToolbar.setBackgroundColor(color);
-       }
+        if (color!=-1){
+            mToolbar.setBackgroundColor(color);
+        }
     }
 }
