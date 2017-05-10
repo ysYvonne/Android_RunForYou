@@ -30,7 +30,7 @@
             android:id="@+id/time_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2017-5-7 19：00"
+            android:text="2017-5-10 19：00"
             android:textSize="20dp"
             android:textColor="@color/base_color_text_black"
             android:layout_marginLeft="28dp"
