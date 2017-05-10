@@ -56,13 +56,13 @@ public class  MyOrderActivity extends AppCompatActivity implements
         mContext = MyOrderActivity.this;
 
         init();
-        ImageButton bt_dial = (ImageButton) findViewById(R.id.img_float_btn);
-        bt_dial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityHelper.startActivity(MyOrderActivity.this,OrderActivity.class);
-            }
-        });
+//        ImageButton bt_dial = (ImageButton) findViewById(R.id.img_float_btn);
+//        bt_dial.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ActivityHelper.startActivity(MyOrderActivity.this,OrderActivity.class);
+//            }
+//        });
     }
 
     private void init() {

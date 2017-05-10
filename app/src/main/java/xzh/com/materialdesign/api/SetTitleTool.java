@@ -2,6 +2,7 @@ package xzh.com.materialdesign.api;
 
 import android.content.Context;
 
+import xzh.com.materialdesign.ui.ContactActivity;
 import xzh.com.materialdesign.ui.MainActivity;
 import xzh.com.materialdesign.ui.MyOrderActivity;
 import xzh.com.materialdesign.ui.ReceiveOrderActivity;
@@ -34,6 +35,7 @@ public class SetTitleTool {
                     break;
                 case 3:
                     //"收藏";
+                    ActivityHelper.startActivity(context,ContactActivity.class);
                     break;
                 case 4:
                     //"圆桌";

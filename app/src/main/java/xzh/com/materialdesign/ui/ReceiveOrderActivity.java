@@ -150,6 +150,7 @@ public class ReceiveOrderActivity extends AppCompatActivity implements
     private void setTitleName(int position) {
        if(!on_off){
            mTitle="接收订单";
+           on_off=true;
        }else{
            SetTitleTool.isSetTitleName(this,position);
        }
