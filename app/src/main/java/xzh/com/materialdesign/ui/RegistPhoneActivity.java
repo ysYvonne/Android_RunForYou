@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ypy.eventbus.EventBus;
 
@@ -19,7 +21,7 @@ import xzh.com.materialdesign.view.PullToLoadView;
 import xzh.com.materialdesign.view.ThemeManager;
 
 /**
-/**
+ /**
  * Created by Towyer_pic on 2017/4/24.
  */
 
@@ -27,6 +29,8 @@ public class RegistPhoneActivity extends AppCompatActivity {
 
     private Context mContext;
     private Button send,next;
+    private EditText ev;
+    Bundle mBundle;
 
     @SuppressLint("NewApi")
     @Override
@@ -40,6 +44,8 @@ public class RegistPhoneActivity extends AppCompatActivity {
         //       ButterKnife.inject(this);
         //      EventBus.getDefault().register(this);
         mContext = RegistPhoneActivity.this;
+        //绑定控件
+        ev = (EditText) findViewById(R.id.RegisterPhoneAccount);
 
         init();
     }
@@ -55,7 +61,10 @@ public class RegistPhoneActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityHelper.startActivity(mContext,RegistValidNameActivity.class);
+                String phone = ev.getText().toString();
+                mBundle = new Bundle();
+                mBundle.putString("phone",phone);
+                ActivityHelper.startActivity(mContext,RegistValidNameActivity.class,mBundle);
             }
         });
     }

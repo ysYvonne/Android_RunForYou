@@ -47,4 +47,12 @@
     <string name="register_real_name">真实姓名:</string>
     "
     <string name="register_email"> 输入邮箱:</string>
+
+    <string name="rating_dialog_experience">对这次服务进行评价吧</string>
+    <string name="rating_dialog_maybe_later">确定</string>
+    <string name="rating_dialog_never">取消</string>
+    <string name="rating_dialog_feedback_title">Feedback</string>
+    <string name="rating_dialog_submit">Submit</string>
+    <string name="rating_dialog_cancel">Cancel</string>
+    <string name="rating_dialog_suggestions">Suggest us what went wrong and we\'ll work on it!</string>
 </resources>

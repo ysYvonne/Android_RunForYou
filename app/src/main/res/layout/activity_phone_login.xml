@@ -31,6 +31,7 @@
             android:hint="@string/login_label_phone"
             android:textColorHint="@color/light_gray"
             android:textSize="18dp"
+            android:textColor="@color/base_color_text_black"
             />
 
     </LinearLayout>
@@ -68,8 +69,8 @@
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:textColor="@color/myPrimaryColor"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textColor="@color/base_color_text_black"/>
             </LinearLayout>
 
             <Button

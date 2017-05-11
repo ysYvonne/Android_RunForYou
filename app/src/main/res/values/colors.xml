@@ -7,7 +7,7 @@
         Refer also to Color palette for the UI colors you should use:
         http://www.google.com/design/spec/style/color.html#color-ui-color-palette
     -->
-
+    <color name="grey_400">#BDBDBD</color>
     <color name="myPrimaryColor">#B452CD</color>
     <color name="myPrimaryDarkColor">#AB82FF</color>
     <color name="myAccentColor">#AB82FF</color>

@@ -91,9 +91,11 @@
             android:textSize="22dp" />
 
         <Spinner
+            android:id="@+id/RegisterSchool"
             android:layout_width="match_parent"
             android:layout_height="22dp"
-            android:layout_marginLeft="3dp">
+            android:layout_marginLeft="3dp"
+            android:background="@color/cardview_light_background">
 
         </Spinner>
 
@@ -116,12 +118,12 @@
             android:textSize="22dp" />
 
         <EditText
-            android:id="@+id/realname"
+            android:id="@+id/RegisterRealname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/boarder"
             android:layout_gravity="bottom"
-            android:textColor="@color/myPrimaryColor"
+            android:textColor="@color/base_color_text_black"
             android:textSize="21dp"/>
 
 
@@ -136,7 +138,7 @@
         android:layout_marginTop="50dp">
 
         <EditText
-            android:id="@+id/account"
+            android:id="@+id/RegisterEmail"
             android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:background="@drawable/boarder"
@@ -144,6 +146,7 @@
             android:hint="@string/register_email"
             android:textColorHint="@color/light_gray"
             android:textSize="22dp"
+            android:textColor="@color/base_color_text_black"
             />
 
         <TextView
@@ -183,15 +186,16 @@
                     android:layout_gravity="bottom"
                     android:text="@string/login_label_validNum"
                     android:textColor="@color/myPrimaryColor"
-                    android:textSize="18dp" />
+                    android:textSize="25dp" />
 
                 <EditText
                     android:id="@+id/validationNum_email"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:textColor="@color/myPrimaryColor"
-                    android:textSize="18dp" />
+                    android:textSize="25dp"
+                    android:background="@drawable/boarder"
+                    android:textColor="@color/base_color_text_black"/>
             </LinearLayout>
 
             <Button
@@ -202,7 +206,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@color/myAccentColor"
-                android:text="@string/login_button_send_validation" />
+                android:text="@string/login_button_send_validation"
+                />
 
         </RelativeLayout>
 
