@@ -14,6 +14,7 @@ import java.util.List;
 
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.model.Money_order;
 import xzh.com.materialdesign.ui.DetailsActivity;
 import xzh.com.materialdesign.utils.IntroUtils;
 import xzh.com.materialdesign.view.CircleImageView;
@@ -24,13 +25,14 @@ import xzh.com.materialdesign.view.CircleImageView;
 public class HomeAdapter extends RecyclerView.Adapter<CellHolder> {
 
    private Context context;
-    private List<String> mList;
+    private List<Money_order> mList;
 
     public HomeAdapter(Context context) {
        this.context=context;
         mList = new ArrayList<>();
     }
 
+//    在任何ViewHolder被实例化的时候，OnCreateViewHolder将会被触发：
     @Override
     public CellHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(
@@ -38,6 +40,7 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> {
         return new CellHolder(view);
     }
 
+    //将list中的信息与每一个cellholder绑定在一起，cellholder就是一个view的封装
     @Override
     public void onBindViewHolder(CellHolder cellHolder, int i) {
 
@@ -57,7 +60,7 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> {
         return mList.size();
     }
 
-    public void add(String s) {
+    public void add(Money_order s) {
         mList.add(s);
         notifyDataSetChanged();
     }
@@ -67,10 +70,11 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> {
         notifyDataSetChanged();
     }
 
-    private static final String INTRO_CARD = "material_intro";
+    //给第i个view绑定什么信息
     private void initIntro(CellHolder cellHolder, int i) {
-        if(i==0)
-        IntroUtils.showIntro((Activity) context,cellHolder.cardView,INTRO_CARD,"This is card! Hello There. You can set this text!");
+        Money_order order = mList.get(i);
+        cellHolder.itemTitle.setText(order.getDestination());
+
     }
 
 

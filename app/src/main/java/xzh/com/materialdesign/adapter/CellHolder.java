@@ -12,14 +12,14 @@ import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.view.CircleImageView;
 
 /**
- * Created by xiangzhihong on 2016/3/2 on 15:49.
+ * Created by dz on 2017/5/14 on 10:55.
  */
 public class CellHolder extends RecyclerView.ViewHolder {
 
     @InjectView(R.id.item_view)
-    LinearLayout itemView;
-//    @InjectView(R.id.item_cator)
-//    TextView itemCator;
+    protected LinearLayout itemView;
+    @InjectView(R.id.item_title)
+    protected TextView itemTitle;
      @InjectView(R.id.cardView)
         CardView cardView;
 //    @InjectView(R.id.item_content)
@@ -39,7 +39,4 @@ public class CellHolder extends RecyclerView.ViewHolder {
         itemView.setTag(this);
     }
 
-    private void resetView() {
-
-    }
 }

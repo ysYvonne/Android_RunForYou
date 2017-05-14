@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,9 @@ import com.ypy.eventbus.EventBus;
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.adapter.HomeAdapter;
+import xzh.com.materialdesign.api.MySharedPreferences;
 import xzh.com.materialdesign.api.SetTitleTool;
+import xzh.com.materialdesign.model.Money_order;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.IntroUtils;
 import xzh.com.materialdesign.utils.UIHelper;
@@ -53,6 +56,13 @@ public class MainActivity extends AppCompatActivity implements
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MySharedPreferences msp=new MySharedPreferences("userId",this);
+        String userId=msp.getValue("userId");
+        Toast toast = Toast.makeText(this,userId, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main_topdrawer);
@@ -160,33 +170,6 @@ public class MainActivity extends AppCompatActivity implements
             SetTitleTool.isSetTitleName(this,position);
         }
 
-//        switch (position) {
-//            case 0:
-//                mTitle = "首页";
-//                break;
-//            case 1:
-//                mTitle = "我的订单";
-//                break;
-//            case 2:
-//                mTitle = "联系我们";
-//                break;
-////            case 3:
-////                mTitle = "收藏";
-////                break;
-////            case 4:
-////                mTitle = "圆桌";
-////                break;
-////            case 5:
-////                mTitle = "私信";
-////                break;
-//            //case 6:
-//            case 3:
-//                ActivityHelper.startActivity(this,ThemColorChangeActivity.class);
-//             break;
-//                default:
-//                mTitle="Run For You";
-//                break;
-//        }
         if(mToolbar!=null)
         mToolbar.setTitle(mTitle);
     }
@@ -213,9 +196,10 @@ public class MainActivity extends AppCompatActivity implements
                     isHasLoadedAll = true;
                     return;
                 }
-                for (int i = 0; i <= 15; i++) {
-                    mAdapter.add(i + "");
-                }
+//                for (int i = 0; i <= 15; i++) {
+//                    mAdapter.add(i + "");
+//                }
+                loadList();
                 mPullToLoadView.setComplete();
                 isLoading = false;
                 nextPage = page + 1;
@@ -227,5 +211,12 @@ public class MainActivity extends AppCompatActivity implements
        if (color!=-1){
            mToolbar.setBackgroundColor(color);
        }
+    }
+
+    private void loadList(){
+//        这个地方需要从服务器取数据生成一个list
+        Money_order order =new Money_order();
+        order.setDestination("如果是标题就对了");
+        mAdapter.add(order);
     }
 }
