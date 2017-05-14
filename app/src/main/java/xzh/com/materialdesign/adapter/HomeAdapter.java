@@ -40,7 +40,8 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
         return new CellHolder(view);
     }
 
-    //将list中的信息与每一个cellholder绑定在一起，cellholder就是一个view的封装
+    //将list中的信息与每一个cellholder绑定在一起，cellholder就是一个view的封装，三个构造器都需要
+    //不同的cellholder
     @Override
     public void onBindViewHolder(CellHolder cellHolder, int i) {
 
@@ -70,7 +71,7 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
         notifyDataSetChanged();
     }
 
-    //给第i个view绑定什么信息
+    //给第i个view绑定什么信息，主要从已经在外面注入的List获取对象的信息，并塞到cellholder内
     private void initIntro(CellHolder cellHolder, int i) {
         Money_order order = (Money_order) mList.get(i);
         cellHolder.itemTitle.setText(order.getDestination());

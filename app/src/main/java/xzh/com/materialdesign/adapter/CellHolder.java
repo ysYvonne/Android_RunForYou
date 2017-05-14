@@ -15,7 +15,7 @@ import xzh.com.materialdesign.view.CircleImageView;
  * Created by dz on 2017/5/14 on 10:55.
  */
 public class CellHolder extends RecyclerView.ViewHolder {
-
+    //只能用ButterKnife注册控件id,但在构造器中只需要注入最外层布局的控件即可
     @InjectView(R.id.item_view)
     protected LinearLayout itemView;
     @InjectView(R.id.item_title)

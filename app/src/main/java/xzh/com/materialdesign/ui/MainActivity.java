@@ -16,11 +16,13 @@ public class MainActivity extends MyBaseActivity {
         super.onCreate(savedInstanceState);
 
     }
+    //设置标题
     @Override
     protected void setmTitle() {
         super.setmTitle("首页");
     }
 
+    //设置使用的构适配器，此处适配器在父类中用的baseAdapterInterface
     @Override
     protected void setmAdapter() {
         super.setmAdapter(new HomeAdapter(this));
