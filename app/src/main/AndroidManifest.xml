@@ -37,8 +37,7 @@
         <activity
             android:name=".ui.RegistValidNameActivity"
             android:screenOrientation="portrait" />
-        <!-- <activity android:name=".ui.AccountLoginActivity" -->
-        <!-- android:screenOrientation="portrait" /> -->
+
         <activity
             android:name=".ui.DetailsActivity"
             android:screenOrientation="portrait" />
