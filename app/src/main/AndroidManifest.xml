@@ -26,7 +26,8 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance"/>
         <activity
             android:name=".ui.PhoneLoginActivity"
             android:screenOrientation="portrait" />
@@ -54,11 +55,13 @@
         <activity
             android:name=".ui.MyOrderActivity"
             android:label="我的订单"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance"/>
         <activity
             android:name=".ui.ReceiveOrderActivity"
             android:label="接收订单"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance"/>
         <activity
             android:name=".ui.ReceiveDetailActivity"
             android:screenOrientation="portrait" />
