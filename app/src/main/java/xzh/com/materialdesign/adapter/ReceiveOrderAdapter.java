@@ -12,46 +12,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.model.Money_order;
 import xzh.com.materialdesign.ui.DetailsActivity;
-import xzh.com.materialdesign.ui.ReceiveDetailActivity;
 import xzh.com.materialdesign.utils.IntroUtils;
 
 /**
  * Created by dz on 2017/5/2 on
  */
-public class ReceiveOrderAdapter extends RecyclerView.Adapter<CellHolder> {
+public class ReceiveOrderAdapter extends RecyclerView.Adapter<ReceiveOrderHolder> implements BaseAdapterInterface{
 
-   private Context context;
-    private List<String> mList;
+    private Context context;
+    private List<Object> mList;
 
     public ReceiveOrderAdapter(Context context) {
-       this.context=context;
+        this.context=context;
         mList = new ArrayList<>();
     }
 
     @Override
-    public CellHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ReceiveOrderHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.receive_order, viewGroup, false);
-        return new CellHolder(view);
+        return new ReceiveOrderHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(CellHolder cellHolder, int i) {
-        /*
-         if (getItemCount()%2==1){
-             cellHolder.itemCator.setText("热门回答");
-         }else {
-             cellHolder.itemCator.setText("知乎回答");
-         }
-         */
-        initIntro(cellHolder,i);
-       cellHolder.itemView.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-             context.startActivity(new Intent(context, ReceiveDetailActivity.class));
-           }
-       });
+    public void onBindViewHolder(ReceiveOrderHolder orderHolder, int i) {
+
+        initIntro(orderHolder,i);
+        orderHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, DetailsActivity.class));
+            }
+        });
 
     }
 
@@ -61,7 +55,7 @@ public class ReceiveOrderAdapter extends RecyclerView.Adapter<CellHolder> {
         return mList.size();
     }
 
-    public void add(String s) {
+    public void add(Object s) {
         mList.add(s);
         notifyDataSetChanged();
     }
@@ -71,10 +65,18 @@ public class ReceiveOrderAdapter extends RecyclerView.Adapter<CellHolder> {
         notifyDataSetChanged();
     }
 
-    private static final String INTRO_CARD = "material_intro";
-    private void initIntro(CellHolder cellHolder, int i) {
-        if(i==0)
-        IntroUtils.showIntro((Activity) context,cellHolder.cardView,INTRO_CARD,"This is card! Hello There. You can set this text!");
+    private void initIntro(ReceiveOrderHolder orderHolder, int i) {
+        Money_order order = (Money_order) mList.get(i);
+
+        orderHolder.receive_item_text.setText(order.getDestination());
+        orderHolder.receive_date_text.setText("2017/5/14");
+
+        orderHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, DetailsActivity.class));
+            }
+        });
     }
 
 

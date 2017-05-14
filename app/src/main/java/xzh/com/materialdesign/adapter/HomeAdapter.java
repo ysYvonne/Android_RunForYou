@@ -22,10 +22,10 @@ import xzh.com.materialdesign.view.CircleImageView;
 /**
  * Created by xiangzhihong on 2016/3/2 on 15:41.
  */
-public class HomeAdapter extends RecyclerView.Adapter<CellHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements BaseAdapterInterface{
 
    private Context context;
-    private List<Money_order> mList;
+    private List<Object> mList;
 
     public HomeAdapter(Context context) {
        this.context=context;
@@ -60,7 +60,7 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> {
         return mList.size();
     }
 
-    public void add(Money_order s) {
+    public void add(Object s) {
         mList.add(s);
         notifyDataSetChanged();
     }
@@ -72,7 +72,7 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> {
 
     //给第i个view绑定什么信息
     private void initIntro(CellHolder cellHolder, int i) {
-        Money_order order = mList.get(i);
+        Money_order order = (Money_order) mList.get(i);
         cellHolder.itemTitle.setText(order.getDestination());
 
     }

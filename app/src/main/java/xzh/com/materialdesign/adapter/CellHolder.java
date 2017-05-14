@@ -20,8 +20,8 @@ public class CellHolder extends RecyclerView.ViewHolder {
     protected LinearLayout itemView;
     @InjectView(R.id.item_title)
     protected TextView itemTitle;
-     @InjectView(R.id.cardView)
-        CardView cardView;
+
+
 //    @InjectView(R.id.item_content)
         //TextView itemContent;
 //    @InjectView(R.id.item_image)
@@ -36,7 +36,7 @@ public class CellHolder extends RecyclerView.ViewHolder {
     public CellHolder(View itemView) {
         super(itemView);
         ButterKnife.inject(this, itemView);
-        itemView.setTag(this);
     }
+
 
 }

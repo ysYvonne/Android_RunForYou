@@ -13,7 +13,7 @@ import xzh.com.materialdesign.base.BaseActivity;
  * Created by dz on 2017/5/10.
  */
 
-public class MyorderDetailAvtivity extends BaseActivity{
+public class MyorderDetailAvtivity extends BaseActivity {
 
 
     @Override

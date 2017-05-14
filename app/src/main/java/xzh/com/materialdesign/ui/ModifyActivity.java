@@ -2,10 +2,6 @@ package xzh.com.materialdesign.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;

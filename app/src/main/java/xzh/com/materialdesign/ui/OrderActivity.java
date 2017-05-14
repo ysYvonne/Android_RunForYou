@@ -3,27 +3,18 @@ package xzh.com.materialdesign.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.Window;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ypy.eventbus.EventBus;
-
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.base.BaseActivity;
 import xzh.com.materialdesign.utils.ActivityHelper;
-import xzh.com.materialdesign.utils.CommonUtils;
-import xzh.com.materialdesign.view.ThemeManager;
-import xzh.com.materialdesign.view.TitleBar;
+
 /**
  * Created by botan on 2017/4/22.
  */
-public class OrderActivity extends BaseActivity  {
+public class OrderActivity extends BaseActivity {
 
 
     @Override
