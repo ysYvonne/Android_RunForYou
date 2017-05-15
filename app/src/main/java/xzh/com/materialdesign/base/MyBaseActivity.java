@@ -2,6 +2,7 @@ package xzh.com.materialdesign.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
@@ -160,7 +161,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
         mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        mToolbar.setBackgroundColor(ThemeManager.with(mContext).getCurrentColor());
+        mToolbar.setBackgroundColor(Color.rgb(180, 82, 205));
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
                 .findFragmentById(R.id.fragment_drawer);
         mNavigationDrawerFragment.setup(R.id.fragment_drawer,

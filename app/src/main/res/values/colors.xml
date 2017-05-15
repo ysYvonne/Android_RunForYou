@@ -33,5 +33,8 @@
     <color name="white">#ffffff</color>
 
     <color name="light_gray">#E5E5E5</color>
+    <color name="colordevider">#e0e0e0</color>
+    <color name="colorSub">#b0afaf</color>
+    <color name="colorTex">#585858</color>
 </resources>
 
