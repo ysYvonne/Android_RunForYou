@@ -9,9 +9,14 @@
     >
 
     <include
-        layout="@layout/topbar_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="51dp"></include>
+        layout="@layout/topbar_layout"></include>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colordevider"
+        android:padding="16dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -286,7 +291,7 @@
                 android:inputType="time"
                 android:text="20min"
                 android:textColor="@color/base_color_text_black"
-                android:textSize="20dp" />
+                android:textSize="18sp" />
 
             <!--<EditText-->
             <!--android:id="@+id/editText5"-->
@@ -311,8 +316,8 @@
                 android:layout_marginTop="13dp"
                 android:paddingTop="15dp"
                 android:text="订单持续时间"
-                android:textColor="@color/base_color_text_black"
-                android:textSize="20dp" />
+                android:textColor="@color/colorSub"
+                android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/img_float_btn"

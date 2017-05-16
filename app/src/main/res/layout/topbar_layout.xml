@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:gravity="center"
+
     >
 
     <ImageButton
@@ -24,11 +24,5 @@
         android:textSize="20sp"
         android:layout_marginBottom="12dp"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentBottom="true"
-        android:padding="16dp"
-        android:layout_below="@id/nav_title"
-        android:background="@color/colordevider" />
+
 </RelativeLayout>
