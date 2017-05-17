@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:scaleType="centerCrop"
+        android:layout_marginTop="@dimen/logo_margin_top"
         android:layout_centerInParent="true"
         android:src="@drawable/logo"
         />

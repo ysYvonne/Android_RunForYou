@@ -460,16 +460,18 @@
                     android:layout_height="46dp"
                     android:orientation="horizontal"
                     android:layout_marginLeft="16dp"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:checkedButton="@+id/cash"
+                    >
 
                     <RadioButton
-                        android:id="@+id/agreement_radio_button"
+                        android:id="@+id/cash"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/bg_radiobutton"
                         android:button="@null"
-                        android:checked="true" />
+                         />
 
                     <TextView
                         android:id="@+id/custom"
@@ -483,7 +485,7 @@
                         android:textSize="18dp" />
 
                     <RadioButton
-                        android:id="@+id/agreement_radio_button"
+                        android:id="@+id/score"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginTop="5dp"
