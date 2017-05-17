@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:background="#fff">
-    <include layout="@layout/topbar_layout"/>
+    <include layout="@layout/topbar_layout_order"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -33,7 +33,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
             }
         });
 
-        TextView modify = (TextView) findViewById(R.id.button);
+        ImageButton modify = (ImageButton) findViewById(R.id.deliver_btn);
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

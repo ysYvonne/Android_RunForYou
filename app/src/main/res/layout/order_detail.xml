@@ -9,7 +9,7 @@
     >
 
     <include
-        layout="@layout/topbar_layout"></include>
+        layout="@layout/topbar_layout_order"></include>
 
     <View
         android:id="@+id/view3"
