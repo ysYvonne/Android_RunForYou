@@ -67,6 +67,14 @@
             android:name=".ui.ContactActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.MyorderDetailAvtivity" />
+        <activity android:name=".ui.PersonalInfoActivity" />
+        <activity android:name=".ui.EmailChangeActivity" />
+        <activity android:name=".ui.NicknameActivity" />
+        <activity android:name=".ui.PhoneChangeActivity" />
+        <activity android:name=".ui.PwdChangeActivity" />
+        <activity android:name=".ui.PwdSetActivity" />
+        <activity android:name=".ui.NameChangeActivity" />SpinnerActivity
+
 
     </application>
 

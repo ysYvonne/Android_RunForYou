@@ -1,5 +1,7 @@
 package xzh.com.materialdesign.model;
 
+import android.util.Log;
+
 /**
  * Created by Towyer_pic on 2017/4/30.
  */
@@ -24,8 +26,11 @@ public class User implements IEntity {
         user_id = userId;
     }
     public void setName(String name1){
-        name = name1;
-        nickname = name.substring(0,1) + "同学";
+        if(!name1.isEmpty()){
+            name = name1;
+            nickname = name.substring(0,1) + "同学";
+        }
+
     }
     public void setSex(int sex1){
         sex = sex1;

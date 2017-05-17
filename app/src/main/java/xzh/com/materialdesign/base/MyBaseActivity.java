@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
@@ -22,6 +23,7 @@ import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.MySharedPreferences;
 import xzh.com.materialdesign.api.SetTitleTool;
 import xzh.com.materialdesign.ui.OrderActivity;
+import xzh.com.materialdesign.ui.PersonalInfoActivity;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.UIHelper;
 import xzh.com.materialdesign.view.NavigationDrawerCallbacks;
@@ -122,6 +124,15 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
 
 
     private void initEvent() {
+//        设置个人信息修改跳转
+        RelativeLayout v=(RelativeLayout) findViewById(R.id.navigationHeader);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityHelper.startActivity(mContext, PersonalInfoActivity.class);
+            }
+        });
+//        -------------------->
         RecyclerView mRecyclerView = mPullToLoadView.getRecyclerView();
         LinearLayoutManager manager = new LinearLayoutManager(mContext,
                 LinearLayoutManager.VERTICAL, false);
@@ -168,6 +179,8 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
         DrawerLayout draw = (DrawerLayout) findViewById(R.id.drawer);
         mNavigationDrawerFragment.setDrawerLayout(draw);
         mPullToLoadView = (PullToLoadView) findViewById(R.id.pullToLoadView);
+
+
 
     }
 

@@ -111,6 +111,8 @@ public class AccountLoginActivity extends AppCompatActivity {
             dialog.setCancelable(false);
             dialog.show();
 
+             dialog.dismiss();
+
             //写入sharedPreferences
             MySharedPreferences msp=new MySharedPreferences("userId",this);
             msp.commit("userId","123456");

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.utils.ActivityHelper;
@@ -31,7 +32,7 @@ public class NicknameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nickname_change);
         mContext = NicknameActivity.this;
-
+        ButterKnife.inject(this);
         init();
     }
 
@@ -41,7 +42,7 @@ public class NicknameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ActivityHelper.startActivity(NicknameActivity.this,PersonalInfoActivity.class);
+                ActivityHelper.startActivity(mContext,PersonalInfoActivity.class);
             }
         });
 
@@ -49,7 +50,7 @@ public class NicknameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                ActivityHelper.startActivity(NicknameActivity.this,PersonalInfoActivity.class);
+                ActivityHelper.startActivity(mContext,PersonalInfoActivity.class);
             }
         });
     }
