@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.utils.ActivityHelper;
@@ -30,7 +31,7 @@ public class NameChangeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_name_change);
         mContext = NameChangeActivity.this;
-
+        ButterKnife.inject(this);
         init();
     }
 
@@ -40,7 +41,7 @@ public class NameChangeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ActivityHelper.startActivity(NameChangeActivity.this,PersonalInfoActivity.class);
+                ActivityHelper.startActivity(mContext,PersonalInfoActivity.class);
             }
         });
 
@@ -48,7 +49,7 @@ public class NameChangeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                ActivityHelper.startActivity(NameChangeActivity.this,PersonalInfoActivity.class);
+                ActivityHelper.startActivity(mContext,PersonalInfoActivity.class);
             }
         });
     }

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.utils.ActivityHelper;
@@ -30,7 +31,7 @@ public class PhoneChangeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_phone_change);
         mContext = PhoneChangeActivity.this;
-
+        ButterKnife.inject(this);
         init();
     }
 

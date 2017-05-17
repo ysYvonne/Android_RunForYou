@@ -38,7 +38,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/shop"
+                    android:id="@+id/custom_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="11dp"
@@ -85,7 +85,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/shop"
+                    android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="11dp"
@@ -157,8 +157,8 @@
             android:orientation="vertical">
 
 
-            <TextView
-                android:id="@+id/modify_custom"
+            <Button
+                android:id="@+id/modify_confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

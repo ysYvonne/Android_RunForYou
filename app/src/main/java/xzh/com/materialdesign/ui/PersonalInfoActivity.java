@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.utils.ActivityHelper;
@@ -41,10 +42,9 @@ public class PersonalInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_personal_info);
         mContext = PersonalInfoActivity.this;
-
+        ButterKnife.inject(this);
         init();
     }
 
@@ -60,7 +60,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         nicknameInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityHelper.startActivity(PersonalInfoActivity.this,NicknameActivity.class);
+                ActivityHelper.startActivity(mContext,NicknameActivity.class);
             }
         });
 
@@ -68,10 +68,10 @@ public class PersonalInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(true){
-                    ActivityHelper.startActivity(PersonalInfoActivity.this,PwdChangeActivity.class);
+                    ActivityHelper.startActivity(mContext,PwdChangeActivity.class);
                 }
                 else
-                    ActivityHelper.startActivity(PersonalInfoActivity.this,PwdSetActivity.class);
+                    ActivityHelper.startActivity(mContext,PwdSetActivity.class);
             }
         });
 
@@ -85,21 +85,21 @@ public class PersonalInfoActivity extends AppCompatActivity {
         nameInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityHelper.startActivity(PersonalInfoActivity.this,NameChangeActivity.class);
+                ActivityHelper.startActivity(mContext,NameChangeActivity.class);
             }
         });
 
         emailInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityHelper.startActivity(PersonalInfoActivity.this,EmailChangeActivity.class);
+                ActivityHelper.startActivity(mContext,EmailChangeActivity.class);
             }
         });
 
         phoneInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityHelper.startActivity(PersonalInfoActivity.this,PhoneChangeActivity.class);
+                ActivityHelper.startActivity(mContext,PhoneChangeActivity.class);
             }
         });
     }

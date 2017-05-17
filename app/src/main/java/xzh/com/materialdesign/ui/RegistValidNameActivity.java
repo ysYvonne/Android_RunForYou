@@ -73,7 +73,7 @@ public class RegistValidNameActivity extends AppCompatActivity {
                 user.setName(name);
                 user.setPhoneNum(mBundle.getString("phone"));
 
-                ActivityHelper.startActivity(RegistValidNameActivity.this,MainActivity.class);
+                ActivityHelper.startActivity(RegistValidNameActivity.this,AccountLoginActivity.class);
                 //进入主界面啦~
             }
         });

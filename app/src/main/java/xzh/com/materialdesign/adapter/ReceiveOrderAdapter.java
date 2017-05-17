@@ -14,6 +14,7 @@ import java.util.List;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.model.Money_order;
 import xzh.com.materialdesign.ui.DetailsActivity;
+import xzh.com.materialdesign.ui.ReceiveDetailActivity;
 import xzh.com.materialdesign.utils.IntroUtils;
 
 /**
@@ -43,7 +44,7 @@ public class ReceiveOrderAdapter extends RecyclerView.Adapter<ReceiveOrderHolder
         orderHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, DetailsActivity.class));
+                context.startActivity(new Intent(context, ReceiveDetailActivity.class));
             }
         });
 
