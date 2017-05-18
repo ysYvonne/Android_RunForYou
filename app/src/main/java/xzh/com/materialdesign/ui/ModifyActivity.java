@@ -3,6 +3,7 @@ package xzh.com.materialdesign.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 import butterknife.ButterKnife;
@@ -24,7 +25,9 @@ public class ModifyActivity extends BaseActivity {
     Button modify_confirm;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.modify_custom);
         ButterKnife.inject(this);
         modify_confirm.setOnClickListener(new View.OnClickListener() {
