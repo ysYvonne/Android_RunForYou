@@ -28,7 +28,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -37,7 +36,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_myorder_detail_sum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -57,7 +56,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -66,7 +64,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_myorder_detail_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -86,7 +84,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -95,7 +92,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_myorder_detail_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -113,7 +110,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -122,7 +118,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_myorder_detail_money"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -154,7 +150,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/condition1"
                         android:layout_width="118dp"
                         android:layout_height="wrap_content"
                         android:text="物品地点"
@@ -162,7 +157,7 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/condition2"
+                        android:id="@+id/order_myorder_detail_shop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
@@ -171,6 +166,7 @@
                         android:textSize="18sp" />
 
                     <ImageView
+                        android:id="@+id/order_myorder_detail_shop_map"
                         android:layout_width="58dp"
                         android:layout_height="20dp"
                         android:src="@drawable/chose_map" />
@@ -195,7 +191,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/condition1"
                         android:layout_width="118dp"
                         android:layout_height="wrap_content"
                         android:text="配送地点"
@@ -203,7 +198,7 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/condition2"
+                        android:id="@+id/order_myorder_detail_des"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
@@ -212,6 +207,7 @@
                         android:textSize="18sp" />
 
                     <ImageView
+                        android:id="@+id/order_myorder_detail_des_map"
                         android:layout_width="58dp"
                         android:layout_height="20dp"
                         android:src="@drawable/chose_map" />
@@ -235,7 +231,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -244,7 +239,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_myorder_detail_state"
                     android:layout_width="110dp"
                     android:layout_height="28dp"
                     android:layout_marginLeft="50dp"
@@ -277,14 +272,14 @@
             android:layout_alignParentStart="true">
 
             <ImageButton
-                android:id="@+id/img_float_btn"
+                android:id="@+id/order_myorder_detail_phone"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@drawable/fab_phone_bg"
                 android:src="@drawable/fab_phone" />
 
             <ImageButton
-                android:id="@+id/img_float_btn"
+                android:id="@+id/order_myorder_detail_cancel"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="200dp"

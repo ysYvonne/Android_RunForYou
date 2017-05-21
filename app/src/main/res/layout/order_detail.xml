@@ -12,7 +12,6 @@
         layout="@layout/topbar_layout_order"></include>
 
     <View
-        android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colordevider"
@@ -23,7 +22,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/order_detail_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
@@ -32,11 +31,11 @@
             android:textColor="@color/base_color_text_black"
             android:textSize="20dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/order_detail_avatar"
-            android:layout_toEndOf="@+id/order_detail_avatar" />
+            android:layout_toRightOf="@+id/order_detail_image"
+            android:layout_toEndOf="@+id/order_detail_image" />
 
         <xzh.com.materialdesign.view.CircleImageView
-            android:id="@+id/order_detail_avatar"
+            android:id="@+id/order_detail_image"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_alignParentLeft="true"
@@ -49,15 +48,15 @@
             android:src="@drawable/img_user_head" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/order_detail_sex"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignTop="@+id/textView1"
+            android:layout_alignTop="@+id/order_detail_name"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="5dp"
-            android:layout_toEndOf="@+id/textView1"
-            android:layout_toRightOf="@+id/textView1"
+            android:layout_toEndOf="@+id/order_detail_name"
+            android:layout_toRightOf="@+id/order_detail_name"
             android:src="@drawable/male" />
 
     </RelativeLayout>
@@ -81,7 +80,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -90,7 +88,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_detail_money"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -110,7 +108,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -119,7 +116,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_detail_sum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -139,7 +136,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -148,7 +144,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_detail_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -191,7 +187,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="118dp"
                     android:layout_height="wrap_content"
                     android:text="物品地点"
@@ -199,7 +194,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_detail_shop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -208,6 +203,7 @@
                     android:textSize="18sp" />
 
                 <ImageView
+                    android:id="@+id/order_detail_shop_map"
                     android:layout_width="58dp"
                     android:layout_height="20dp"
                     android:src="@drawable/chose_map" />
@@ -232,7 +228,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/condition1"
                     android:layout_width="118dp"
                     android:layout_height="wrap_content"
                     android:text="配送地点"
@@ -240,7 +235,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/condition2"
+                    android:id="@+id/order_detail_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -249,6 +244,7 @@
                     android:textSize="18sp" />
 
                 <ImageView
+                    android:id="@+id/order_detail_des_map"
                     android:layout_width="58dp"
                     android:layout_height="20dp"
                     android:src="@drawable/chose_map" />
@@ -279,7 +275,7 @@
             android:layout_weight="0.93">
 
             <TextView
-                android:id="@+id/editText5"
+                android:id="@+id/order_detail_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView11"
@@ -292,17 +288,6 @@
                 android:text="20min"
                 android:textColor="@color/base_color_text_black"
                 android:textSize="18sp" />
-
-            <!--<EditText-->
-            <!--android:id="@+id/editText5"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBaseline="@+id/textView11"-->
-            <!--android:layout_alignBottom="@+id/textView11"-->
-            <!--android:layout_toEndOf="@+id/textView11"-->
-            <!--android:layout_toRightOf="@+id/textView11"-->
-            <!--android:ems="10"-->
-            <!--android:inputType="time" />-->
 
             <TextView
                 android:id="@+id/textView11"
@@ -320,7 +305,7 @@
                 android:textSize="18sp" />
 
             <ImageButton
-                android:id="@+id/img_float_btn"
+                android:id="@+id/order_img_float_btn"
                 android:layout_alignParentRight="true"
                 android:layout_width="70dp"
                 android:layout_height="70dp"

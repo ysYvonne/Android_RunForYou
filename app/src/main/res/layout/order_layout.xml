@@ -38,7 +38,6 @@
                         android:src="@drawable/custom" />
 
                     <TextView
-                        android:id="@+id/custom"
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
                         android:background="#fff"
@@ -49,7 +48,7 @@
                         android:textSize="16dp" />
 
                     <TextView
-                        android:id="@+id/custom_name"
+                        android:id="@+id/order_layout_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#fff"
@@ -60,7 +59,7 @@
                         android:textSize="16dp" />
 
                     <TextView
-                        android:id="@+id/modify_custom"
+                        android:id="@+id/order_layout_modify_custom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/myPrimaryColor"
@@ -94,7 +93,6 @@
                         android:src="@drawable/phone" />
 
                     <TextView
-                        android:id="@+id/phone"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.08"
@@ -106,7 +104,7 @@
                         android:textSize="16dp" />
 
                     <TextView
-                        android:id="@+id/custom_phone"
+                        android:id="@+id/order_layout_custom_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#fff"
@@ -135,7 +133,6 @@
                 android:paddingTop="16dp">
 
                 <TextView
-                    android:id="@+id/info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="订单详情"
@@ -143,8 +140,6 @@
                     android:layout_marginLeft="16dp"
                     android:textSize="16dp"
                     />
-
-
 
                 <LinearLayout
                     android:layout_marginTop="16dp"
@@ -156,7 +151,7 @@
                     android:background="#f7f7f9">
 
                     <EditText
-                        android:id="@+id/order_info"
+                        android:id="@+id/order_layout_short_info"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:textColorHint="#cdcdcd"
@@ -181,7 +176,7 @@
                     android:background="#f7f7f9">
 
                     <EditText
-                        android:id="@+id/email"
+                        android:id="@+id/order_layout_long_info"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:textColorHint="#cdcdcd"
@@ -235,7 +230,7 @@
                         android:layout_weight="0.78">
 
                         <EditText
-                            android:id="@+id/destination"
+                            android:id="@+id/order_layout_shop"
                             android:layout_height="match_parent"
                             android:layout_width="match_parent"
                             android:textColorHint="#cdcdcd"
@@ -250,6 +245,7 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/order_layout_shop_map"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/chose_map"
@@ -287,7 +283,7 @@
                         android:layout_weight="0.78">
 
                         <EditText
-                            android:id="@+id/shop"
+                            android:id="@+id/order_layout_des"
                             android:layout_height="match_parent"
                             android:layout_width="match_parent"
                             android:textColorHint="#cdcdcd"
@@ -302,6 +298,7 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/order_layout_des_map"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/chose_map"
@@ -347,7 +344,7 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/time"
+                            android:id="@+id/order_layout_time"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="11dp"
@@ -361,7 +358,6 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/custom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -403,7 +399,7 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/money"
+                            android:id="@+id/order_layout_money"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="11dp"
@@ -417,7 +413,6 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/custom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -456,16 +451,17 @@
 
 
                 <RadioGroup
+                    android:id="@+id/order_layout_choose"
                     android:layout_width="210dp"
                     android:layout_height="46dp"
                     android:orientation="horizontal"
                     android:layout_marginLeft="16dp"
                     android:weightSum="1"
-                    android:checkedButton="@+id/cash"
+                    android:checkedButton="@+id/order_layout_choose_cash"
                     >
 
                     <RadioButton
-                        android:id="@+id/cash"
+                        android:id="@+id/order_layout_choose_cash"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginTop="5dp"
@@ -474,7 +470,6 @@
                          />
 
                     <TextView
-                        android:id="@+id/custom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
@@ -485,7 +480,7 @@
                         android:textSize="18dp" />
 
                     <RadioButton
-                        android:id="@+id/score"
+                        android:id="@+id/order_layout_choose_score"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginTop="5dp"
@@ -495,7 +490,6 @@
                         android:checked="false" />
 
                     <TextView
-                        android:id="@+id/custom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
@@ -525,7 +519,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/fullname"
+                        android:id="@+id/order_layout_deliver"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="11dp"
@@ -540,7 +534,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/custom"
+                    android:id="@+id/order_layout_deliver_method"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -555,7 +549,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/pay"
+        android:id="@+id/order_layout_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/myPrimaryColor"

@@ -33,7 +33,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton modify = (ImageButton) findViewById(R.id.deliver_btn);
+        ImageButton modify = (ImageButton) findViewById(R.id.order_transport_detail_change);
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -31,7 +31,7 @@ public class OrderActivity extends BaseActivity {
             }
         });
 
-        TextView modify = (TextView) findViewById(R.id.modify_custom);
+        TextView modify = (TextView) findViewById(R.id.order_layout_modify_custom);
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

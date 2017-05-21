@@ -21,9 +21,9 @@ public class ReceiveOrderHolder extends  RecyclerView.ViewHolder {
 
 
 
-    @InjectView(R.id.receive_date_text)
+    @InjectView(R.id.receive_time)
     protected TextView receive_date_text;
-    @InjectView(R.id.receive_item_text)
+    @InjectView(R.id.receive_money)
     protected TextView receive_item_text;
 
 

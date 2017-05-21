@@ -121,30 +121,32 @@
                     android:id="@+id/enter_validationNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/login_label_validNum"
                     android:textColor="@color/myPrimaryColor"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/phone_validationNum_enter"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/boarder"
+                    android:layout_marginLeft="5dp"
                     android:textColor="@color/base_color_text_black"
                     android:textSize="20dp"/>
-            </LinearLayout>
 
-            <Button
-                android:id="@+id/send_validationNum"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@color/myAccentColor"
-                android:text="@string/login_button_send_validation" />
+                <Button
+                    android:id="@+id/send_validationNum"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/myAccentColor"
+                    android:text="@string/login_button_send_validation" />
+            </LinearLayout>
 
         </RelativeLayout>
 

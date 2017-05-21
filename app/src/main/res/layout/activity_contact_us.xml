@@ -110,18 +110,20 @@
         </RelativeLayout>
 
         <Button
+            android:id="@+id/contact_submit"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="@color/myPrimaryColor"
-            android:text="提交" />
+            android:text="提 交" />
 
         <Button
+            android:id="@+id/contact_cancel"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="@color/myPrimaryColor"
-            android:text="取消" />
+            android:text="取 消" />
 
     </LinearLayout>
 
