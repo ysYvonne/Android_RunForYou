@@ -12,6 +12,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/okhttp-2.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4de2b4ed3445c37ec1720a7d214712e845a24636">
+        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/okhttp-2.5.0_662949e0d8eb0327de04b56277c3cab8d37b98b3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2ac860253e125f3e084fc32848cbcf89b1aa7192">
+        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_28574f93deecd152b046c7e49186a4f6e6d0c0c7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/botan/Desktop/RunForYou_Android/app/libs/jackson-core-asl-1.9.9.jar"
         jumboMode="true"
         optimize="true"
@@ -21,57 +39,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/fresco-v0.9.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="1d5f0c387cc80d81827277b44d0714e915cf3b24">
-        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_28574f93deecd152b046c7e49186a4f6e6d0c0c7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_e14d4bbfa6ce091540a4a865c13abb5dbb5b1ac0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/universal-image-loader-1.9.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
-        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/universal-image-loader-1.9.4_287cb8a7d3f6bc72d04effcbe81e27cfeb4aa54a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/butterknife-6.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
-        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/butterknife-6.1.0_29269625d32017a0bfa2d37280cf795c2b3c9461/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/android-async-http-1.4.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3bae85a076241828810bf8fbcc12e5891d5fc34c">
-        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/android-async-http-1.4.4_d411c9c7b4f5ef2000aea218fa1e3c3010525318/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/okhttp-2.5.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4de2b4ed3445c37ec1720a7d214712e845a24636">
-        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/okhttp-2.5.0_662949e0d8eb0327de04b56277c3cab8d37b98b3/classes.dex" />
+        sha1="a966d8a08abe95ae5a87b5a4b9d7d96c7debfb42">
+        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/fresco-v0.9.0_84f942b717158c42484fc501a27c604b66976dae/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -84,12 +57,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/fresco-v0.9.0.jar"
+        jar="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="a966d8a08abe95ae5a87b5a4b9d7d96c7debfb42">
-        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/fresco-v0.9.0_84f942b717158c42484fc501a27c604b66976dae/classes.dex" />
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_e14d4bbfa6ce091540a4a865c13abb5dbb5b1ac0/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -111,12 +84,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/universal-image-loader-1.9.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
+        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/universal-image-loader-1.9.4_287cb8a7d3f6bc72d04effcbe81e27cfeb4aa54a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/botan/Desktop/RunForYou_Android/app/libs/drawee-v0.9.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="bc55ad41e2642741536d2ae474e02343f3e2b182">
         <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/drawee-v0.9.0_d914e6167e9f851de7b782984e57d991cedea44f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/butterknife-6.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
+        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/butterknife-6.1.0_29269625d32017a0bfa2d37280cf795c2b3c9461/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/botan/Desktop/RunForYou_Android/app/libs/android-async-http-1.4.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3bae85a076241828810bf8fbcc12e5891d5fc34c">
+        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/android-async-http-1.4.4_d411c9c7b4f5ef2000aea218fa1e3c3010525318/classes.dex" />
     </item>
     <item
         is-multidex="true"

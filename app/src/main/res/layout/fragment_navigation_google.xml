@@ -39,68 +39,56 @@
         android:layout_alignParentStart="true">
 
         <xzh.com.materialdesign.view.CircleImageView
-            android:id="@+id/imgAvatar"
+            android:id="@+id/info_image"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:clickable="true"
+            android:layout_marginLeft="23dp"
+            android:src="@drawable/img_user_head"
+            android:layout_marginStart="23dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/img_user_head" />
+            android:layout_alignParentStart="true" />
 
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgAvatar"
+            android:layout_below="@+id/info_image"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
             android:orientation="vertical" >
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/info_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mersens"
             android:textColor="#ffffff"
             android:textSize="20sp"
-            android:layout_alignLeft="@+id/imgAvatar"
-            android:layout_alignStart="@+id/imgAvatar"
+            android:layout_alignLeft="@+id/info_image"
+            android:layout_alignStart="@+id/info_image"
             android:layout_alignTop="@+id/linearLayout1" />
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_drawer_logout"
-            android:clickable="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_alignBottom="@+id/textView1"
+            android:layout_alignBottom="@+id/info_nickname"
             android:layout_alignLeft="@+id/linearLayout1"
             android:layout_alignStart="@+id/linearLayout1">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/info_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/textView2"
                 android:layout_alignStart="@+id/textView2"
-                android:layout_below="@+id/imageView1"
                 android:text="♀" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/info_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/imgAvatar"
@@ -109,7 +97,7 @@
                 android:text="131xxxxxxxx" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/info_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/linearLayout1"
@@ -118,7 +106,7 @@
                 android:text="1430xxx@bjtu.edu.cn" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/info_school"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/linearLayout1"

@@ -17,9 +17,9 @@ public class MyOrderHolder extends  RecyclerView.ViewHolder {
 
     @InjectView(R.id.myorder_item)
     protected LinearLayout itemView;
-    @InjectView(R.id.myorder_text)
+    @InjectView(R.id.myorder_time)
     protected TextView myorder_text;
-    @InjectView(R.id.myorder_date_text)
+    @InjectView(R.id.myorder_money)
     protected TextView myorder_date_text;
 
 

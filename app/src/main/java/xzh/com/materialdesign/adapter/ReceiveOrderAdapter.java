@@ -70,7 +70,7 @@ public class ReceiveOrderAdapter extends RecyclerView.Adapter<ReceiveOrderHolder
         Money_order order = (Money_order) mList.get(i);
 
         orderHolder.receive_item_text.setText(order.getDestination());
-        orderHolder.receive_date_text.setText("2017/5/14");
+        orderHolder.receive_date_text.setText("5元");
 
         orderHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -135,7 +135,7 @@
 
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="20dp">
 
         <EditText
             android:id="@+id/RegisterEmail"
@@ -166,7 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -183,7 +183,7 @@
                     android:id="@+id/enter_validationNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="center"
                     android:text="@string/login_label_validNum"
                     android:textColor="@color/myPrimaryColor"
                     android:textSize="25dp" />
@@ -192,7 +192,7 @@
                     android:id="@+id/validationNum_email"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="center"
                     android:textSize="25dp"
                     android:background="@drawable/boarder"
                     android:textColor="@color/base_color_text_black"/>
