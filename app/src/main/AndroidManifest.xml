@@ -73,7 +73,7 @@
         <activity android:name=".ui.PhoneChangeActivity" />
         <activity android:name=".ui.PwdChangeActivity" />
         <activity android:name=".ui.PwdSetActivity" />
-        <activity android:name=".ui.NameChangeActivity" />SpinnerActivity
+        <activity android:name=".ui.NameChangeActivity" />
 
 
     </application>

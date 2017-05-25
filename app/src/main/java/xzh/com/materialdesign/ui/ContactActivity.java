@@ -6,16 +6,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 
 public class ContactActivity extends AppCompatActivity {
+    @InjectView(R.id.contactBack)
     ImageButton navBack;
+
+    @InjectView(R.id.contact_cancel)
+    ImageButton cancel;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.inject(this);
         setContentView(R.layout.activity_contact_us);
-        navBack=(ImageButton)findViewById(R.id.contactBack);
         navBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
