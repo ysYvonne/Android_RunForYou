@@ -45,6 +45,7 @@ public class EmailChangeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.v("dz","EamilChangeActivity onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_change);
         mContext = EmailChangeActivity.this;

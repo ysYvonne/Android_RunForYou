@@ -2,6 +2,7 @@ package xzh.com.materialdesign.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -19,6 +20,7 @@ public class ContactActivity extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v("dz","ContactActivity onCreate");
         super.onCreate(savedInstanceState);
         ButterKnife.inject(this);
         setContentView(R.layout.activity_contact_us);

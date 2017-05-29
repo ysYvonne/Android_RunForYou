@@ -5,10 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.io.Serializable;
+
 public class ActivityHelper {
 	
 	public static void startActivity(Context context, Class<? extends Activity> toklass) {
 		Intent intent = new Intent(context, toklass);
+		context.startActivity(intent);
+	}
+
+	public static void startActivity(Context context, Class<? extends Activity> toklass, String name,Serializable s) {
+		Intent intent = new Intent(context, toklass);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(name, s);
+		intent.putExtras(bundle);
 		context.startActivity(intent);
 	}
 

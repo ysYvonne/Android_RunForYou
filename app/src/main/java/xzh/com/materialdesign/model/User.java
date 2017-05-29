@@ -1,5 +1,6 @@
 package xzh.com.materialdesign.model;
 
+import android.os.Parcel;
 import android.util.Log;
 
 /**
