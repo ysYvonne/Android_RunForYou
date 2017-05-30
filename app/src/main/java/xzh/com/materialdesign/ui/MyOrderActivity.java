@@ -2,6 +2,7 @@ package xzh.com.materialdesign.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 
 import xzh.com.materialdesign.adapter.MyOrderAdapter;
 import xzh.com.materialdesign.base.MyBaseActivity;
@@ -12,6 +13,7 @@ import xzh.com.materialdesign.model.Money_order;
 @SuppressLint("NewApi")//屏蔽android lint错误
 public class MyOrderActivity extends MyBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v("dz","MyOrder onCreate");
         super.onCreate(savedInstanceState);
 
     }
