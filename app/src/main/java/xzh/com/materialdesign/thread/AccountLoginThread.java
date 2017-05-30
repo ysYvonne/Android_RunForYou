@@ -53,10 +53,11 @@ public class AccountLoginThread extends AsyncTask<Integer, Integer, List> {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        List list= Proxy.getWebData(new User().getClass(), StateCode.AccountLogin,parameter);
+//        List list= Proxy.getWebData(new User().getClass(), StateCode.AccountLogin,parameter);
 
 //        publishProgress();
-
+        //防止报错，proxy已经被修改，懒得改了
+        List list=new ArrayList();
         return list;
     }
 

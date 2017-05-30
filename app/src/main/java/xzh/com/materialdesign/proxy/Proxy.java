@@ -18,9 +18,9 @@ import xzh.com.materialdesign.utils.JsonUtil;
 
 public class Proxy {
     private static String LogService="10.10.42.3/LogService";
-    static List  list=new ArrayList ();
 
-    public static List  getWebData(Class c,String methodName,JSONObject parameter){
+
+    public static Object  getWebData(Class c,String methodName,JSONObject parameter){
 //        JSONObject loginJson = new JSONObject();
 //        try {
 //            loginJson.put("method",methodName);
@@ -28,30 +28,31 @@ public class Proxy {
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-        list.clear();
         switch(methodName){
             case StateCode.AccountLogin:
-                AccountLogin(c,parameter);
-                break;
+                return AccountLogin(c,parameter);
+
+            case StateCode.PhoneLogin:
+                return PhoneLogin(c,parameter);
         }
-        return list;
+        return null;
 
     }
-
-    private static void AccountLogin(Class c,JSONObject parameter) {
+    private static User AccountLogin(Class c,JSONObject parameter) {
 //        String jsonReceive= "{\"destination\":\"首页标题测试8page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}\n{\"destination\":\"首页标题测试9page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}";
 //        String[] jsonArray=jsonReceive.split("\n");
 //        for(String s:jsonArray){
 //            list.add(JsonUtil.getEntity(s,String.class));
 //        }
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         User user=new User();
         user.setUserId(123456);
-        list.add(user);
+        return user;
+    }
+    private static User PhoneLogin(Class c, JSONObject parameter) {
+
+        User user=new User();
+        user.setUserId(123456);
+        return null;
     }
 
 

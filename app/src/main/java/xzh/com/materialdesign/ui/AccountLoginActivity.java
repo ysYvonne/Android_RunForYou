@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -40,7 +41,6 @@ import java.util.List;
  */
 
 public class AccountLoginActivity extends AppCompatActivity {
-
     private Context mContext;
     Button btn;
     private ProgressDialog dialog;
@@ -48,8 +48,18 @@ public class AccountLoginActivity extends AppCompatActivity {
     private String info;
     private TextView infotv;
     EditText username, password;
-    List list=new ArrayList();
     JSONObject parameter;
+    User user;
+
+    Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Looper.prepare();
+            connectFinish();
+            Looper.loop();
+        }
+    };
+
 
     @SuppressLint("NewApi")
     @Override
@@ -73,7 +83,7 @@ public class AccountLoginActivity extends AppCompatActivity {
 
         mContext = AccountLoginActivity.this;
 
-        dialog = new ProgressDialog(mContext);
+
 
         init();
     }
@@ -85,7 +95,7 @@ public class AccountLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // 检测网络，无法检测wifi
                 if (!checkNetwork()) {
-                    Toast toast = Toast.makeText(AccountLoginActivity.this,"网络未连接", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(mContext,"网络未连接", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }else{
@@ -151,27 +161,22 @@ public class AccountLoginActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        dialog = new ProgressDialog(mContext);
         //弹出processdialog,必须要使用线程，不然无法显示
         dialog.setTitle("提示");
         dialog.setMessage("正在登陆，请稍后...");
         dialog.setCancelable(false);
         dialog.show();
+
+//        具体运行方法在handle属性中
         connect();
-//        Handler handler=new Handler(){
-//
-//            @Override
-//            public void handleMessage(Message msg) {
-//                list=(List) msg.obj;
-//            }
-//
-//        };
-//
-//        AccountLoginThread thread=new AccountLoginThread(handler,parameter,dialog);
-//        thread.execute();
+
     }
-    private void connect(){
+
+    private void connect() {
         new Thread(){
             public void run() {
+
                 try {
                     //休眠2秒
                     Thread.sleep(2000);
@@ -179,9 +184,13 @@ public class AccountLoginActivity extends AppCompatActivity {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                list=Proxy.getWebData(new User().getClass(), StateCode.AccountLogin,parameter);
+                user=(User)Proxy.getWebData(new User().getClass(), StateCode.AccountLogin,parameter);
+                Message msg = handler.obtainMessage();
 
-                connectFinish();
+                msg.obj = user;
+//                handler.sendEmptyMessage(0);
+                handler.handleMessage(msg); //通知handler我完事儿啦,实际并没有接收msg只是一个信号，在属性user里完成了对user 的操作
+
             };
         }.start();
     }
@@ -189,11 +198,10 @@ public class AccountLoginActivity extends AppCompatActivity {
 
     //连接完网络请求后需要做的事情
     private void connectFinish() {
-        //dialog.dismiss();
         dialog.dismiss();
-        if (list.isEmpty()) {
+        if (user==null) {
 
-            new AlertDialog.Builder(this)
+            new AlertDialog.Builder(mContext)
 
                     .setTitle("提示")
 
@@ -204,10 +212,9 @@ public class AccountLoginActivity extends AppCompatActivity {
                     .show();
         } else {
 
-            User user = (User) list.get(0);
             //写入sharedPreferences
             if (user.getUserId() < 0) {
-                new AlertDialog.Builder(this)
+                new AlertDialog.Builder(mContext)
 
                         .setTitle("警告")
 
@@ -220,7 +227,7 @@ public class AccountLoginActivity extends AppCompatActivity {
                 MySharedPreferences msp = new MySharedPreferences("userId", this);
                 msp.commit("userId", String.valueOf(user.getUserId()));
 
-                ActivityHelper.startActivity(AccountLoginActivity.this, MainActivity.class, "user", user);
+                ActivityHelper.startActivity(mContext, MainActivity.class, "user", user);
 
 
                 finish();

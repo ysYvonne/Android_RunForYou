@@ -6,6 +6,7 @@ package xzh.com.materialdesign.proxy;
 
 public class StateCode {
     public final static  String AccountLogin="AccountLogin";
+    public final static  String PhoneLogin="PhoneLogin";
 
 
 

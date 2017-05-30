@@ -1,8 +1,10 @@
 package xzh.com.materialdesign.ui;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,7 +31,7 @@ public class RegistPhoneActivity extends AppCompatActivity {
 
     private Context mContext;
     private Button send,next;
-    private EditText ev;
+    private EditText phoneAccount,validationNum;
     Bundle mBundle;
 
     @SuppressLint("NewApi")
@@ -40,12 +42,14 @@ public class RegistPhoneActivity extends AppCompatActivity {
 
         send = (Button)findViewById(R.id.send_validationNum);
         next = (Button)findViewById(R.id.to_validname_button);
+        next.setEnabled(false);
 
         //       ButterKnife.inject(this);
         //      EventBus.getDefault().register(this);
         mContext = RegistPhoneActivity.this;
         //绑定控件
-        ev = (EditText) findViewById(R.id.RegisterPhoneAccount);
+        phoneAccount = (EditText) findViewById(R.id.RegisterPhoneAccount);
+        validationNum=(EditText) findViewById(R.id.phone_validationNum_enter);
 
         init();
     }
@@ -54,6 +58,8 @@ public class RegistPhoneActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                next.setEnabled(true);
+                next.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myAccentColor));
                 // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
                 //发送验证码
             }
@@ -61,11 +67,39 @@ public class RegistPhoneActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String phone = ev.getText().toString();
+//                if(check())
+                String phone = phoneAccount.getText().toString();
                 mBundle = new Bundle();
                 mBundle.putString("phone",phone);
                 ActivityHelper.startActivity(mContext,RegistValidNameActivity.class,mBundle);
             }
         });
+    }
+
+    private boolean check(){
+        if(phoneAccount.getText().toString().isEmpty()){
+            new AlertDialog.Builder(this)
+
+                    .setTitle("提示")
+
+                    .setMessage("请输入手机号")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+            return false;
+        }else if(validationNum.getText().toString().isEmpty()){
+            new AlertDialog.Builder(this)
+
+                    .setTitle("提示")
+
+                    .setMessage("请输入验证码")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+            return false;
+        }
+        return true;
     }
 }
