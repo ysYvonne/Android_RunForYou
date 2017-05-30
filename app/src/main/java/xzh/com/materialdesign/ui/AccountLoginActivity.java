@@ -156,8 +156,11 @@ public class AccountLoginActivity extends AppCompatActivity {
         //完成对用户密码的包装
         parameter=new JSONObject();
         try {
-            parameter.put("username", username.getText());
-            parameter.put("password", password.getText());
+//            parameter.put("username", username.getText());
+//            parameter.put("password", password.getText());
+            parameter.put("type", "emailLogin");
+            parameter.put("email", "123");
+            parameter.put("password", "456");
         } catch (JSONException e) {
             e.printStackTrace();
         }

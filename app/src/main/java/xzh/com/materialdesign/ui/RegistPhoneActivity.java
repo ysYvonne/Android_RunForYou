@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ypy.eventbus.EventBus;
 
@@ -28,7 +29,7 @@ import xzh.com.materialdesign.view.ThemeManager;
  */
 
 public class RegistPhoneActivity extends AppCompatActivity {
-
+    private boolean FLAG=false;
     private Context mContext;
     private Button send,next;
     private EditText phoneAccount,validationNum;
@@ -42,7 +43,6 @@ public class RegistPhoneActivity extends AppCompatActivity {
 
         send = (Button)findViewById(R.id.send_validationNum);
         next = (Button)findViewById(R.id.to_validname_button);
-        next.setEnabled(false);
 
         //       ButterKnife.inject(this);
         //      EventBus.getDefault().register(this);
@@ -58,7 +58,7 @@ public class RegistPhoneActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                next.setEnabled(true);
+                FLAG=true;
                 next.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myAccentColor));
                 // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
                 //发送验证码
@@ -68,10 +68,16 @@ public class RegistPhoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                if(check())
-                String phone = phoneAccount.getText().toString();
-                mBundle = new Bundle();
-                mBundle.putString("phone",phone);
-                ActivityHelper.startActivity(mContext,RegistValidNameActivity.class,mBundle);
+                if(FLAG){
+                    Toast.makeText(mContext, "请先发送验证码",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    String phone = phoneAccount.getText().toString();
+                    mBundle = new Bundle();
+                    mBundle.putString("phone",phone);
+                    ActivityHelper.startActivity(mContext,RegistValidNameActivity.class,mBundle);
+                }
+
             }
         });
     }

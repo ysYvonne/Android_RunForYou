@@ -114,12 +114,6 @@ public class EmailChangeActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
     }
 
     private void initData() {
