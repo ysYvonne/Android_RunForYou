@@ -2,16 +2,18 @@ package xzh.com.materialdesign.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,16 +24,20 @@ import android.widget.ImageButton;
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.MySharedPreferences;
-import xzh.com.materialdesign.api.SetTitleTool;
+import xzh.com.materialdesign.ui.AccountLoginActivity;
+import xzh.com.materialdesign.ui.ContactActivity;
+import xzh.com.materialdesign.ui.MainActivity;
+import xzh.com.materialdesign.ui.MyOrderActivity;
 import xzh.com.materialdesign.ui.OrderActivity;
 import xzh.com.materialdesign.ui.PersonalInfoActivity;
+import xzh.com.materialdesign.ui.ReceiveOrderActivity;
+import xzh.com.materialdesign.ui.ThemColorChangeActivity;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.UIHelper;
 import xzh.com.materialdesign.view.NavigationDrawerCallbacks;
 import xzh.com.materialdesign.view.NavigationDrawerFragment;
 import xzh.com.materialdesign.view.PullCallback;
 import xzh.com.materialdesign.view.PullToLoadView;
-import xzh.com.materialdesign.view.ThemeManager;
 import xzh.com.materialdesign.adapter.BaseAdapterInterface;
 
 @SuppressLint("NewApi")//屏蔽android lint错误
@@ -89,15 +95,18 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
 
 
         mContext = this;
-        MySharedPreferences msp = new MySharedPreferences("userId", this);
-        userId = msp.getValue("userId");
+
 //        Toast toast = Toast.makeText(this, userId, Toast.LENGTH_SHORT);
 //        toast.setGravity(Gravity.CENTER, 0, 0);
 //        toast.show();
 
 
         super.onCreate(savedInstanceState);
-
+        if((new MySharedPreferences("userId",this).getValue("userId")).isEmpty()) {
+            //禁止用户非法操作
+            ActivityHelper.startActivity(this, AccountLoginActivity.class);
+            finish();
+        }
         setContentView(R.layout.activity_main_topdrawer);
         ButterKnife.inject(this);
 //        createEventBus();
@@ -216,11 +225,56 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
             mTitle = "首页";
             on_off = true;
         } else {
-            SetTitleTool.isSetTitleName(mContext, position);
-        }
+            switch (position) {
+                case 0: {
+                    // "首页";
+                    ActivityHelper.startActivity(mContext, MainActivity.class);
+                }
+                break;
+                case 1: {
+                    //"我的订单";
+                    ActivityHelper.startActivity(mContext, MyOrderActivity.class);
+                }
+                break;
+                case 2:
+                    //"接收订单";
+                    ActivityHelper.startActivity(mContext, ReceiveOrderActivity.class);
+                    break;
+                case 3:
+                    //"联系我们";
+                    ActivityHelper.startActivity(mContext, ContactActivity.class);
+                    break;
+                case 4:
+                    //"切换主题";
+                    ActivityHelper.startActivity(mContext, ThemColorChangeActivity.class);
+                    break;
+                case 5:
+                    //注销
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("注销").setMessage("确认注销？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        //确定按钮的点击事件
+                            new MySharedPreferences("userId",mContext).clear();
+                            ActivityHelper.startActivity(mContext, AccountLoginActivity.class);
+                            finish();
+                        }
+                    }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //取消按钮的点击事件
+                    }
+                }).show();
+                    break;
 
-        if (mToolbar != null)
-            mToolbar.setTitle(mTitle);
+                default:
+
+                    break;
+            }
+
+            if (mToolbar != null)
+                mToolbar.setTitle(mTitle);
+        }
     }
 
     @Override

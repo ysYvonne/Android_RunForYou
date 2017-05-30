@@ -8,7 +8,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import xzh.com.materialdesign.model.Money_order;
+import xzh.com.materialdesign.model.*;
+import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.utils.JsonUtil;
 
 /**
@@ -38,11 +39,19 @@ public class Proxy {
     }
 
     private static void AccountLogin(Class c,JSONObject parameter) {
-        String jsonReceive= "{\"destination\":\"首页标题测试8page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}\n{\"destination\":\"首页标题测试9page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}";
-        String[] jsonArray=jsonReceive.split("\n");
-        for(String s:jsonArray){
-            list.add(JsonUtil.getEntity(s,String.class));
+//        String jsonReceive= "{\"destination\":\"首页标题测试8page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}\n{\"destination\":\"首页标题测试9page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}";
+//        String[] jsonArray=jsonReceive.split("\n");
+//        for(String s:jsonArray){
+//            list.add(JsonUtil.getEntity(s,String.class));
+//        }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        User user=new User();
+        user.setUserId(123456);
+        list.add(user);
     }
 
 
