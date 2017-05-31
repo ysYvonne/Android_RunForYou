@@ -1,10 +1,10 @@
-package xzh.com.materialdesign.ui;
-
-import android.annotation.SuppressLint;
+package xzh.com.materialdesign.personInfo;
+import xzh.com.materialdesign.ui.*;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,21 +17,21 @@ import xzh.com.materialdesign.utils.ActivityHelper;
  * Created by Flora on 2017/4/24.
  */
 
-public class NicknameActivity extends AppCompatActivity {
+public class PwdSetActivity extends AppCompatActivity {
 
-    @InjectView(R.id.nickname_ok_button)
+    @InjectView(R.id.pwd_set_ok_button)
     Button okButton;
-    @InjectView(R.id.nickname_cancel_button)
+    @InjectView(R.id.pwd_set_cancel_button)
     Button cancelButton;
 
     private Context mContext;
 
-    @SuppressLint("NewApi")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nickname_change);
-        mContext = NicknameActivity.this;
+        Log.v("dz","PwdSet onCreate");
+        setContentView(R.layout.activity_pwd_set);
+        mContext = PwdSetActivity.this;
         ButterKnife.inject(this);
         init();
     }
@@ -42,7 +42,7 @@ public class NicknameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ActivityHelper.startActivity(mContext,PersonalInfoActivity.class);
+                ActivityHelper.startActivity(PwdSetActivity.this,PersonalInfoActivity.class);
             }
         });
 
@@ -50,7 +50,7 @@ public class NicknameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                ActivityHelper.startActivity(mContext,PersonalInfoActivity.class);
+                ActivityHelper.startActivity(PwdSetActivity.this,PersonalInfoActivity.class);
             }
         });
     }

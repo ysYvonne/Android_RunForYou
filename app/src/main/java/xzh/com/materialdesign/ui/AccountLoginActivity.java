@@ -5,7 +5,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +20,7 @@ import xzh.com.materialdesign.api.MySharedPreferences;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
+import xzh.com.materialdesign.thread.AccountLoginThread;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import android.widget.Toast;
 import android.view.Gravity;
@@ -29,6 +33,7 @@ import android.app.Activity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +41,6 @@ import java.util.List;
  */
 
 public class AccountLoginActivity extends AppCompatActivity {
-
     private Context mContext;
     Button btn;
     private ProgressDialog dialog;
@@ -44,15 +48,26 @@ public class AccountLoginActivity extends AppCompatActivity {
     private String info;
     private TextView infotv;
     EditText username, password;
-    // 返回主线程更新数据
-    private static Handler handler = new Handler();
+    JSONObject parameter;
+    User user;
+
+    Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Looper.prepare();
+            connectFinish();
+            Looper.loop();
+        }
+    };
+
 
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.v("dz","AccountLoginActivity onCreate");
         //如果已经登录过直接跳到主页面，全部完成之后直接取消注释就行
-        if((new MySharedPreferences("userId",this).getValue("userId"))!=null) {
+        if(!(new MySharedPreferences("userId",this).getValue("userId")).isEmpty()) {
+//            Log.v("dz","AccountLogin userId is "+new MySharedPreferences("userId",this).getValue("userId"));
 //            ActivityHelper.startActivity(this, MainActivity.class);
 //            finish();
         }
@@ -68,7 +83,7 @@ public class AccountLoginActivity extends AppCompatActivity {
 
         mContext = AccountLoginActivity.this;
 
-        dialog = new ProgressDialog(mContext);
+
 
         init();
     }
@@ -80,11 +95,12 @@ public class AccountLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // 检测网络，无法检测wifi
                 if (!checkNetwork()) {
-                    Toast toast = Toast.makeText(AccountLoginActivity.this,"网络未连接", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(mContext,"网络未连接", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }else{
-                    if(check())logIn();
+                    //if(check())
+                        logIn();
                 }
             }
         });
@@ -116,62 +132,111 @@ public class AccountLoginActivity extends AppCompatActivity {
         return true;
     }
     private boolean check() {
-        if(username.getText()==null){
+        if(username.getText().toString().isEmpty()){
+            Log.v("dz","username is empty");
             AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
             builder.setTitle("提示" ) ;
-            builder.setMessage("请输入账号" ) ;
+            builder.setMessage("请输入用户名") ;
             builder.setPositiveButton("是" ,  null );
             builder.show();
-        }else if(password.getText()==null){
+            return false;
+        }else if(password.getText().toString().isEmpty()){
             AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
             builder.setTitle("提示" ) ;
             builder.setMessage("请输入密码" ) ;
             builder.setPositiveButton("是" ,  null );
             builder.show();
+            return false;
         }
         return true;
     }
     private void logIn(){
+        Log.v("dz","login");
 
-
-
+        //完成对用户密码的包装
+        parameter=new JSONObject();
+        try {
+//            parameter.put("username", username.getText());
+//            parameter.put("password", password.getText());
+            parameter.put("type", "emailLogin");
+            parameter.put("email", "123");
+            parameter.put("password", "456");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        dialog = new ProgressDialog(mContext);
+        //弹出processdialog,必须要使用线程，不然无法显示
         dialog.setTitle("提示");
         dialog.setMessage("正在登陆，请稍后...");
         dialog.setCancelable(false);
         dialog.show();
-        JSONObject parameter=new JSONObject();
-        try {
-            parameter.put("username", username.getText());
-            parameter.put("password", password.getText());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-
-        List list= Proxy.getWebData(new User().getClass(), StateCode.AccountLogin,parameter);
-
-        dialog.dismiss();
-
-        if(list.isEmpty()){
-            dialog.setTitle("提示");
-            dialog.setMessage("您输入的帐号或密码错误");
-            dialog.setCancelable(false);
-            dialog.show();
-        }else{
-
-            User user=(User)list.get(0);
-            //写入sharedPreferences
-            MySharedPreferences msp=new MySharedPreferences("userId",this);
-            msp.commit("userId",String.valueOf(user.getUserId()));
-
-            ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class,"user",user);
-
-
-            finish();
-        }
+//        具体运行方法在handle属性中
+        connect();
 
     }
 
+    private void connect() {
+        new Thread(){
+            public void run() {
+
+                try {
+                    //休眠2秒
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                user=(User)Proxy.getWebData(new User().getClass(), StateCode.AccountLogin,parameter);
+                Message msg = handler.obtainMessage();
+
+                msg.obj = user;
+//                handler.sendEmptyMessage(0);
+                handler.handleMessage(msg); //通知handler我完事儿啦,实际并没有接收msg只是一个信号，在属性user里完成了对user 的操作
+
+            };
+        }.start();
+    }
+
+
+    //连接完网络请求后需要做的事情
+    private void connectFinish() {
+        dialog.dismiss();
+        if (user==null) {
+
+            new AlertDialog.Builder(mContext)
+
+                    .setTitle("提示")
+
+                    .setMessage("用户名或密码错误")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+        } else {
+
+            //写入sharedPreferences
+            if (user.getUserId() < 0) {
+                new AlertDialog.Builder(mContext)
+
+                        .setTitle("警告")
+
+                        .setMessage(StateCode.UserIdNull)
+
+                        .setPositiveButton("确定", null)
+
+                        .show();
+            } else {
+                MySharedPreferences msp = new MySharedPreferences("userId", this);
+                msp.commit("userId", String.valueOf(user.getUserId()));
+
+                ActivityHelper.startActivity(mContext, MainActivity.class, "user", user);
+
+
+                finish();
+            }
+        }
+    }
 
 
 

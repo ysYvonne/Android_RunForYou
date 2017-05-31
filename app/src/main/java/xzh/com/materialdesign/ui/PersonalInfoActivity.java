@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.utils.ActivityHelper;
+import xzh.com.materialdesign.personInfo.*;
 
 /**
  * Created by Flora on 2017/4/24.
@@ -19,8 +21,7 @@ import xzh.com.materialdesign.utils.ActivityHelper;
 
 public class PersonalInfoActivity extends AppCompatActivity {
 
-    @InjectView(R.id.avatar_info)
-    RelativeLayout avatarInfo;
+
     @InjectView(R.id.nickname_info)
     RelativeLayout nicknameInfo;
     @InjectView(R.id.pwd_info)
@@ -49,13 +50,14 @@ public class PersonalInfoActivity extends AppCompatActivity {
     }
 
     private void init(){
-
-        avatarInfo.setOnClickListener(new View.OnClickListener() {
+        ImageView back = (ImageView) findViewById(R.id.nav_back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
             }
         });
+
 
         nicknameInfo.setOnClickListener(new View.OnClickListener() {
             @Override

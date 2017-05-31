@@ -93,11 +93,14 @@
         <Spinner
             android:id="@+id/RegisterSchool"
             android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:layout_marginLeft="3dp"
-            android:background="@color/cardview_light_background">
-
-        </Spinner>
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/school_textview"
+            android:layout_toRightOf="@+id/school_textview"
+            android:spinnerMode="dialog"
+            android:gravity="center"
+            android:background="@color/base_color_text_gray"
+            android:layout_alignParentTop="true"
+            />
 
 
     </LinearLayout>

@@ -68,12 +68,12 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.MyorderDetailAvtivity" />
         <activity android:name=".ui.PersonalInfoActivity" />
-        <activity android:name=".ui.EmailChangeActivity" />
-        <activity android:name=".ui.NicknameActivity" />
-        <activity android:name=".ui.PhoneChangeActivity" />
-        <activity android:name=".ui.PwdChangeActivity" />
-        <activity android:name=".ui.PwdSetActivity" />
-        <activity android:name=".ui.NameChangeActivity" />
+        <activity android:name=".personInfo.EmailChangeActivity" />
+        <activity android:name=".personInfo.NicknameActivity" />
+        <activity android:name=".personInfo.PhoneChangeActivity" />
+        <activity android:name=".personInfo.PwdChangeActivity" />
+        <activity android:name=".personInfo.PwdSetActivity" />
+        <activity android:name=".personInfo.NameChangeActivity" />
 
 
     </application>

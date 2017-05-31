@@ -1,5 +1,5 @@
-package xzh.com.materialdesign.ui;
-
+package xzh.com.materialdesign.personInfo;
+import xzh.com.materialdesign.ui.*;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -114,12 +114,6 @@ public class EmailChangeActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
     }
 
     private void initData() {
