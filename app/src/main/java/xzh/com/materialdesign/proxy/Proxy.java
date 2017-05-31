@@ -28,7 +28,7 @@ public class Proxy {
     private String retSrc;
 
 
-    public static Object  getWebData(Class c,String methodName,JSONObject parameter){
+    public static Object  getWebData(String methodName,JSONObject parameter){
 //        JSONObject loginJson = new JSONObject();
 //        try {
 //            loginJson.put("method",methodName);
@@ -38,15 +38,15 @@ public class Proxy {
 //        }
         switch(methodName){
             case StateCode.AccountLogin:
-                return AccountLogin(c,parameter);
+                return AccountLogin(parameter);
 
             case StateCode.PhoneLogin:
-                return PhoneLogin(c,parameter);
+                return PhoneLogin(parameter);
         }
         return null;
 
     }
-    private static User AccountLogin(Class c,JSONObject parameter) {
+    private static User AccountLogin(JSONObject parameter) {
 //        String jsonReceive= "{\"destination\":\"首页标题测试8page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}\n{\"destination\":\"首页标题测试9page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}";
 //        String[] jsonArray=jsonReceive.split("\n");
 //        for(String s:jsonArray){
@@ -70,7 +70,7 @@ public class Proxy {
             Log.v("dz","有这个就是成功"+retSrc);
             JSONObject result = new JSONObject(retSrc);
             if(result!=null){
-               user = JsonUtil.getEntity(retSrc,User.class);
+               user = JsonUtil.getEntity(result.getString("user"),User.class);
                 Log.v("dz","测试用户id"+user.getUserId());
                 return user;
                 //Log.v("dz","成功吧，小宇宙！ "+user);
@@ -89,7 +89,7 @@ public class Proxy {
 //        user.setUserId(123456);
         return null;
     }
-    private static User PhoneLogin(Class c, JSONObject parameter) {
+    private static User PhoneLogin( JSONObject parameter) {
 
         User user=new User();
         user.setUserId(123456);

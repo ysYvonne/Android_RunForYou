@@ -68,7 +68,7 @@ public class RegistPhoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                if(check())
-                if(FLAG){
+                if(!FLAG){
                     Toast.makeText(mContext, "请先发送验证码",
                             Toast.LENGTH_SHORT).show();
                 }else{

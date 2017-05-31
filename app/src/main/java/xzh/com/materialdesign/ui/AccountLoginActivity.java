@@ -160,8 +160,8 @@ public class AccountLoginActivity extends AppCompatActivity {
 //            parameter.put("username", username.getText());
 //            parameter.put("password", password.getText());
             parameter.put("type", "emailLogin");
-            parameter.put("email", "123");
-            parameter.put("password", "456");
+            parameter.put("email", "123456@bjtu.edu.cn");
+            parameter.put("password", "123456");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -180,7 +180,7 @@ public class AccountLoginActivity extends AppCompatActivity {
     private void connect() {
         new Thread(){
             public void run() {
-                user=(User)Proxy.getWebData(new User().getClass(), StateCode.AccountLogin,parameter);
+                user=(User)Proxy.getWebData(StateCode.AccountLogin,parameter);
                 Message msg = handler.obtainMessage();
 
                 msg.obj = user;
@@ -220,7 +220,8 @@ public class AccountLoginActivity extends AppCompatActivity {
 
                         .show();
             } else {
-               ControlUser.addUser(user,mContext);
+
+                ControlUser.addUser(user,mContext);
 
                 ActivityHelper.startActivity(mContext, MainActivity.class);
 
