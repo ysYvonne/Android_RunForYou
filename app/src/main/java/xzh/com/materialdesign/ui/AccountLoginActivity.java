@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.app.ProgressDialog;
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.api.MySharedPreferences;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
@@ -65,8 +66,9 @@ public class AccountLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.v("dz","AccountLoginActivity onCreate");
+        mContext = AccountLoginActivity.this;
         //如果已经登录过直接跳到主页面，全部完成之后直接取消注释就行
-        if(!(new MySharedPreferences("userId",this).getValue("userId")).isEmpty()) {
+        if(ControlUser.getUser(mContext)!=null){
 //            Log.v("dz","AccountLogin userId is "+new MySharedPreferences("userId",this).getValue("userId"));
 //            ActivityHelper.startActivity(this, MainActivity.class);
 //            finish();
@@ -81,7 +83,7 @@ public class AccountLoginActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.account) ;
         username = (EditText)findViewById(R.id.password) ;
 
-        mContext = AccountLoginActivity.this;
+
 
 
 
@@ -123,12 +125,11 @@ public class AccountLoginActivity extends AppCompatActivity {
     // 检测网络
     private boolean checkNetwork() {
 
-        /*
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connManager.getActiveNetworkInfo() != null) {
             return connManager.getActiveNetworkInfo().isAvailable();
         }
-        */
+
         return true;
     }
     private boolean check() {
@@ -179,14 +180,6 @@ public class AccountLoginActivity extends AppCompatActivity {
     private void connect() {
         new Thread(){
             public void run() {
-
-                try {
-                    //休眠2秒
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
                 user=(User)Proxy.getWebData(new User().getClass(), StateCode.AccountLogin,parameter);
                 Message msg = handler.obtainMessage();
 
@@ -227,10 +220,9 @@ public class AccountLoginActivity extends AppCompatActivity {
 
                         .show();
             } else {
-                MySharedPreferences msp = new MySharedPreferences("userId", this);
-                msp.commit("userId", String.valueOf(user.getUserId()));
+               ControlUser.addUser(user,mContext);
 
-                ActivityHelper.startActivity(mContext, MainActivity.class, "user", user);
+                ActivityHelper.startActivity(mContext, MainActivity.class);
 
 
                 finish();

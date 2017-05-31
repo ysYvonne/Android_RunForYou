@@ -25,6 +25,7 @@ import xzh.com.materialdesign.utils.JsonUtil;
 
 public class Proxy {
     private static String url="http://112.74.124.48:8080/RunForYou/";
+    private String retSrc;
 
 
     public static Object  getWebData(Class c,String methodName,JSONObject parameter){
@@ -51,7 +52,8 @@ public class Proxy {
 //        for(String s:jsonArray){
 //            list.add(JsonUtil.getEntity(s,String.class));
 //        }
-        String myUrl=url+"ServletLog";
+        User user;
+        String myUrl=url+"LoginServlet";
         Log.v("dz","听说你问我url是啥？"+myUrl);
         HttpPost request = new HttpPost(myUrl);
 // 先封装一个 JSON 对象
@@ -66,9 +68,16 @@ public class Proxy {
             String retSrc = EntityUtils.toString(httpResponse.getEntity());
 // 生成 JSON 对象
             Log.v("dz","有这个就是成功"+retSrc);
-            JSONObject result = new JSONObject( retSrc);
-            String user = (String) result.get("user");
-            Log.v("dz","成功吧，小宇宙！ "+user);
+            JSONObject result = new JSONObject(retSrc);
+            if(result!=null){
+               user = JsonUtil.getEntity(retSrc,User.class);
+                Log.v("dz","测试用户id"+user.getUserId());
+                return user;
+                //Log.v("dz","成功吧，小宇宙！ "+user);
+            }else{
+                return null;
+            }
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -76,10 +85,9 @@ public class Proxy {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        User user=new User();
-        user.setUserId(123456);
-        return user;
+//        User user=new User();
+//        user.setUserId(123456);
+        return null;
     }
     private static User PhoneLogin(Class c, JSONObject parameter) {
 

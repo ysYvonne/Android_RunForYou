@@ -12,7 +12,8 @@ public class MySharedPreferences {
     private String preferenceName;
     private Context context;
 
-    public MySharedPreferences (String preferenceName, Context context ){
+    public
+    MySharedPreferences (String preferenceName, Context context ){
         this.preferenceName=preferenceName;
         this.context=context;
     }
