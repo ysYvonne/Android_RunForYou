@@ -79,7 +79,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="昵        称："
+                                android:text="昵称"
                                 android:textColor="@color/colorSub"
                                 android:textSize="18sp" />
 
