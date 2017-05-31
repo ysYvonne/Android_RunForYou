@@ -3,6 +3,7 @@ package xzh.com.materialdesign.base;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,12 +19,15 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.api.MySharedPreferences;
+import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.ui.AccountLoginActivity;
 import xzh.com.materialdesign.ui.ContactActivity;
 import xzh.com.materialdesign.ui.MainActivity;
@@ -43,7 +47,7 @@ import xzh.com.materialdesign.adapter.BaseAdapterInterface;
 @SuppressLint("NewApi")//屏蔽android lint错误
 public abstract class MyBaseActivity extends AppCompatActivity implements
         NavigationDrawerCallbacks {
-
+    private User user;
     public Context mContext;
     private Toolbar mToolbar;
     private CharSequence mTitle;
@@ -102,7 +106,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
 
 
         super.onCreate(savedInstanceState);
-        if((new MySharedPreferences("userId",this).getValue("userId")).isEmpty()) {
+        if(ControlUser.getUser(mContext)==null) {
             //禁止用户非法操作
             ActivityHelper.startActivity(this, AccountLoginActivity.class);
             finish();
@@ -112,6 +116,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
 //        createEventBus();
 
         init();
+
         ImageButton bt_dial = (ImageButton) findViewById(R.id.img_float_btn);
         bt_dial.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +124,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
                 ActivityHelper.startActivity(mContext, OrderActivity.class);
             }
         });
+
 
 
     }
@@ -130,6 +136,31 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
 
         initViews();
         initEvent();
+        initUser();
+    }
+
+    private void initUser() {
+        user=ControlUser.getUser(mContext);
+        TextView nickname=(TextView)findViewById(R.id.info_nickname);
+        nickname.setText(user.getNickname());
+        TextView email=(TextView)findViewById(R.id.info_email);
+        email.setText(user.getEmail());
+        TextView phone=(TextView)findViewById(R.id.info_phone);
+        phone.setText(user.getPhoneNum());
+        TextView school=(TextView)findViewById(R.id.info_school);
+        school.setText(user.getSchool());
+        TextView sex=(TextView)findViewById(R.id.info_sex);
+        switch (user.getSex()){
+            case 1:
+                sex.setText("♂");
+                break;
+            case 2:
+                sex.setText("♀");
+                break;
+            default:
+                sex.setText("未设置");
+                break;
+        }
     }
 
 
