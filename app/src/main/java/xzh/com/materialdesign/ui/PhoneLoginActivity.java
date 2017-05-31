@@ -25,6 +25,7 @@ import java.util.List;
 
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.api.MySharedPreferences;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
@@ -153,14 +154,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 
-                try {
-                    //休眠2秒
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                user=(User)Proxy.getWebData(new User().getClass(), StateCode.PhoneLogin,parameter);
+                user=(User)Proxy.getWebData(StateCode.PhoneLogin,parameter);
                 Message msg = handler.obtainMessage();
 
                 msg.obj = user;
@@ -202,10 +196,9 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                         .show();
             } else {
-                MySharedPreferences msp = new MySharedPreferences("userId", this);
-                msp.commit("userId", String.valueOf(user.getUserId()));
+                ControlUser.addUser(user,mContext);
 
-                ActivityHelper.startActivity(mContext, MainActivity.class, "user", user);
+                ActivityHelper.startActivity(mContext, MainActivity.class);
                 finish();
             }
         }

@@ -286,7 +286,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                         //确定按钮的点击事件
-                            new MySharedPreferences("userId",mContext).clear();
+                            ControlUser.clearUser(mContext);
                             ActivityHelper.startActivity(mContext, AccountLoginActivity.class);
                             finish();
                         }
