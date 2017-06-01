@@ -33,6 +33,7 @@ import android.app.Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +46,10 @@ public class AccountLoginActivity extends AppCompatActivity {
     private Context mContext;
     Button btn;
     private ProgressDialog dialog;
-    TextView register,phone,account;
+    TextView register,phone;
     private String info;
     private TextView infotv;
-    EditText username, password;
+    EditText userEmail, password;
     JSONObject parameter;
     User user;
 
@@ -77,15 +78,11 @@ public class AccountLoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_account_login);
         btn = (Button)findViewById(R.id.signin_button);
-        register = (TextView)findViewById(R.id.register_link) ;
+        register = (TextView)findViewById(R.id.register_link);
         phone = (TextView)findViewById(R.id.phone_login);
-        account = (TextView)findViewById(R.id.account_login);
-        password = (EditText)findViewById(R.id.account) ;
-        username = (EditText)findViewById(R.id.password) ;
 
-
-
-
+        userEmail = (EditText)findViewById(R.id.account);
+        password = (EditText)findViewById(R.id.password) ;
 
         init();
     }
@@ -97,11 +94,12 @@ public class AccountLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // 检测网络，无法检测wifi
                 if (!checkNetwork()) {
+                    Log.v("dz","w网络未连接");
                     Toast toast = Toast.makeText(mContext,"网络未连接", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }else{
-                    //if(check())
+                    if(check())
                         logIn();
                 }
             }
@@ -133,15 +131,16 @@ public class AccountLoginActivity extends AppCompatActivity {
         return true;
     }
     private boolean check() {
-        if(username.getText().toString().isEmpty()){
+        if(userEmail.getText().toString().isEmpty()){
             Log.v("dz","username is empty");
             AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
             builder.setTitle("提示" ) ;
-            builder.setMessage("请输入用户名") ;
+            builder.setMessage("请输入邮箱号") ;
             builder.setPositiveButton("是" ,  null );
             builder.show();
             return false;
-        }else if(password.getText().toString().isEmpty()){
+        }
+        if(password.getText().toString().isEmpty()){
             AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
             builder.setTitle("提示" ) ;
             builder.setMessage("请输入密码" ) ;
@@ -157,14 +156,17 @@ public class AccountLoginActivity extends AppCompatActivity {
         //完成对用户密码的包装
         parameter=new JSONObject();
         try {
-//            parameter.put("username", username.getText());
-//            parameter.put("password", password.getText());
-            parameter.put("type", "emailLogin");
-            parameter.put("email", "123456@bjtu.edu.cn");
-            parameter.put("password", "123456");
+
+            parameter.put("type","emailLogin");
+            parameter.put("email", userEmail.getText());
+            parameter.put("password", password.getText());
+
+//            parameter.put("email", "123456@bjtu.edu.cn");
+//            parameter.put("password", "123456");
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         dialog = new ProgressDialog(mContext);
         //弹出processdialog,必须要使用线程，不然无法显示
         dialog.setTitle("提示");
@@ -184,7 +186,7 @@ public class AccountLoginActivity extends AppCompatActivity {
                 Message msg = handler.obtainMessage();
 
                 msg.obj = user;
-//                handler.sendEmptyMessage(0);
+//              handler.sendEmptyMessage(0);
                 handler.handleMessage(msg); //通知handler我完事儿啦,实际并没有接收msg只是一个信号，在属性user里完成了对user 的操作
 
             };

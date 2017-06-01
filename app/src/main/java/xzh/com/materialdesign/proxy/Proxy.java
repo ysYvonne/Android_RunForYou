@@ -40,10 +40,15 @@ public class Proxy {
             case StateCode.AccountLogin:
                 return AccountLogin(parameter);
 
+            case StateCode.PhoneValid:
+                return PhoneValid(parameter);
+
             case StateCode.PhoneLogin:
                 return PhoneLogin(parameter);
+
             case StateCode.GetLittleOrder:
                 return GetLittleOrder(parameter);
+
         }
         return null;
 
@@ -72,7 +77,6 @@ public class Proxy {
         }
     }
 
-
     private static User AccountLogin(JSONObject parameter) {
 //        String jsonReceive= "{\"destination\":\"首页标题测试8page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}\n{\"destination\":\"首页标题测试9page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}";
 //        String[] jsonArray=jsonReceive.split("\n");
@@ -87,27 +91,83 @@ public class Proxy {
 // 生成 JSON 对象
         try{
             JSONObject result = new JSONObject(retSrc);
+
             if(result!=null){
                user = JsonUtil.getEntity(result.getString("user"),User.class);
+
+                Log.v("dz","有这个就是成功"+retSrc);
+
                 user.setUserId(1);
                 Log.v("dz","测试用户id"+user.getUserId());
                 return user;
-                //Log.v("dz","成功吧，小宇宙！ "+user);
+
             }else{
                 return null;
             }
-
         }  catch (JSONException e) {
             e.printStackTrace();
         }
-//        User user=new User();
-//        user.setUserId(123456);
+
         return null;
     }
-    private static User PhoneLogin( JSONObject parameter) {
+
+    private static Boolean PhoneValid(JSONObject parameter){
+
+        int code;
+        String myUrl=url+"LoginServlet";
+        Log.v("dz","听说你问我url是啥？"+myUrl);
+
+        String retSrc=connectToServlet(myUrl,parameter);
+
+        try {
+
+            Log.v("dz","有这个就是成功"+retSrc);
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result!=null){
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+
+                Log.v("dz","测试用户手机 code"+code);
+                if(code == 1)
+                    return true;
+                else
+                    return false;
+
+            }else{
+                return false;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    private static User PhoneLogin(JSONObject parameter) {
 
         User user=new User();
-        user.setUserId(123456);
+        String myUrl=url+"LoginServlet";
+        Log.v("dz","听说你问我url是啥？"+myUrl);
+
+        String retSrc=connectToServlet(myUrl,parameter);
+
+        try {
+
+            Log.v("dz","有这个就是成功"+retSrc);
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result!=null){
+                user = JsonUtil.getEntity(result.getString("user"),User.class);
+                user.setUserId(1);
+                Log.v("dz","测试用户id"+user.getUserId());
+                return user;
+
+            }else{
+                return null;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 

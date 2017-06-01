@@ -37,19 +37,38 @@ import xzh.com.materialdesign.utils.ActivityHelper;
  */
 
 public class PhoneLoginActivity extends AppCompatActivity {
+    final int LOGIN=0;
+    final int VALID=1;
     private ProgressDialog dialog;
     private Context mContext;
     List list=new ArrayList();
     JSONObject parameter;
+    AlertDialog.Builder builder;
+
     Button btn,send;
     User user;
     private AlertDialog.Builder alertDialog;
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Looper.prepare();
-            connectFinish();
-            Looper.loop();
+            switch (msg.what){
+
+                case VALID:
+                    Looper.prepare();
+                    builder.setTitle("提示" ) ;
+                    builder.setMessage("手机号不存在，请重新输入" ) ;
+                    builder.setPositiveButton("确定" ,  null );
+                    builder.show();
+                    Looper.loop();
+                    break;
+                case LOGIN:
+                    Looper.prepare();
+                    connectFinish();
+                    Looper.loop();
+                    break;
+            }
+
+
         }
     };
 
@@ -66,42 +85,52 @@ public class PhoneLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phone_login);
 
         btn = (Button)findViewById(R.id.signin_button);
+
         send = (Button)findViewById(R.id.send_validationNum);
         register = (TextView)findViewById(R.id.register_link) ;
         account = (TextView)findViewById(R.id.account_login);
+
         phone=(EditText)findViewById(R.id.account_phone);
         validationNum=(EditText)findViewById(R.id.validationNum_phone);
+
         //       ButterKnife.inject(this);
         //      EventBus.getDefault().register(this);
         mContext = PhoneLoginActivity.this;
+        builder = new AlertDialog.Builder(mContext);
 
         init();
     }
 
 
     private void init() {
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
-                //加入咱们自己的主界面
-                if (!checkNetwork()) {
-                    Toast toast = Toast.makeText(mContext,"网络未连接", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                }else{
-                    //if(check())
-                    logIn();
-                }
-            }
-        });
+
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
                 //发送验证码
+                if (!checkNetwork()) {
+                    Toast toast = Toast.makeText(mContext,"网络未连接", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }else{
+                    if(checkPhone())
+                        checkPhoneExist();
+                }
             }
         });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
+                //加入咱们自己的主界面
+
+                if(checkPhone() && checkValid())
+                    logIn();
+            }
+        });
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,14 +158,78 @@ public class PhoneLoginActivity extends AppCompatActivity {
         return true;
     }
 
-    private void logIn(){
-        Log.v("dz","login");
+    private boolean checkPhone() {
+        if(phone.getText().toString().isEmpty()){
+            Log.v("dz","username is empty");
+            AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
+            builder.setTitle("提示" ) ;
+            builder.setMessage("请输入手机号") ;
+            builder.setPositiveButton("是" ,  null );
+            builder.show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkValid(){
+        if(validationNum.getText().toString().isEmpty()){
+            AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
+            builder.setTitle("提示" ) ;
+            builder.setMessage("请输入密码" ) ;
+            builder.setPositiveButton("是" ,  null );
+            builder.show();
+            return false;
+        }
+        return true;
+    }
+
+    private void checkPhoneExist(){
+        Log.v("dz", "phone check exist");
         dialog = new ProgressDialog(mContext);
+
+        //完成对手机号的封装
+        parameter=new JSONObject();
+        try{
+            parameter.put("type","phoneExist");
+            parameter.put("phoneNum","phoneNum");
+
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        new Thread(){
+            public void run() {
+
+                boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
+                if(exist){
+                    //发送验证码 第三方
+                    Log.v("dz","手机号存在");
+                }else{
+                    Log.v("dz","false");
+                    Message msg = handler.obtainMessage();
+                    msg.what=VALID;
+
+                    handler.handleMessage(msg); //通知handler我完事儿啦
+                }
+
+
+            };
+        }.start();
+    }
+
+    private void logIn(){
+        Log.v("dz","phone login");
+        dialog = new ProgressDialog(mContext);
+
         //完成对手机号和验证码的包装
         parameter=new JSONObject();
         try {
-            parameter.put("phoneNumber", phone.getText());
-            parameter.put("validationNumber", validationNum.getText());
+            parameter.put("type", "phoneLogin");
+            parameter.put("phoneNum", phone.getText());
+
+            //添加第三方 发送验证码，传不传后端都行，完全前端判断验证码是否符合
+            parameter.put("password", validationNum.getText());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -147,14 +240,14 @@ public class PhoneLoginActivity extends AppCompatActivity {
         dialog.show();
 
 
-        connect();
+        connect(StateCode.PhoneLogin);
 
     }
-    private void connect(){
+    private void connect(final String sc){
         new Thread(){
             public void run() {
 
-                user=(User)Proxy.getWebData(StateCode.PhoneLogin,parameter);
+                user=(User)Proxy.getWebData(sc,parameter);
                 Message msg = handler.obtainMessage();
 
                 msg.obj = user;
