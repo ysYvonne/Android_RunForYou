@@ -14,8 +14,10 @@ import java.util.List;
 
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.Money_order;
 import xzh.com.materialdesign.ui.DetailsActivity;
+import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.IntroUtils;
 import xzh.com.materialdesign.view.CircleImageView;
 
@@ -25,7 +27,7 @@ import xzh.com.materialdesign.view.CircleImageView;
 public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements BaseAdapterInterface{
 
    private Context context;
-    private List<Object> mList;
+    private List<LittleOrderBean> mList;
 
     public HomeAdapter(Context context) {
        this.context=context;
@@ -44,12 +46,12 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
     //不同的cellholder
     @Override
     public void onBindViewHolder(CellHolder cellHolder, int i) {
-
+        final Integer integer=mList.get(i).getOrderId();
         initIntro(cellHolder,i);
        cellHolder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-             context.startActivity(new Intent(context, DetailsActivity.class));
+               ActivityHelper.startActivity(context, DetailsActivity.class,"orderId", integer);
            }
        });
 
@@ -62,7 +64,7 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
     }
 
     public void add(Object s) {
-        mList.add(s);
+        mList.add((LittleOrderBean) s);
         notifyDataSetChanged();
     }
 
@@ -73,8 +75,6 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
 
     //给第i个view绑定什么信息，主要从已经在外面注入的List获取对象的信息，并塞到cellholder内
     private void initIntro(CellHolder cellHolder, int i) {
-        Money_order order = (Money_order) mList.get(i);
-        cellHolder.itemTitle.setText(order.getDestination());
 
     }
 

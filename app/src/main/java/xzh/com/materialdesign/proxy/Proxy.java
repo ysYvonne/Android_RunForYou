@@ -40,21 +40,22 @@ public class Proxy {
             case StateCode.AccountLogin:
                 return AccountLogin(parameter);
 
+            case StateCode.PhoneValid:
+                return PhoneValid(parameter);
+
             case StateCode.PhoneLogin:
                 return PhoneLogin(parameter);
+
+            case StateCode.GetLittleOrder:
+                return GetLittleOrder(parameter);
+
         }
         return null;
 
     }
-    private static User AccountLogin(JSONObject parameter) {
-//        String jsonReceive= "{\"destination\":\"首页标题测试8page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}\n{\"destination\":\"首页标题测试9page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}";
-//        String[] jsonArray=jsonReceive.split("\n");
-//        for(String s:jsonArray){
-//            list.add(JsonUtil.getEntity(s,String.class));
-//        }
-        User user;
-        String myUrl=url+"LoginServlet";
-        Log.v("dz","听说你问我url是啥？"+myUrl);
+
+    private static String connectToServlet(String myUrl,JSONObject parameter ){
+        String retSrc="";
         HttpPost request = new HttpPost(myUrl);
 // 先封装一个 JSON 对象
 // 绑定到请求 Entry
@@ -65,36 +66,116 @@ public class Proxy {
 // 发送请求
             HttpResponse httpResponse = new DefaultHttpClient().execute(request);
 // 得到应答的字符串，这也是一个 JSON 格式保存的数据
-            String retSrc = EntityUtils.toString(httpResponse.getEntity());
-// 生成 JSON 对象
-            Log.v("dz","有这个就是成功"+retSrc);
-            JSONObject result = new JSONObject(retSrc);
-            if(result!=null){
-               user = JsonUtil.getEntity(result.getString("user"),User.class);
-                Log.v("dz","测试用户id"+user.getUserId());
-                return user;
-                //Log.v("dz","成功吧，小宇宙！ "+user);
-            }else{
-                return null;
-            }
-
-        } catch (UnsupportedEncodingException e) {
+            retSrc = EntityUtils.toString(httpResponse.getEntity());
+            Log.v("dz","接收到的http回应为：\n"+retSrc);
+        }catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            return retSrc;
+        }
+    }
+
+    private static User AccountLogin(JSONObject parameter) {
+//        String jsonReceive= "{\"destination\":\"首页标题测试8page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}\n{\"destination\":\"首页标题测试9page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}";
+//        String[] jsonArray=jsonReceive.split("\n");
+//        for(String s:jsonArray){
+//            list.add(JsonUtil.getEntity(s,String.class));
+//        }
+        User user;
+        String myUrl=url+"LoginServlet";
+        Log.v("dz","听说你问我url是啥？"+myUrl);
+        String retSrc=connectToServlet(myUrl,parameter);
+
+// 生成 JSON 对象
+        try{
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result!=null){
+               user = JsonUtil.getEntity(result.getString("user"),User.class);
+
+                Log.v("dz","有这个就是成功"+retSrc);
+
+                user.setUserId(1);
+                Log.v("dz","测试用户id"+user.getUserId());
+                return user;
+
+            }else{
+                return null;
+            }
+        }  catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private static Boolean PhoneValid(JSONObject parameter){
+
+        int code;
+        String myUrl=url+"LoginServlet";
+        Log.v("dz","听说你问我url是啥？"+myUrl);
+
+        String retSrc=connectToServlet(myUrl,parameter);
+
+        try {
+
+            Log.v("dz","有这个就是成功"+retSrc);
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result!=null){
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+
+                Log.v("dz","测试用户手机 code"+code);
+                if(code == 1)
+                    return true;
+                else
+                    return false;
+
+            }else{
+                return false;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        User user=new User();
-//        user.setUserId(123456);
-        return null;
+
+        return false;
     }
-    private static User PhoneLogin( JSONObject parameter) {
+    private static User PhoneLogin(JSONObject parameter) {
 
         User user=new User();
-        user.setUserId(123456);
+        String myUrl=url+"LoginServlet";
+        Log.v("dz","听说你问我url是啥？"+myUrl);
+
+        String retSrc=connectToServlet(myUrl,parameter);
+
+        try {
+
+            Log.v("dz","有这个就是成功"+retSrc);
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result!=null){
+                user = JsonUtil.getEntity(result.getString("user"),User.class);
+                user.setUserId(1);
+                Log.v("dz","测试用户id"+user.getUserId());
+                return user;
+
+            }else{
+                return null;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
+
+    private static List<LittleOrderBean> GetLittleOrder(JSONObject parameter) {
+        return null;
+    }
+
+
 
 
 }

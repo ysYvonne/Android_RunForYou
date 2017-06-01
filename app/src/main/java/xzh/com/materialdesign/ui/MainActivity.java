@@ -6,11 +6,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import xzh.com.materialdesign.adapter.HomeAdapter;
 import xzh.com.materialdesign.adapter.MyOrderAdapter;
 import xzh.com.materialdesign.base.MyBaseActivity;
+import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.Money_order;
 import xzh.com.materialdesign.model.User;
+import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.StateCode;
 
 
 @SuppressLint("NewApi")//屏蔽android lint错误
@@ -37,6 +45,8 @@ public class MainActivity extends MyBaseActivity {
 
 
     protected void loadList() {
+        List<LittleOrderBean> list;
+        list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,new JSONObject());
         Money_order order =new Money_order();
         order.setDestination("首页标题");
         super.mAdapter.add(order);

@@ -45,8 +45,7 @@ import xzh.com.materialdesign.view.PullToLoadView;
 import xzh.com.materialdesign.adapter.BaseAdapterInterface;
 
 @SuppressLint("NewApi")//屏蔽android lint错误
-public abstract class MyBaseActivity extends AppCompatActivity implements
-        NavigationDrawerCallbacks {
+public abstract class MyBaseActivity extends AppCompatActivity implements NavigationDrawerCallbacks {
     private User user;
     public Context mContext;
     private Toolbar mToolbar;
