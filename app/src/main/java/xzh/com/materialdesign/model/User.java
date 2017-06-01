@@ -8,7 +8,7 @@ import android.util.Log;
  */
 
 public class User implements IEntity {
-    private int userId = -1;//用户id
+    private int user_id = -1;//用户id
     private String name;//真实姓名
     private int sex;//姓名，记1为男，2为女，0为未设置
     private int age;//年龄，记-1为未设置
@@ -23,8 +23,8 @@ public class User implements IEntity {
         age = -1;
         password = "未设置";
     }
-    public void setUserId(int userId){
-        userId = userId;
+    public void setUserId(int user_id){
+        user_id = user_id;
     }
     public void setName(String name1){
         if(!name1.isEmpty()){
@@ -56,7 +56,7 @@ public class User implements IEntity {
     }
 
     public int getUserId(){
-        return userId;
+        return user_id;
     }
     public String getName(){
         return name;
