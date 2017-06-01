@@ -151,6 +151,7 @@ public class AccountLoginActivity extends AppCompatActivity {
         }
         return true;
     }
+
     private void logIn(){
         Log.v("dz","login");
 
