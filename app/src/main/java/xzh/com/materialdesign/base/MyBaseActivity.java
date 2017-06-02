@@ -54,6 +54,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
     private PullToLoadView mPullToLoadView;
 
 
+
     protected BaseAdapterInterface mAdapter;
     private boolean isLoading = false;
     private boolean isHasLoadedAll = false;
@@ -130,7 +131,6 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
     private void init() {
         setmTitle();
         setmAdapter();
-        loadList();
 
         initViews();
         initEvent();

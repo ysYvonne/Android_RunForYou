@@ -5,39 +5,39 @@ package xzh.com.materialdesign.model;
  */
 
 public class Credit implements IEntity {
-    private int credit_id;//积分id
-    private int user_id;//用户id
-    private int order_num;//发布订单数量
-    private int delivery_num;//接受订单数量
+    private int creditId;//积分id
+    private int userId;//用户id
+    private int orderNum;//发布订单数量
+    private int deliveryNum;//接受订单数量
     private int credit;//用户积分数
 
     public void setCreditId(int Cid){
-        credit_id = Cid;
+        creditId = Cid;
     }
     public void setUserId(int userId){
-        user_id = userId;
+        userId = userId;
     }
     public void setOrderNum(int Onum){
-        order_num = Onum;
+        orderNum = Onum;
     }
     public void setDeliveryNum(int deliveryNum){
-        delivery_num = deliveryNum;
+        deliveryNum = deliveryNum;
     }
     public void setCredit(int c){
         credit = c;
     }
 
     public int getCreditId(){
-        return credit_id;
+        return creditId;
     }
     public int getUserId(){
-        return  user_id;
+        return  userId;
     }
     public int getOrderNum(){
-        return order_num;
+        return orderNum;
     }
     public int getDeliveryNum(){
-        return delivery_num;
+        return deliveryNum;
     }
     public int getCredit(){
         return credit;

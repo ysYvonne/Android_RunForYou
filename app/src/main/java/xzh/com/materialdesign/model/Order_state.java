@@ -5,69 +5,69 @@ package xzh.com.materialdesign.model;
  */
 
 public class Order_state implements IEntity {
-    private int order_state_id;//订单状态id
-    private int order_id;//订单编号
-    private int client_id;//下单人id
-    private int delivery_id;//配送人id
+    private int orderStateId;//订单状态id
+    private int orderId;//订单编号
+    private int clientId;//下单人id
+    private int deliveryId;//配送人id
     private int state;//订单状态，0未接单，1已接单，2正在配送，3到达地点，4订单完成，5评价完成。-1订单取消。
-    private String start_time;//发起时间
-    private String get_time;//得到物品，正在配送时间
-    private String arrive_time;//到达时间
-    private String over_time;//订单结束时间
+    private String startTime;//发起时间
+    private String getTime;//得到物品，正在配送时间
+    private String arriveTime;//到达时间
+    private String overTime;//订单结束时间
 
     public void setOrderStateId(int orderStateId){
-        order_state_id = orderStateId;
+        orderStateId = orderStateId;
     }
     public void setOrderId(int orderId){
-        order_id = orderId;
+        orderId = orderId;
     }
     public void setClientId(int clientId){
-        client_id = clientId;
+        clientId = clientId;
     }
     public void setDeliveryId(int deliveryId){
-        delivery_id = deliveryId;
+        deliveryId = deliveryId;
     }
     public void setState(int state1){
         state = state1;
     }
     public void setOverTime(String overTime){
-        over_time = overTime;
+        overTime = overTime;
     }
     public void setStartTime(String startTime){
-        start_time = startTime;
+        startTime = startTime;
     }
     public void setArriveTime(String arriveTime){
-        arrive_time = arriveTime;
+        arriveTime = arriveTime;
     }
     public void setGetTime(String getTime){
-        get_time = getTime;
+        getTime = getTime;
     }
 
     public int getOrderStateId(){
-        return order_state_id;
+        return orderStateId;
     }
     public int getOrderId( ){
-        return order_id  ;
+        return orderId  ;
     }
     public int getClientId( ){
-        return client_id  ;
+        return clientId  ;
     }
     public int getDeliveryId( ){
-        return delivery_id  ;
+        return deliveryId  ;
     }
     public int getState( ){
         return state ;
     }
     public String getOverTime(){
-        return over_time;
+        return overTime;
     }
     public String getStartTime(){
-        return start_time;
+        return startTime;
     }
     public String getArriveTime(){
-        return arrive_time ;
+        return arriveTime ;
     }
     public String getGetTime(){
-        return get_time ;
+        return getTime ;
     }
 }

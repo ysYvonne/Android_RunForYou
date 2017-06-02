@@ -5,34 +5,34 @@ package xzh.com.materialdesign.model;
  */
 
 public class Opinion implements IEntity {
-    private int opinion_id;//意见id
-    private int user_id;//用户id
+    private int opinionId;//意见id
+    private int userId;//用户id
     private String content;//意见内容
-    private String opinion_time;//评价时间
+    private String opinionTime;//评价时间
 
     public void setOpinionId(int opinionId){
-        opinion_id = opinionId;
+        opinionId = opinionId;
     }
     public void setUserId(int userId) {
-        user_id = userId;
+        userId = userId;
     }
     public void setContent(String con) {
         content = con;
     }
     public void setOpinionTime(String time) {
-        opinion_time = time;
+        opinionTime = time;
     }
 
     public int getOpinionId() {
-        return opinion_id;
+        return opinionId;
     }
     public int getUserId() {
-        return user_id;
+        return userId;
     }
     public String getContent() {
         return content;
     }
     public String getOpinionTime() {
-        return opinion_time;
+        return opinionTime;
     }
 }

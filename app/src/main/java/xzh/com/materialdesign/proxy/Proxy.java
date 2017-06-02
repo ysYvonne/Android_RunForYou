@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -70,7 +71,9 @@ public class Proxy {
             se = new StringEntity(parameter.toString());
             request.setEntity(se);
 // 发送请求
-            httpResponse = new DefaultHttpClient().execute(request);
+            DefaultHttpClient dfHttpClient=new DefaultHttpClient();
+
+            httpResponse = dfHttpClient.execute(request);
 // 得到应答的字符串，这也是一个 JSON 格式保存的数据
             retSrc = EntityUtils.toString(httpResponse.getEntity());
             Log.v("Proxy.connectToServlet","接收到的http回应为：\n"+retSrc);
@@ -80,10 +83,10 @@ public class Proxy {
         } catch (IOException e) {
             Log.v("Proxy.connectToServlet","httpResponse 转化出错");
             e.printStackTrace();
-        } finally {
-
-            return retSrc;
         }
+
+        return retSrc;
+
     }
 
     private static User AccountLogin(JSONObject parameter) {
@@ -105,8 +108,6 @@ public class Proxy {
 
                 Log.v("dz","有这个就是成功"+retSrc);
 
-                user.setUserId(1);
-                Log.v("dz","测试用户id"+user.getUserId());
                 return user;
 
             }else{
@@ -182,34 +183,50 @@ public class Proxy {
         String myUrl=url+"OrderServlet";
         String retSrc=connectToServlet(myUrl,parameter);
         Log.v("Proxy.GetLittleOrder ","retSrc is "+retSrc);
-//        try {
-//
-//
-//            JSONObject result = new JSONObject(retSrc);
-//
-//            if(result!=null){
-//                list = (List<LittleOrderBean>) JsonUtil.getEntity(result.getString("orderList"),);
-//                user.setUserId(1);
-//                Log.v("dz","测试用户id"+user.getUserId());
-//                return user;
-//
-//            }else{
-//                return null;
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-        LittleOrderBean lob=new LittleOrderBean();
-        lob.setOrderAddress("16宿舍楼");
-        lob.setOrderId(123456);
-        lob.setOrderItem("零食");
-        lob.setOrderReward(100);
-        lob.setStartTime("6/2");
-        lob.setState(StateCode.Order_Waiting);
-        lob.setShop("下沉广场");
-        lob.setType(StateCode.OrderType_Money);
+        //http请求结束
 
-        list.add(lob);
+        try {
+
+            Log.v("dz","有这个就是成功"+retSrc);
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result!=null){
+                JSONArray array=result.getJSONArray("orderList");
+                for(int i=0;i<array.length();i++){
+                    JSONObject object = array.getJSONObject(i);
+                    list.add(JsonUtil.getEntity(object.toString(),LittleOrderBean.class));
+                }
+                return list;
+            }else{
+                return list;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//
+//        for (int i = 0; i < array.length(); i++) {
+//            try {
+//                object = array.getJSONObject(i);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            String key = object.getString(Api.KEY);
+//            String value = object.getString(Api.VALUE);
+//            item = new MoreInfo(key, value);
+//            items.add(item);
+//        }
+//        LittleOrderBean lob=new LittleOrderBean();
+//        lob.setOrderAddress("16宿舍楼");
+//        lob.setOrderId(123456);
+//        lob.setOrderItem("零食");
+//        lob.setOrderReward(100);
+//        lob.setStartTime("6/2");
+//        lob.setState(StateCode.Order_Waiting);
+//        lob.setShop("下沉广场");
+//        lob.setType(StateCode.OrderType_Money);
+//
+//        list.add(lob);
         return list;
     }
 

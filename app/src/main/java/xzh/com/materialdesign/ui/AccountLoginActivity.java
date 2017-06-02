@@ -18,6 +18,7 @@ import android.app.ProgressDialog;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.api.MySharedPreferences;
+import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
@@ -52,16 +53,6 @@ public class AccountLoginActivity extends AppCompatActivity {
     EditText userEmail, password;
     JSONObject parameter;
     User user;
-
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Looper.prepare();
-            connectFinish();
-            Looper.loop();
-        }
-    };
-
 
     @SuppressLint("NewApi")
     @Override
@@ -180,17 +171,32 @@ public class AccountLoginActivity extends AppCompatActivity {
     }
 
     private void connect() {
-        new Thread(){
+//        new Thread(){
+//            public void run() {
+//                user=(User)Proxy.getWebData(StateCode.AccountLogin,parameter);
+//                Message msg = handler.obtainMessage();
+//
+//                msg.obj = user;
+////              handler.sendEmptyMessage(0);
+//                handler.handleMessage(msg); //通知handler我完事儿啦,实际并没有接收msg只是一个信号，在属性user里完成了对user 的操作
+//
+//            };
+//        }.start();
+        new Thread(new Runnable() {
+            @Override
             public void run() {
+                // TODO Auto-generated method stub
+
                 user=(User)Proxy.getWebData(StateCode.AccountLogin,parameter);
-                Message msg = handler.obtainMessage();
-
-                msg.obj = user;
-//              handler.sendEmptyMessage(0);
-                handler.handleMessage(msg); //通知handler我完事儿啦,实际并没有接收msg只是一个信号，在属性user里完成了对user 的操作
-
-            };
-        }.start();
+                // 在下面这个方法里可以做任何更新UI的操作
+                AccountLoginActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        connectFinish();
+                    }
+                });
+            }
+        }).start();
     }
 
 
