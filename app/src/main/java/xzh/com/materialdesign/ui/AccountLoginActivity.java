@@ -99,7 +99,7 @@ public class AccountLoginActivity extends AppCompatActivity {
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }else{
-                    if(check())
+//                    if(check())
                         logIn();
                 }
             }
@@ -158,11 +158,11 @@ public class AccountLoginActivity extends AppCompatActivity {
         try {
 
             parameter.put("type","emailLogin");
-            parameter.put("email", userEmail.getText());
-            parameter.put("password", password.getText());
+//            parameter.put("email", userEmail.getText());
+//            parameter.put("password", password.getText());
 
-//            parameter.put("email", "123456@bjtu.edu.cn");
-//            parameter.put("password", "123456");
+            parameter.put("email", "123456@bjtu.edu.cn");
+            parameter.put("password", "123456");
         } catch (JSONException e) {
             e.printStackTrace();
         }

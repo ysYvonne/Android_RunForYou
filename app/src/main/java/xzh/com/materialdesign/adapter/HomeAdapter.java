@@ -75,7 +75,7 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
 
     //给第i个view绑定什么信息，主要从已经在外面注入的List获取对象的信息，并塞到cellholder内
     private void initIntro(CellHolder cellHolder, int i) {
-
+        cellHolder.loadInfo(mList.get(i));
     }
 
 

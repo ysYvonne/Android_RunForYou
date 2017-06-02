@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import xzh.com.materialdesign.adapter.HomeAdapter;
 import xzh.com.materialdesign.adapter.MyOrderAdapter;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.base.MyBaseActivity;
 import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.Money_order;
@@ -45,11 +47,21 @@ public class MainActivity extends MyBaseActivity {
 
 
     protected void loadList() {
+        JSONObject parameter=new JSONObject();
+        try {
+
+            parameter.put("user_id", ControlUser.getUser(mContext).getUserId());
+            parameter.put("type","loadOrders");
+//            Log.v("dz","mainactiviy 发出user_id为"+ControlUser.getUser(mContext).getUserId());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         List<LittleOrderBean> list;
-        list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,new JSONObject());
-        Money_order order =new Money_order();
-        order.setDestination("首页标题");
-        super.mAdapter.add(order);
+        list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+      for(LittleOrderBean lob:list){
+          super.mAdapter.add(lob);
+      }
+
     }
 //
 //    @Override

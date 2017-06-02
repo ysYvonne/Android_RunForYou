@@ -59,7 +59,6 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
     private boolean isHasLoadedAll = false;
     private int nextPage;
     private boolean on_off = false;
-    private String userId;
 
 
     @SuppressLint("NewApi")
