@@ -23,15 +23,11 @@ public class User implements IEntity {
         age = -1;
         password = "未设置";
     }
-<<<<<<< HEAD
-    public void setUserId(int user_id){
-        user_id = user_id;
-=======
 
-    public void setUserId(int userId){
-        user_id = userId;
->>>>>>> master
+    public void setUserId(int user_id) {
+        user_id = user_id;
     }
+
     public void setName(String name1){
         if(!name1.isEmpty()){
             name = name1;

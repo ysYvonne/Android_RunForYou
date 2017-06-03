@@ -1,5 +1,6 @@
 package xzh.com.materialdesign.ui;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.base.BaseActivity;
 import xzh.com.materialdesign.model.ModifyPerson;
 import xzh.com.materialdesign.model.User;
@@ -46,6 +48,7 @@ public class OrderActivity extends BaseActivity {
     String selectMethod;
     JSONObject parameter;
     private ProgressDialog dialog;
+    int code;
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -140,7 +143,7 @@ public class OrderActivity extends BaseActivity {
     }
 
     private void Order(){
-        Log.v("dz","login");
+        Log.v("tb","order");
 
         //完成对用户密码的包装
         parameter=new JSONObject();
@@ -176,7 +179,7 @@ public class OrderActivity extends BaseActivity {
     private void connect() {
         new Thread(){
             public void run() {
-               // user=(User) Proxy.getWebData(StateCode.AccountLogin,parameter);
+                code = (int) Proxy.getWebData(StateCode.OrderPublish,parameter);
                 Message msg = handler.obtainMessage();
 
                // msg.obj = user;
@@ -185,6 +188,43 @@ public class OrderActivity extends BaseActivity {
 
             };
         }.start();
+    }
+
+    //连接完网络请求后需要做的事情
+    private void connectFinish() {
+        dialog.dismiss();
+        if (code == 0) {
+
+            new AlertDialog.Builder(mContext)
+
+                    .setTitle("提示")
+
+                    .setMessage("用户名或密码错误")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+        } else {
+
+            //写入sharedPreferences
+            if (code == -1) {
+                new AlertDialog.Builder(mContext)
+
+                        .setTitle("警告")
+
+                        .setMessage(StateCode.UserIdNull)
+
+                        .setPositiveButton("确定", null)
+
+                        .show();
+            } else {
+
+
+                ActivityHelper.startActivity(mContext, MainActivity.class);
+
+                finish();
+            }
+        }
     }
 
     private void selectRadioBtn(){

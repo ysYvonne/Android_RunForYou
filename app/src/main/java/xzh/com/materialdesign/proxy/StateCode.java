@@ -9,6 +9,6 @@ public class StateCode {
     public final static  String PhoneValid="PhoneValid";
     public final static  String PhoneLogin="PhoneLogin";
     public final static String GetLittleOrder="GetLittleOrder";
-
+    public final static String OrderPublish="OrderPublish";
     public final static String UserIdNull="错误：userId为空";
 }

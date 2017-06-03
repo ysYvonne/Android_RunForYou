@@ -49,6 +49,9 @@ public class Proxy {
             case StateCode.GetLittleOrder:
                 return GetLittleOrder(parameter);
 
+            case StateCode.OrderPublish:
+                return OrderPublish(parameter);
+
         }
         return null;
 
@@ -175,7 +178,25 @@ public class Proxy {
         return null;
     }
 
+    private static int OrderPublish(JSONObject parameter){
+        int code;
+        String myUrl = url+"OrderServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
 
+        try{
+            JSONObject result = new JSONObject(retSrc);
 
-
+            if(result !=null){
+                code = result.getInt("code");
+                return  code;
+            }
+            else{
+                return -1;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }
