@@ -25,7 +25,7 @@ public class User implements IEntity {
     }
 
     public void setUserId(int userId){
-        userId = userId;
+        this.userId = userId;
     }
     public void setName(String name1){
         if(!name1.isEmpty()){

@@ -24,4 +24,6 @@ public class StateCode {
     //订单类型,积分1，现金2
     public final static int OrderType_Score=1;
     public final static int OrderType_Money=2;
+
+    public final static int ListMax=15;
 }

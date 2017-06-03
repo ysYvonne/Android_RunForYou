@@ -28,6 +28,7 @@ public class MainActivity extends MyBaseActivity {
     List<LittleOrderBean> list;
     HomeAdapter mAdapter;
     JSONObject parameter;
+    Boolean isLoadAll;
 //
 //    Handler handler = new Handler() {
 //        public void handleMessage(Message msg) {
@@ -60,7 +61,9 @@ public class MainActivity extends MyBaseActivity {
     }
 
 
-    protected void loadList() {
+
+    protected boolean loadFirstTime() {
+        isLoadAll=false;
       parameter=new JSONObject();
         try {
 
@@ -70,7 +73,7 @@ public class MainActivity extends MyBaseActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new Thread(new Runnable() {
+        Thread thread=new Thread(new Runnable() {
             @Override
             public void run() {
             // TODO Auto-generated method stub
@@ -85,27 +88,65 @@ public class MainActivity extends MyBaseActivity {
                     }
                 });
             }
-        }).start();
-//        new Thread(){
-//            public void run() {
-//                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
-//                Message msg = handler.obtainMessage();
-//
-//                msg.obj = "";
-////              handler.sendEmptyMessage(0);
-//                handler.handleMessage(msg); //通知handler我完事儿啦,实际并没有接收msg只是一个信号，在属性user里完成了对user 的操作
-//
-//            };
-//        }.start();
-
-
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(list!=null && list.size()<StateCode.ListMax){
+            Log.v("MainActivity.Thread","list size is "+list.size());
+            isLoadAll =true;
+        }
+        return isLoadAll;
 
     }
-//
-//    @Override
-//    protected void createEventBus() {
-//        EventBus.getDefault().register(this);
-//    }
+
+    @Override
+    protected boolean loadMore(int orderId) {
+        isLoadAll=false;
+        parameter=new JSONObject();
+        try {
+
+            parameter.put("user_id", ControlUser.getUser(mContext).getUserId());
+
+            parameter.put("type","loadMoreOrders");
+            parameter.put("order_id",String.valueOf(orderId));
+//            Log.v("dz","mainactiviy 发出user_id为"+ControlUser.getUser(mContext).getUserId());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Thread thread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                // 更新主线程ＵＩ
+                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for(LittleOrderBean lob:list){
+                            mAdapter.add(lob);
+                        }
+
+                    }
+                });
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(list!=null && list.size()<StateCode.ListMax){
+            Log.v("MainActivity.Thread","list size is "+list.size());
+            isLoadAll =true;
+        }
+        return isLoadAll;
+
+    }
 
 
 }

@@ -7,4 +7,5 @@ package xzh.com.materialdesign.adapter;
 public interface BaseAdapterInterface {
     void clear();
     void add(Object o);
+    int getLastOrderId();
 }

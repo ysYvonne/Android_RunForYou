@@ -165,7 +165,6 @@ public class AccountLoginActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.show();
 
-//        具体运行方法在handle属性中
         connect();
 
     }
@@ -228,7 +227,6 @@ public class AccountLoginActivity extends AppCompatActivity {
 
                         .show();
             } else {
-
                 ControlUser.addUser(user,mContext);
 
                 ActivityHelper.startActivity(mContext, MainActivity.class);

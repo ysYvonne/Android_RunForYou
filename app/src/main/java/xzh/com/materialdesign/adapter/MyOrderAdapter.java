@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.Money_order;
 import xzh.com.materialdesign.ui.DetailsActivity;
 import xzh.com.materialdesign.ui.MyorderDetailAvtivity;
@@ -23,7 +24,7 @@ import xzh.com.materialdesign.utils.IntroUtils;
 public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderHolder> implements BaseAdapterInterface{
 
     private Context context;
-    private List<Object> mList;
+    private List<LittleOrderBean> mList;
 
     public MyOrderAdapter(Context context) {
         this.context=context;
@@ -57,8 +58,13 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderHolder> implemen
     }
 
     public void add(Object s) {
-        mList.add(s);
+        mList.add((LittleOrderBean) s);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public int getLastOrderId() {
+        return mList.get(mList.size()-1).getOrderId();
     }
 
     public void clear() {
@@ -67,10 +73,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderHolder> implemen
     }
 
     private void initIntro(MyOrderHolder orderHolder, int i) {
-        Money_order order = (Money_order) mList.get(i);
-
-        orderHolder.myorder_text.setText(order.getDestination());
-        orderHolder.myorder_date_text.setText("5元");
+        orderHolder.loadInfo(mList.get(i));
 
         orderHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

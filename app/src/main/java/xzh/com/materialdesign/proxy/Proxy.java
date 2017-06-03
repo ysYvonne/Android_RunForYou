@@ -106,8 +106,7 @@ public class Proxy {
             if(result!=null){
                user = JsonUtil.getEntity(result.getString("user"),User.class);
 
-                Log.v("dz","有这个就是成功"+retSrc);
-
+                Log.v("dz","测试用户id"+user.getUserId());
                 return user;
 
             }else{
@@ -164,7 +163,6 @@ public class Proxy {
 
             if(result!=null){
                 user = JsonUtil.getEntity(result.getString("user"),User.class);
-                user.setUserId(1);
                 Log.v("dz","测试用户id"+user.getUserId());
                 return user;
 

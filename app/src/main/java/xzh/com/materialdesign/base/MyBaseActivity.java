@@ -79,7 +79,9 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
 
 //    protected abstract void loadData();
 
-    protected abstract void loadList();
+    protected abstract boolean loadMore(int orderId);
+    protected abstract boolean loadFirstTime();
+
 //    {
 //        // 这个地方需要从服务器取数据生成一个list
 //        Money_order order =new Money_order();
@@ -189,7 +191,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
             public void onRefresh() {
                 mAdapter.clear();
                 isHasLoadedAll = false;
-                loadData(1);
+                loadFirst();
             }
 
             @Override
@@ -323,6 +325,8 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
                 if (isHasLoadedAll) {
                     Toast.makeText(mContext, "没有更多数据了",
                             Toast.LENGTH_SHORT).show();
+                }else{
+                    isHasLoadedAll= loadMore(mAdapter.getLastOrderId());
                 }
                 if (page > 10) {
                     isHasLoadedAll = true;
@@ -331,10 +335,32 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
 //                for (int i = 0; i <= 15; i++) {
 //                    mAdapter.add(i + "");
 //                }
-                loadList();
+
                 mPullToLoadView.setComplete();
                 isLoading = false;
                 nextPage = page + 1;
+            }
+        }, 3000);
+
+    }
+
+    protected void loadFirst(){
+        //        此处需要子类重写
+        isLoading = true;
+        nextPage=2;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                    isHasLoadedAll= loadFirstTime();
+
+
+//                for (int i = 0; i <= 15; i++) {
+//                    mAdapter.add(i + "");
+//                }
+
+                mPullToLoadView.setComplete();
+                isLoading = false;
             }
         }, 3000);
 
