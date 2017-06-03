@@ -5,30 +5,30 @@ package xzh.com.materialdesign.model;
  */
 
 public class Money_order {
-    private int order_id;//订单id
+    private int orderId;//订单id
     private String address;//送货地址
     private String destination;//取货地址
-    private float money_reward;//悬赏金额
-    private float moy_predict;//预测商品金额
+    private float moneyReward;//悬赏金额
+    private float moyPredict;//预测商品金额
     private String item;//商品类型（简称）
-    private String order_time;//订单持续时间
+    private String orderTime;//订单持续时间
     private String describe;//订单描述
 
     public float getMoy_predict() {
-        return moy_predict;
+        return moyPredict;
     }
 
     public void setMoy_predict(float moy_predict) {
-        this.moy_predict = moy_predict;
+        this.moyPredict = moy_predict;
     }
 
 
     public int getOrder_id() {
-        return order_id;
+        return orderId;
     }
 
     public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+        this.orderId = order_id;
     }
 
     public String getAddress() {
@@ -48,11 +48,11 @@ public class Money_order {
     }
 
     public float getMoney_reward() {
-        return money_reward;
+        return moneyReward;
     }
 
     public void setMoney_reward(float money_reward) {
-        this.money_reward = money_reward;
+        this.moneyReward = money_reward;
     }
 
 
@@ -65,11 +65,11 @@ public class Money_order {
     }
 
     public String getOrder_time() {
-        return order_time;
+        return orderTime;
     }
 
     public void setOrder_time(String order_time) {
-        this.order_time = order_time;
+        this.orderTime = order_time;
     }
 
     public String getDescribe() {

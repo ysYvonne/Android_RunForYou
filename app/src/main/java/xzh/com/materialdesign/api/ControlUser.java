@@ -1,6 +1,7 @@
 package xzh.com.materialdesign.api;
 
 import android.content.Context;
+import android.util.Log;
 
 import xzh.com.materialdesign.model.User;
 
@@ -14,6 +15,7 @@ public class ControlUser {
 
         MySharedPreferences msp = new MySharedPreferences(preferenceName, context);
         msp.commit("userId", String.valueOf(user.getUserId()));
+
         msp.commit("name", String.valueOf(user.getName()));
         msp.commit("sex", String.valueOf(user.getSex()));
         msp.commit("age", String.valueOf(user.getAge()));
@@ -31,6 +33,7 @@ public class ControlUser {
         if(msp.getValue("userId").isEmpty())return null;
 
         user.setUserId(Integer.valueOf(msp.getValue("userId")));
+
         if(!msp.getValue("age").isEmpty())
         user.setAge(Integer.valueOf(msp.getValue("age")));
         if(!msp.getValue("email").isEmpty())
