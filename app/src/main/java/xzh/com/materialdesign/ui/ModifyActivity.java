@@ -43,14 +43,14 @@ public class ModifyActivity extends BaseActivity {
 
         setContentView(R.layout.modify_custom);
         ButterKnife.inject(this);
-        name = modify_name.getText().toString();
-        phone = modify_phone.getText().toString();
-        modify = new ModifyPerson(name,phone);
 
         modify_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //此处需要添加修改OrderActivity的方法
+                name = modify_name.getText().toString();
+                phone = modify_phone.getText().toString();
+                modify = new ModifyPerson(name,phone);
                 ActivityHelper.startActivity(ModifyActivity.this,OrderActivity.class,"modify_info",modify);
             }
         });

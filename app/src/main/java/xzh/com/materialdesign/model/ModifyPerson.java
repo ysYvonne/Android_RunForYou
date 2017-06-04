@@ -14,19 +14,19 @@ public class ModifyPerson implements Serializable{
         this.modify_phone = phone;
     }
 
-    public String getModify_name() {
+    public String getModifyname() {
         return modify_name;
     }
 
-    public void setModify_name(String modify_name) {
+    public void setModifyname(String modify_name) {
         this.modify_name = modify_name;
     }
 
-    public String getModify_phone() {
+    public String getModifyphone() {
         return modify_phone;
     }
 
-    public void setModify_phone(String modify_phone) {
+    public void setModifyphone(String modify_phone) {
         this.modify_phone = modify_phone;
     }
 

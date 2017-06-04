@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.base.BaseActivity;
+import xzh.com.materialdesign.model.Credit;
 import xzh.com.materialdesign.model.ModifyPerson;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
@@ -47,21 +48,16 @@ public class OrderActivity extends BaseActivity {
     ImageView back;
     String selectMethod;
     JSONObject parameter;
+    JSONObject parameterCredit;
     private ProgressDialog dialog;
     int code;
+    Credit credit;
 
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Looper.prepare();
-            //connectFinish();
-            Looper.loop();
-        }
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.v("tb","OrderActivity onCreate");
+        mContext = OrderActivity.this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_layout);
         ButterKnife.inject(this);
@@ -85,11 +81,6 @@ public class OrderActivity extends BaseActivity {
 
 
         init();
-
-        Intent intent = getIntent();
-        ModifyPerson modifyInfo = (ModifyPerson) intent.getSerializableExtra("modify_info");
-        name.setText(modifyInfo.getModify_name());
-        phone.setText(modifyInfo.getModify_phone());
 
     }
 
@@ -129,6 +120,12 @@ public class OrderActivity extends BaseActivity {
             }
         });
 
+        Intent intent = getIntent();
+        ModifyPerson modifyInfo = (ModifyPerson) intent.getSerializableExtra("modify_info");
+        if(modifyInfo != null){
+            name.setText(modifyInfo.getModifyname());
+            phone.setText(modifyInfo.getModifyphone());}
+
     }
 
     // 检测网络
@@ -146,9 +143,10 @@ public class OrderActivity extends BaseActivity {
         Log.v("tb","order");
 
         //完成对用户密码的包装
-        parameter=new JSONObject();
+        parameter = new JSONObject();
+        parameterCredit = new JSONObject();
         try {
-            parameter.put("user_id",123456);
+            parameter.put("userId",1);
             parameter.put("type", "OrderPublish");
             parameter.put("name", name.getText());
             parameter.put("phone", phone.getText());
@@ -157,9 +155,11 @@ public class OrderActivity extends BaseActivity {
             parameter.put("des",des.getText());
             parameter.put("shop",shop.getText());
             parameter.put("time",time.getText());
-            parameter.put("money",money.getText());
-            parameter.put("deliver",deliver.getText());
-            parameter.put("deliver_method",selectMethod);
+            parameter.put("money",Float.parseFloat(money.getText().toString()));
+            parameter.put("deliver",Float.parseFloat(deliver.getText().toString()));
+            parameter.put("deliverMethod",Integer.parseInt(selectMethod));
+            parameterCredit.put("type", "getCredit");
+            parameterCredit.put("userId",1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -180,11 +180,15 @@ public class OrderActivity extends BaseActivity {
         new Thread(){
             public void run() {
                 code = (int) Proxy.getWebData(StateCode.OrderPublish,parameter);
-                Message msg = handler.obtainMessage();
+                credit = (Credit) Proxy.getWebData(StateCode.GetCredit,parameterCredit);
 
-               // msg.obj = user;
-//                handler.sendEmptyMessage(0);
-                handler.handleMessage(msg); //通知handler我完事儿啦,实际并没有接收msg只是一个信号，在属性user里完成了对user 的操作
+
+                OrderActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        connectFinish();
+                    }
+                });
 
             };
         }.start();
@@ -199,7 +203,7 @@ public class OrderActivity extends BaseActivity {
 
                     .setTitle("提示")
 
-                    .setMessage("用户名或密码错误")
+                    .setMessage("订单发布失败")
 
                     .setPositiveButton("确定", null)
 
@@ -212,17 +216,28 @@ public class OrderActivity extends BaseActivity {
 
                         .setTitle("警告")
 
-                        .setMessage(StateCode.UserIdNull)
+                        .setMessage("无法提交")
 
                         .setPositiveButton("确定", null)
 
                         .show();
             } else {
-
-
+                if(credit.getCredit() >= Integer.parseInt(selectMethod)){
                 ActivityHelper.startActivity(mContext, MainActivity.class);
-
                 finish();
+                }
+                else{
+                    new AlertDialog.Builder(mContext)
+
+                            .setTitle("警告")
+
+                            .setMessage("当前积分为"+credit.getCredit()+"！")
+
+                            .setPositiveButton("确定", null)
+
+                            .show();
+                }
+
             }
         }
     }
@@ -230,7 +245,7 @@ public class OrderActivity extends BaseActivity {
     private void selectRadioBtn(){
         change_method = (RadioButton) findViewById(method.getCheckedRadioButtonId());
         selectMethod = change_method.getText().toString();
-        if(selectMethod.equals("cash")){
+        if(selectMethod.equals("2")){
             deliver_method.setText("元");
         }
         else

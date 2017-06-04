@@ -46,6 +46,7 @@
                     android:layout_marginTop="11dp"
                     android:background="#00000000"
                     android:hint="更改收货人"
+                    android:textColor="@color/base_color_text_black"
                     android:inputType="text"
                     android:maxLines="1"
                     android:textColorHint="#cdcdcd" />
@@ -93,6 +94,7 @@
                     android:layout_marginTop="11dp"
                     android:background="#00000000"
                     android:hint="更改联系方式"
+                    android:textColor="@color/base_color_text_black"
                     android:inputType="text"
                     android:maxLines="1"
                     android:textColorHint="#cdcdcd" />
@@ -133,6 +135,7 @@
                     android:layout_marginTop="11dp"
                     android:background="#00000000"
                     android:hint="输入验证码"
+                    android:textColor="@color/base_color_text_black"
                     android:inputType="text"
                     android:maxLines="1"
                     android:textColorHint="#cdcdcd" />

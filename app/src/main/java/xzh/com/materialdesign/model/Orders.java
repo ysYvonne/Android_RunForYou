@@ -5,7 +5,7 @@ package xzh.com.materialdesign.model;
  */
 
 public class Orders implements IEntity {
-<<<<<<< HEAD
+
     private int order_id;//订单id
     private int order_type;//订单类型，记1为积分，2为金钱
     private String order_address;//送货地址
@@ -19,7 +19,7 @@ public class Orders implements IEntity {
     private String contactPhone;
 
 
-=======
+
     private int orderId;//订单id
     private int orderType;//订单类型，记1为积分，2为金钱
     private String orderAddress;//送货地址
@@ -29,7 +29,7 @@ public class Orders implements IEntity {
     private String orderItem;//商品类型（简称）
     private String orderTime;//订单持续时间
     private String orderDescribe;//订单描述
->>>>>>> master
+
 
     public void setOrderId(int orderId){
         orderId = orderId;

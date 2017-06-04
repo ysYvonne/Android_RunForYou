@@ -24,13 +24,10 @@ public class User implements IEntity {
         password = "未设置";
     }
 
-<<<<<<< HEAD
-    public void setUserId(int user_id) {
-        user_id = user_id;
-=======
+
     public void setUserId(int userId){
         this.userId = userId;
->>>>>>> master
+
     }
 
     public void setName(String name1){
