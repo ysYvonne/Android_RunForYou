@@ -1,10 +1,12 @@
 package xzh.com.materialdesign.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Towyer_pic on 2017/4/30.
  */
 
-public class Orders implements IEntity {
+public class Orders implements IEntity{
 
     private int order_id;//订单id
     private int order_type;//订单类型，记1为积分，2为金钱

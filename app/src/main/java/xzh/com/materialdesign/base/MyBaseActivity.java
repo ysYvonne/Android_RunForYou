@@ -122,7 +122,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
         bt_dial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityHelper.startActivity(mContext, OrderActivity.class);
+                ActivityHelper.startActivity(mContext, OrderActivity.class,"userInfo",user);
             }
         });
 

@@ -11,8 +11,8 @@ public class StateCode {
     public final static String GetLittleOrder="GetLittleOrder";
     public final static String OrderPublish="OrderPublish";
     public final static String GetCredit="GetCredit";
+    public final static String OrderInfo="OrderInfo";
     public final static String Register="Register";
-
     public final static String ContactUs="ContactUs";
     public final static String UserIdNull="错误：userId为空";
 

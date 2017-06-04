@@ -1,13 +1,21 @@
 package xzh.com.materialdesign.adapter;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +24,12 @@ import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.Money_order;
+import xzh.com.materialdesign.model.Orders;
+import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.ui.DetailsActivity;
+import xzh.com.materialdesign.ui.ModifyActivity;
+import xzh.com.materialdesign.ui.OrderActivity;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.IntroUtils;
 import xzh.com.materialdesign.view.CircleImageView;
@@ -26,8 +39,11 @@ import xzh.com.materialdesign.view.CircleImageView;
  */
 public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements BaseAdapterInterface{
 
-   private Context context;
+    private Context context;
     private List<LittleOrderBean> mList;
+    JSONObject parameter;
+    private ProgressDialog dialog;
+    Orders orders;
 
     public HomeAdapter(Context context) {
        this.context=context;
@@ -51,12 +67,39 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
        cellHolder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               ActivityHelper.startActivity(context, DetailsActivity.class,"orderId", integer);
+//                    if(check())
+               showDetail(integer);
            }
        });
 
     }
 
+
+    private void showDetail(int orderId){
+        Log.v("tb","showDetail");
+
+        //完成对用户密码的包装
+        parameter=new JSONObject();
+        try {
+
+            parameter.put("type","OrderInfo");
+            parameter.put("orderId", orderId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        connect();
+
+    }
+
+    private void connect() {
+        new Thread(){
+            public void run() {
+                orders = (Orders) Proxy.getWebData(StateCode.OrderInfo,parameter);
+                ActivityHelper.startActivity(context,DetailsActivity.class,"order_info",orders);
+            };
+        }.start();
+    }
 
     @Override
     public int getItemCount() {
