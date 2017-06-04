@@ -7,6 +7,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,8 +81,7 @@ public class Proxy {
         Log.v("Proxy.connectToServlet","parameter is "+parameter.toString());
 
         try {
-            request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
-            se = new StringEntity(parameter.toString());
+            se = new StringEntity(parameter.toString(),HTTP.UTF_8);
             request.setEntity(se);
 // 发送请求
             DefaultHttpClient dfHttpClient=new DefaultHttpClient();
