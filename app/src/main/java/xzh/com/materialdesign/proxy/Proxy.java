@@ -50,6 +50,11 @@ public class Proxy {
             case StateCode.GetLittleOrder:
                 return GetLittleOrder(parameter);
 
+            case StateCode.OrderPublish:
+                return OrderPublish(parameter);
+
+            case StateCode.GetCredit:
+                return GetCredit(parameter);
         }
         return null;
 
@@ -68,6 +73,7 @@ public class Proxy {
         Log.v("Proxy.connectToServlet","parameter is "+parameter.toString());
 
         try {
+            request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
             se = new StringEntity(parameter.toString());
             request.setEntity(se);
 // 发送请求
@@ -228,7 +234,47 @@ public class Proxy {
         return list;
     }
 
+    private static int OrderPublish(JSONObject parameter){
+        int code;
+        String myUrl = url+"OrderServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
 
+        try{
+            JSONObject result = new JSONObject(retSrc);
 
+            if(result !=null){
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+                return  code;
+            }
+            else{
+                return -1;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
 
+    private static Credit GetCredit(JSONObject parameter){
+        Credit credit;
+        String myUrl = url+"InformationServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
+
+        try{
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result !=null){
+                credit = JsonUtil.getEntity(result.getString("credit"),Credit.class);
+                return  credit;
+            }
+            else{
+                return null;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

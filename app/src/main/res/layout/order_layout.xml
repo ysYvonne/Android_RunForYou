@@ -9,7 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/order_scroll"
-        android:layout_below="@+id/toolbar_orderbar">
+        android:layout_below="@+id/toolbar_orderbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,6 +159,7 @@
                         android:textColorHint="#cdcdcd"
                         android:maxLines="1"
                         android:hint="一句话描述你的需求吧"
+                        android:textColor="@color/base_color_text_black"
                         android:inputType="text"
                         android:layout_marginTop="11dp"
                         android:layout_marginBottom="11dp"
@@ -180,6 +183,7 @@
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:textColorHint="#cdcdcd"
+                        android:textColor="@color/base_color_text_black"
                         android:maxLines="3"
                         android:hint="订单详情"
                         android:inputType="text"
@@ -230,12 +234,13 @@
                         android:layout_weight="0.78">
 
                         <EditText
-                            android:id="@+id/order_layout_shop"
+                            android:id="@+id/order_layout_des"
                             android:layout_height="match_parent"
                             android:layout_width="match_parent"
                             android:textColorHint="#cdcdcd"
                             android:maxLines="1"
                             android:hint="选择收货地"
+                            android:textColor="@color/base_color_text_black"
                             android:inputType="text"
                             android:layout_marginTop="11dp"
                             android:layout_marginBottom="11dp"
@@ -283,12 +288,13 @@
                         android:layout_weight="0.78">
 
                         <EditText
-                            android:id="@+id/order_layout_des"
+                            android:id="@+id/order_layout_shop"
                             android:layout_height="match_parent"
                             android:layout_width="match_parent"
                             android:textColorHint="#cdcdcd"
                             android:maxLines="1"
                             android:hint="选择指派地"
+                            android:textColor="@color/base_color_text_black"
                             android:inputType="text"
                             android:layout_marginTop="11dp"
                             android:layout_marginBottom="11dp"
@@ -352,6 +358,7 @@
                             android:layout_marginTop="11dp"
                             android:background="#00000000"
                             android:hint="选择订单持续时间"
+                            android:textColor="@color/base_color_text_black"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColorHint="#cdcdcd" />
@@ -406,6 +413,7 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="11dp"
                             android:background="#00000000"
+                            android:textColor="@color/base_color_text_black"
                             android:hint="估计物品金额        "
                             android:inputType="text"
                             android:maxLines="1"
@@ -467,7 +475,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/bg_radiobutton"
                         android:button="@null"
-                         />
+                        android:text="2" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -483,11 +491,12 @@
                         android:id="@+id/order_layout_choose_score"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:layout_marginTop="5dp"
                         android:layout_marginLeft="30dp"
+                        android:layout_marginTop="5dp"
                         android:background="@drawable/bg_radiobutton"
                         android:button="@null"
-                        android:checked="false" />
+                        android:checked="false"
+                        android:text="1" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -527,8 +536,9 @@
                         android:layout_marginTop="11dp"
                         android:background="#00000000"
                         android:hint="设置数额"
-                        android:inputType="text"
+                        android:inputType="text|number"
                         android:maxLines="1"
+                        android:textColor="@color/base_color_text_black"
                         android:textColorHint="#cdcdcd" />
 
                 </LinearLayout>
@@ -559,7 +569,8 @@
         android:gravity="center"
         android:padding="12dp"
         android:layout_alignParentBottom="true"
-        />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <include
         android:id="@+id/toolbar_orderbar"

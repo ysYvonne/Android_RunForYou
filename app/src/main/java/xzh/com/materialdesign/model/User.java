@@ -24,9 +24,12 @@ public class User implements IEntity {
         password = "未设置";
     }
 
+
     public void setUserId(int userId){
         this.userId = userId;
+
     }
+
     public void setName(String name1){
         if(!name1.isEmpty()){
             name = name1;
