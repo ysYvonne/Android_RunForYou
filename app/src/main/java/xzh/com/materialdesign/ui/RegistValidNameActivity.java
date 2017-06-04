@@ -1,9 +1,15 @@
 package xzh.com.materialdesign.ui;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,12 +21,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.api.ControlUser;
+import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.model.*;
 
@@ -32,13 +44,28 @@ public class RegistValidNameActivity extends AppCompatActivity {
 
     private Context mContext;
     private Button send,next;
-    private EditText nameText,emailText;
+    private EditText nameText,emailText, validNum;
     private Spinner spinner;
     private List<String> data;
     private List<String> emailData;
     private TextView emailTextList;
+
+    private String schoolName;
     Bundle mBundle;
 
+    private ProgressDialog dialog;
+    JSONObject parameter;
+    User user;
+
+    Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            Looper.prepare();
+            connectFinish();
+            Looper.loop();
+        }
+    };
 
     @SuppressLint("NewApi")
     @Override
@@ -57,6 +84,8 @@ public class RegistValidNameActivity extends AppCompatActivity {
 
         nameText = (EditText)findViewById(R.id.RegisterRealname);
         emailText = (EditText)findViewById(R.id.RegisterEmail);
+        validNum = (EditText)findViewById(R.id.validationNum_email);
+
         spinner = (Spinner)findViewById(R.id.RegisterSchool);
         emailTextList=(TextView)findViewById(R.id.email_suffix) ;
 
@@ -64,36 +93,8 @@ public class RegistValidNameActivity extends AppCompatActivity {
     }
 
     private void init() {
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
-                //发送验证码
-            }
-        });
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //此处添加判断验证函数
 
-                //传入数据
-                String name = nameText.getText().toString();
-                String email = emailText.getText().toString() + "@bjtu.edu.cn";
-                String phone = mBundle.getString("phone");
-                // String school = schoolText.getSelectedItem().toString();
-
-                User user = new User();
-                user.setEmail(email);
-                //  user.setSchool(school);
-                user.setName(name);
-                user.setPhoneNum(mBundle.getString("phone"));
-
-                ActivityHelper.startActivity(RegistValidNameActivity.this, AccountLoginActivity.class);
-                //进入主界面啦~
-            }
-        });
-
-        spinner.setBackgroundColor(Color.GRAY);
+        spinner.setBackgroundColor(Color.parseColor("#B452CD"));
         //第一步：添加一个下拉列表项的list，这里添加的项就是下拉列表的菜单项
         initData();
         //第二步：为下拉列表定义一个适配器，这里就用到里前面定义的list。
@@ -109,8 +110,8 @@ public class RegistValidNameActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 /* 将spinner 显示*/
                 arg0.setVisibility(View.VISIBLE);
+                schoolName = data.get(arg2);
                 emailTextList.setText(emailData.get(arg2));
-
             }
 
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -118,7 +119,160 @@ public class RegistValidNameActivity extends AppCompatActivity {
                 arg0.setVisibility(View.VISIBLE);
             }
         });
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
+                if(checkN() && checkE()){
+                    next.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myAccentColor));
+                    //发送验证码
+                }
+
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //此处添加判断验证函数
+                if(checkV()){
+                    register();
+                }
+
+
+            }
+        });
     }
+
+    private void register(){
+        Log.v("ys", "start registing");
+        dialog = new ProgressDialog(mContext);
+
+        parameter=new JSONObject();
+        try{
+            //传入数据
+            String name = nameText.getText().toString();
+            String email = emailText.getText().toString()+emailTextList.getText().toString();
+            String phone = mBundle.getString("phone");
+
+            User user = new User();
+            user.setEmail(email);
+            user.setName(name);
+            user.setPhoneNum(phone);
+            user.setSchool(schoolName);
+
+            parameter.put("type", "register");
+            parameter.put("email", user.getEmail());
+            parameter.put("name", user.getName());
+//            parameter.put("sex",user.getSex());
+//            parameter.put("age",user.getAge());
+//            parameter.put("nickname",user.getNickname());
+            parameter.put("phoneNum", user.getPhoneNum());
+            parameter.put("school", user.getSchool());
+//            parameter.put("password", user.getPassword());
+
+
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //弹出processdialog,必须要使用线程，不然无法显示
+        dialog.setTitle("提示");
+        dialog.setMessage("正在登陆，请稍后...");
+        dialog.setCancelable(false);
+        dialog.show();
+
+        connect();
+    }
+
+    private void connect(){
+        new Thread(){
+            public void run() {
+
+                user=(User) Proxy.getWebData(StateCode.Register,parameter);
+                Message msg = handler.obtainMessage();
+
+                msg.obj = user;
+
+                handler.handleMessage(msg); //通知handler我完事儿啦
+
+            };
+        }.start();
+    }
+
+    //连接完网络请求后需要做的事情
+    private void connectFinish() {
+
+        dialog.dismiss();
+
+            //写入sharedPreferences
+            if (user.getUserId() < 0) {
+
+                new AlertDialog.Builder(mContext)
+
+                        .setTitle("警告")
+
+                        .setMessage(StateCode.UserIdNull)
+
+                        .setPositiveButton("确定", null)
+
+                        .show();
+            } else {
+                ControlUser.addUser(user,mContext);
+
+                ActivityHelper.startActivity(mContext, MainActivity.class);
+                finish();
+            }
+    }
+
+    private boolean checkN(){
+        if(nameText.getText().toString().isEmpty()){
+            new AlertDialog.Builder(this)
+
+                    .setTitle("提示")
+
+                    .setMessage("请输入姓名")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkE(){
+        if(emailText.getText().toString().isEmpty()){
+            new AlertDialog.Builder(this)
+
+                    .setTitle("提示")
+
+                    .setMessage("请输入邮箱名")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkV(){
+        if(validNum.getText().toString().isEmpty()){
+            new AlertDialog.Builder(this)
+
+                    .setTitle("提示")
+
+                    .setMessage("请输入验证码")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+            return false;
+        }
+        return true;
+    }
+
 
     private void initData() {
         data = new ArrayList<String>();
@@ -131,7 +285,6 @@ public class RegistValidNameActivity extends AppCompatActivity {
         emailData.add("@tsinghua.edu.cn");
         emailData.add("@beili");
         emailData.add("@pku.edu.cn");
-
 
     }
 }

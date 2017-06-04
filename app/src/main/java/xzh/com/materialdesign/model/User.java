@@ -19,8 +19,13 @@ public class User implements IEntity {
     private String password;//密码
 
     public User(){
+        name = "喵酱";
         sex = 0;
-        age = -1;
+        age = 1000;
+        nickname = "默认日日";
+        phoneNum = "未设置";
+        email = "未设置";
+        school = "未设置";
         password = "未设置";
     }
 
