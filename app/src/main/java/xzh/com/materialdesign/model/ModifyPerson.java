@@ -5,7 +5,7 @@ package xzh.com.materialdesign.model;
  */
 import java.io.Serializable;
 
-public class ModifyPerson implements Serializable{
+public class ModifyPerson implements IEntity{
     private String modify_name;
     private String modify_phone;
 

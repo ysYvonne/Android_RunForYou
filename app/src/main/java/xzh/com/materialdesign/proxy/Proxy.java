@@ -60,9 +60,14 @@ public class Proxy {
             case StateCode.GetCredit:
                 return GetCredit(parameter);
 
+<<<<<<< HEAD
             case StateCode.PersonalInfo:
                 return PersonalInfo(parameter);
 
+=======
+            case StateCode.OrderInfo:
+                return OrderInfo(parameter);
+>>>>>>> master
             case StateCode.ContactUs:
                 return ContactUs(parameter);
 
@@ -320,15 +325,24 @@ public class Proxy {
         return null;
     }
 
+<<<<<<< HEAD
     private static User PersonalInfo(JSONObject parameter){
         User user = new User();
         int code = -1;
         String myUrl = url+"InformationServlet";
         String retSrc = connectToServlet(myUrl, parameter);
+=======
+
+    private static Orders OrderInfo(JSONObject parameter){
+        Orders orders;
+        String myUrl = url+"OrderServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
+>>>>>>> master
 
         try{
             JSONObject result = new JSONObject(retSrc);
 
+<<<<<<< HEAD
             if(parameter.getString("type").equals("getUser") && result !=null){
                 user = JsonUtil.getEntity(result.getString("user"),User.class);
                 return  user;
@@ -337,6 +351,11 @@ public class Proxy {
                 code = JsonUtil.getEntity(result.getString("code"),int.class);
                 user.setSex(code) ;
                 return user;
+=======
+            if(result !=null){
+                orders = JsonUtil.getEntity(result.getString("order"),Orders.class);
+                return  orders;
+>>>>>>> master
             }
             else{
                 return null;
@@ -345,8 +364,13 @@ public class Proxy {
         catch (JSONException e){
             e.printStackTrace();
         }
+<<<<<<< HEAD
 
         return null;
+=======
+        return null;
+
+>>>>>>> master
     }
 
     private static boolean ContactUs(JSONObject parameter){

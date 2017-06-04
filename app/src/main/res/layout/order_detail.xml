@@ -80,21 +80,27 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="114dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="悬赏"
                     android:textColor="@color/colorSub"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/order_detail_money"
-                    android:layout_width="match_parent"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textColor="@color/colorTex"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/order_detail_method"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="5元"
+                    android:text="元"
                     android:textColor="@color/colorTex"
-
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -111,7 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="物品类型"
+                    android:text="估计金额"
                     android:textColor="@color/colorSub"
                     android:textSize="18sp" />
 

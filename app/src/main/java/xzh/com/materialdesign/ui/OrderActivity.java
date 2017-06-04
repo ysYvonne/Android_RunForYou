@@ -24,11 +24,14 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.base.BaseActivity;
 import xzh.com.materialdesign.model.Credit;
+import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.ModifyPerson;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
@@ -41,7 +44,7 @@ import xzh.com.materialdesign.utils.ActivityHelper;
 public class OrderActivity extends BaseActivity {
 
     private Context mContext;
-    TextView name,phone,btn_modify,btn_order,deliver_method;
+    TextView name,phone,btn_modify,btn_order,deliver_method,myCredit;
     EditText short_info,long_info,des,shop,time,money,deliver;
     RadioButton change_method;
     RadioGroup method;
@@ -77,6 +80,7 @@ public class OrderActivity extends BaseActivity {
         deliver_method = (TextView) findViewById(R.id.order_layout_deliver_method);
         back = (ImageView) findViewById(R.id.back_icon);
         method = (RadioGroup) findViewById(R.id.order_layout_choose);
+        myCredit = (TextView) findViewById(R.id.order_layout_deliver_credit);
         selectMethod = change_method.getText().toString();
 
 
@@ -85,6 +89,8 @@ public class OrderActivity extends BaseActivity {
     }
 
     private void init() {
+        getCredit();
+
         btn_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,8 +100,21 @@ public class OrderActivity extends BaseActivity {
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }else{
-                    //if(check())
-                    Order();
+                     if(credit.getCredit() < Integer.parseInt(selectMethod) && selectMethod.equals("1")){
+                        new AlertDialog.Builder(mContext)
+
+                                .setTitle("警告")
+
+                                .setMessage("当前积分为"+credit.getCredit()+"！")
+
+                                .setPositiveButton("确定", null)
+
+                                .show();
+                    }
+                    else {
+                         //if(check())
+                         Order();
+                     }
                 }
             }
         });
@@ -121,6 +140,10 @@ public class OrderActivity extends BaseActivity {
         });
 
         Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("userInfo");
+        name.setText(user.getNickname());
+        phone.setText(user.getPhoneNum());
+
         ModifyPerson modifyInfo = (ModifyPerson) intent.getSerializableExtra("modify_info");
         if(modifyInfo != null){
             name.setText(modifyInfo.getModifyname());
@@ -139,12 +162,31 @@ public class OrderActivity extends BaseActivity {
         return true;
     }
 
+    private void getCredit(){
+        Log.v("tb","getCredit");
+
+        parameterCredit = new JSONObject();
+        try {
+            parameterCredit.put("type", "getCredit");
+            parameterCredit.put("userId", 1);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        new Thread(){
+            public void run() {
+                credit = (Credit) Proxy.getWebData(StateCode.GetCredit,parameterCredit);
+
+            };
+        }.start();
+
+    }
+
     private void Order(){
         Log.v("tb","order");
 
         //完成对用户密码的包装
         parameter = new JSONObject();
-        parameterCredit = new JSONObject();
         try {
             parameter.put("userId",1);
             parameter.put("type", "OrderPublish");
@@ -158,9 +200,6 @@ public class OrderActivity extends BaseActivity {
             parameter.put("money",Float.parseFloat(money.getText().toString()));
             parameter.put("deliver",Float.parseFloat(deliver.getText().toString()));
             parameter.put("deliverMethod",Integer.parseInt(selectMethod));
-            parameterCredit.put("type", "getCredit");
-            parameterCredit.put("userId",1);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -180,8 +219,6 @@ public class OrderActivity extends BaseActivity {
         new Thread(){
             public void run() {
                 code = (int) Proxy.getWebData(StateCode.OrderPublish,parameter);
-                credit = (Credit) Proxy.getWebData(StateCode.GetCredit,parameterCredit);
-
 
                 OrderActivity.this.runOnUiThread(new Runnable() {
                     @Override
@@ -226,17 +263,7 @@ public class OrderActivity extends BaseActivity {
                 ActivityHelper.startActivity(mContext, MainActivity.class);
                 finish();
                 }
-                else{
-                    new AlertDialog.Builder(mContext)
 
-                            .setTitle("警告")
-
-                            .setMessage("当前积分为"+credit.getCredit()+"！")
-
-                            .setPositiveButton("确定", null)
-
-                            .show();
-                }
 
             }
         }
@@ -247,9 +274,12 @@ public class OrderActivity extends BaseActivity {
         selectMethod = change_method.getText().toString();
         if(selectMethod.equals("2")){
             deliver_method.setText("元");
+            myCredit.setText(" ");
         }
-        else
+        else {
             deliver_method.setText("分");
+            myCredit.setText("(积分："+credit.getCredit()+"）");
+        }
     }
 
 }
