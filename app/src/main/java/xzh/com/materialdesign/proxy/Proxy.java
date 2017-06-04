@@ -60,14 +60,11 @@ public class Proxy {
             case StateCode.GetCredit:
                 return GetCredit(parameter);
 
-<<<<<<< HEAD
             case StateCode.OrderInfo:
                 return OrderInfo(parameter);
-=======
             case StateCode.ContactUs:
                 return ContactUs(parameter);
 
->>>>>>> master
         }
         return null;
 
@@ -322,7 +319,7 @@ public class Proxy {
         return null;
     }
 
-<<<<<<< HEAD
+
     private static Orders OrderInfo(JSONObject parameter){
         Orders orders;
         String myUrl = url+"OrderServlet";
@@ -345,7 +342,7 @@ public class Proxy {
         return null;
 
     }
-=======
+
     private static boolean ContactUs(JSONObject parameter){
 
         String myUrl=url+"InformationServlet";
@@ -376,5 +373,4 @@ public class Proxy {
         return false;
     }
 
->>>>>>> master
 }

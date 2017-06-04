@@ -140,6 +140,10 @@ public class OrderActivity extends BaseActivity {
         });
 
         Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("userInfo");
+        name.setText(user.getNickname());
+        phone.setText(user.getPhoneNum());
+
         ModifyPerson modifyInfo = (ModifyPerson) intent.getSerializableExtra("modify_info");
         if(modifyInfo != null){
             name.setText(modifyInfo.getModifyname());

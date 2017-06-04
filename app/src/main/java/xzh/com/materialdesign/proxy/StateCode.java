@@ -11,13 +11,9 @@ public class StateCode {
     public final static String GetLittleOrder="GetLittleOrder";
     public final static String OrderPublish="OrderPublish";
     public final static String GetCredit="GetCredit";
-<<<<<<< HEAD
     public final static String OrderInfo="OrderInfo";
-=======
     public final static String Register="Register";
-
     public final static String ContactUs="ContactUs";
->>>>>>> master
     public final static String UserIdNull="错误：userId为空";
 
     //订单状态，0未接单，1已接单，2正在配送，3到达地点，4订单完成，5评价完成。-1订单取消。
