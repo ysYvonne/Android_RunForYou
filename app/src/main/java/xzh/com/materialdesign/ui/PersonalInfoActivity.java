@@ -13,9 +13,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import org.json.JSONObject;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.model.User;
+import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.personInfo.*;
 
@@ -44,6 +49,9 @@ public class PersonalInfoActivity extends AppCompatActivity {
     private Context mContext;
 
     Bundle mBundle;
+
+    JSONObject parameter;
+    User user;
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -125,5 +133,24 @@ public class PersonalInfoActivity extends AppCompatActivity {
                 ActivityHelper.startActivity(mContext,PhoneChangeActivity.class);
             }
         });
+    }
+
+    private void connect(){
+        new Thread(){
+            public void run() {
+
+                user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
+
+                //错误产生一个是邮箱重复的话后段不会允许注册（手机号重复会允许，这应该也有问题）
+                //另一个对proxy返回空值没有判断，如果返回-1就会返回空值
+
+                Message msg = handler.obtainMessage();
+
+                msg.obj = user;
+
+                handler.handleMessage(msg); //通知handler我完事儿啦
+
+            };
+        }.start();
     }
 }
