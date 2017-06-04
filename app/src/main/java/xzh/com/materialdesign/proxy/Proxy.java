@@ -7,6 +7,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +48,9 @@ public class Proxy {
             case StateCode.PhoneLogin:
                 return PhoneLogin(parameter);
 
+            case StateCode.Register:
+                return Register(parameter);
+
             case StateCode.GetLittleOrder:
                 return GetLittleOrder(parameter);
 
@@ -56,8 +60,14 @@ public class Proxy {
             case StateCode.GetCredit:
                 return GetCredit(parameter);
 
+<<<<<<< HEAD
             case StateCode.OrderInfo:
                 return OrderInfo(parameter);
+=======
+            case StateCode.ContactUs:
+                return ContactUs(parameter);
+
+>>>>>>> master
         }
         return null;
 
@@ -76,8 +86,7 @@ public class Proxy {
         Log.v("Proxy.connectToServlet","parameter is "+parameter.toString());
 
         try {
-            request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
-            se = new StringEntity(parameter.toString());
+            se = new StringEntity(parameter.toString(),HTTP.UTF_8);
             request.setEntity(se);
 // 发送请求
             DefaultHttpClient dfHttpClient=new DefaultHttpClient();
@@ -185,6 +194,34 @@ public class Proxy {
         return null;
     }
 
+    private static User Register(JSONObject parameter){
+
+        User user = new User();
+        String myUrl=url+"LoginServlet";
+
+        String retSrc = connectToServlet(myUrl, parameter);
+
+        try{
+            Log.v("ys","注册：有这个就是成功"+retSrc);
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result != null){
+                user = JsonUtil.getEntity(result.getString("user"),User.class);
+                Log.v("dz","测试用户id"+user.getUserId());
+                return user;
+            }else{
+                Log.v("ys", "注册失败");
+                return null;
+            }
+
+
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     private static List<LittleOrderBean> GetLittleOrder(JSONObject parameter) {
         List<LittleOrderBean> list=new ArrayList<LittleOrderBean>();
         String myUrl=url+"OrderServlet";
@@ -223,6 +260,7 @@ public class Proxy {
 //            item = new MoreInfo(key, value);
 //            items.add(item);
 //        }
+
 //        LittleOrderBean lob=new LittleOrderBean();
 //        lob.setOrderAddress("16宿舍楼");
 //        lob.setOrderId(123456);
@@ -234,8 +272,11 @@ public class Proxy {
 //        lob.setType(StateCode.OrderType_Money);
 //
 //        list.add(lob);
+
+
         return list;
     }
+
 
     private static int OrderPublish(JSONObject parameter){
         int code;
@@ -281,6 +322,7 @@ public class Proxy {
         return null;
     }
 
+<<<<<<< HEAD
     private static Orders OrderInfo(JSONObject parameter){
         Orders orders;
         String myUrl = url+"OrderServlet";
@@ -303,4 +345,36 @@ public class Proxy {
         return null;
 
     }
+=======
+    private static boolean ContactUs(JSONObject parameter){
+
+        String myUrl=url+"InformationServlet";
+
+        String retSrc = connectToServlet(myUrl, parameter);
+
+        try{
+            Log.v("ys","联系我们：有这个就是成功"+retSrc);
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result != null){
+                int code = -1;
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+                Log.v("ys","测试code "+code);
+
+                if(code == 1)
+                    return true;
+                else
+                    return false;
+            }else{
+                Log.v("ys", "上传失败");
+                return false;
+            }
+
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+>>>>>>> master
 }

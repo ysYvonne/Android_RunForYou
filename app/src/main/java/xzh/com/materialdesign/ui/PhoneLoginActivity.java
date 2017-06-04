@@ -43,6 +43,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
     private Context mContext;
     List list=new ArrayList();
     JSONObject parameter;
+
     AlertDialog.Builder builder;
 
     Button btn,send;
@@ -116,6 +117,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 }else{
                     if(checkPhone())
                         checkPhoneExist();
+
+
                 }
             }
         });
@@ -190,8 +193,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
         //完成对手机号的封装
         parameter=new JSONObject();
         try{
-            parameter.put("type","phoneExist");
-            parameter.put("phoneNum","phoneNum");
+            parameter.put("type", "phoneExist");
+            parameter.put("phoneNum", phone.getText());
 
         }catch (JSONException e) {
             e.printStackTrace();
@@ -204,6 +207,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 if(exist){
                     //发送验证码 第三方
                     Log.v("dz","手机号存在");
+
+
                 }else{
                     Log.v("dz","false");
                     Message msg = handler.obtainMessage();

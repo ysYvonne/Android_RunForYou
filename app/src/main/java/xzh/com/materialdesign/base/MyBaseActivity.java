@@ -53,7 +53,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private PullToLoadView mPullToLoadView;
 
-
+    Bundle mBundle;
 
     protected BaseAdapterInterface mAdapter;
     private boolean isLoading = false;
@@ -273,7 +273,9 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
                     break;
                 case 3:
                     //"联系我们";
-                    ActivityHelper.startActivity(mContext, ContactActivity.class);
+                    mBundle = new Bundle();
+                    mBundle.putString("userId",String.valueOf(user.getUserId()));
+                    ActivityHelper.startActivity(mContext, ContactActivity.class, mBundle);
                     break;
                 case 4:
                     //"切换主题";

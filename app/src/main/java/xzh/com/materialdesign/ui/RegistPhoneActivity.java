@@ -58,20 +58,20 @@ public class RegistPhoneActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FLAG=true;
-                next.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myAccentColor));
-                // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
-                //发送验证码
+
+                if(check()){
+                    next.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myAccentColor));
+                    // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
+                    //发送验证码
+                }
+
             }
         });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                if(check())
-                if(!FLAG){
-                    Toast.makeText(mContext, "请先发送验证码",
-                            Toast.LENGTH_SHORT).show();
-                }else{
+                if(checkV()){
                     String phone = phoneAccount.getText().toString();
                     mBundle = new Bundle();
                     mBundle.putString("phone",phone);
@@ -94,7 +94,12 @@ public class RegistPhoneActivity extends AppCompatActivity {
 
                     .show();
             return false;
-        }else if(validationNum.getText().toString().isEmpty()){
+        }
+        return true;
+    }
+
+    private boolean checkV(){
+        if(validationNum.getText().toString().isEmpty()){
             new AlertDialog.Builder(this)
 
                     .setTitle("提示")
@@ -108,4 +113,5 @@ public class RegistPhoneActivity extends AppCompatActivity {
         }
         return true;
     }
+
 }
