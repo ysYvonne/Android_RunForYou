@@ -554,6 +554,17 @@
                     android:textColor="#000"
                     android:textSize="18dp" />
 
+                <TextView
+                    android:id="@+id/order_layout_deliver_credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#fff"
+                    android:text=""
+                    android:textColor="#000"
+                    android:textSize="18dp" />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

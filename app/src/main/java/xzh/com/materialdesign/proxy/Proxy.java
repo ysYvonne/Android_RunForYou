@@ -55,6 +55,9 @@ public class Proxy {
 
             case StateCode.GetCredit:
                 return GetCredit(parameter);
+
+            case StateCode.OrderInfo:
+                return OrderInfo(parameter);
         }
         return null;
 
@@ -276,5 +279,28 @@ public class Proxy {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private static Orders OrderInfo(JSONObject parameter){
+        Orders orders;
+        String myUrl = url+"OrderServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
+
+        try{
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result !=null){
+                orders = JsonUtil.getEntity(result.getString("order"),Orders.class);
+                return  orders;
+            }
+            else{
+                return null;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return null;
+
     }
 }
