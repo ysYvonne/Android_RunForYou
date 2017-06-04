@@ -59,6 +59,9 @@ public class Proxy {
             case StateCode.GetCredit:
                 return GetCredit(parameter);
 
+            case StateCode.PersonalInfo:
+                return PersonalInfo(parameter);
+
             case StateCode.ContactUs:
                 return ContactUs(parameter);
 
@@ -314,6 +317,35 @@ public class Proxy {
         catch (JSONException e){
             e.printStackTrace();
         }
+        return null;
+    }
+
+    private static User PersonalInfo(JSONObject parameter){
+        User user = new User();
+        int code = -1;
+        String myUrl = url+"InformationServlet";
+        String retSrc = connectToServlet(myUrl, parameter);
+
+        try{
+            JSONObject result = new JSONObject(retSrc);
+
+            if(parameter.getString("type").equals("getUser") && result !=null){
+                user = JsonUtil.getEntity(result.getString("user"),User.class);
+                return  user;
+            }
+            else if(parameter.getString("type").equals("updateInfomation") && result !=null){
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+                user.setSex(code) ;
+                return user;
+            }
+            else{
+                return null;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+
         return null;
     }
 

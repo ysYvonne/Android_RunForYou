@@ -3,6 +3,10 @@ package xzh.com.materialdesign.ui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -39,17 +43,35 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     private Context mContext;
 
+    Bundle mBundle;
+
+    Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            Looper.prepare();
+//            connectFinish();
+            Looper.loop();
+        }
+    };
+
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
+
         mContext = PersonalInfoActivity.this;
+        mBundle = getIntent().getExtras();
+
         ButterKnife.inject(this);
         init();
     }
 
     private void init(){
+        Log.v("ys", "Start Personal Information");
+
+
         ImageView back = (ImageView) findViewById(R.id.nav_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +79,6 @@ public class PersonalInfoActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
         nicknameInfo.setOnClickListener(new View.OnClickListener() {
             @Override
