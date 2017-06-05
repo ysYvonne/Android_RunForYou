@@ -49,8 +49,8 @@ public class ReceiveOrderActivity extends MyBaseActivity {
         parameter=new JSONObject();
         try {
 
-            parameter.put("user_id", ControlUser.getUser(mContext).getUserId());
-            parameter.put("type","loadOrders");
+            parameter.put("userId", ControlUser.getUser(mContext).getUserId());
+            parameter.put("type","loadMyDeliveryOrders");
 //            Log.v("dz","mainactiviy 发出user_id为"+ControlUser.getUser(mContext).getUserId());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -89,9 +89,9 @@ public class ReceiveOrderActivity extends MyBaseActivity {
         parameter=new JSONObject();
         try {
 
-            parameter.put("user_id", ControlUser.getUser(mContext).getUserId());
+            parameter.put("userId", ControlUser.getUser(mContext).getUserId());
 
-            parameter.put("type","loadMoreOrders");
+            parameter.put("type","loadMoreMyDeliveryOrders");
             parameter.put("order_id",String.valueOf(orderId));
 //            Log.v("dz","mainactiviy 发出user_id为"+ControlUser.getUser(mContext).getUserId());
         } catch (JSONException e) {

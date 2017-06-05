@@ -143,7 +143,6 @@ public class Proxy {
 
         try {
 
-            Log.v("dz","有这个就是成功"+retSrc);
             JSONObject result = new JSONObject(retSrc);
 
             if(result!=null){
@@ -173,7 +172,6 @@ public class Proxy {
 
         try {
 
-            Log.v("dz","有这个就是成功"+retSrc);
             JSONObject result = new JSONObject(retSrc);
 
             if(result!=null){
@@ -199,7 +197,6 @@ public class Proxy {
         String retSrc = connectToServlet(myUrl, parameter);
 
         try{
-            Log.v("ys","注册：有这个就是成功"+retSrc);
             JSONObject result = new JSONObject(retSrc);
 
             if(result != null){
@@ -228,7 +225,6 @@ public class Proxy {
 
         try {
 
-            Log.v("dz","有这个就是成功"+retSrc);
             JSONObject result = new JSONObject(retSrc);
 
             if(result!=null){
@@ -350,7 +346,6 @@ public class Proxy {
         String retSrc = connectToServlet(myUrl, parameter);
 
         try{
-            Log.v("ys","联系我们：有这个就是成功"+retSrc);
             JSONObject result = new JSONObject(retSrc);
 
             if(result != null){
