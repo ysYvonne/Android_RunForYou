@@ -62,9 +62,18 @@ public class Proxy {
 
             case StateCode.OrderInfo:
                 return OrderInfo(parameter);
+
             case StateCode.ContactUs:
                 return ContactUs(parameter);
 
+            case StateCode.OrderState:
+                return OrderState(parameter);
+
+            case StateCode.OrderRecive:
+                return  OrderReceive(parameter);
+
+            case StateCode.OrderUpdate:
+                return OrderUpdate(parameter);
         }
         return null;
 
@@ -343,6 +352,8 @@ public class Proxy {
 
     }
 
+
+
     private static boolean ContactUs(JSONObject parameter){
 
         String myUrl=url+"InformationServlet";
@@ -371,6 +382,73 @@ public class Proxy {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private static Order_state OrderState(JSONObject parameter){
+        Order_state orders;
+        String myUrl = url+"OrderServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
+
+        try{
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result !=null){
+                orders = JsonUtil.getEntity(result.getString("orderState"),Order_state.class);
+                return  orders;
+            }
+            else{
+                return null;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+    private static int OrderReceive(JSONObject parameter){
+        int code;
+        String myUrl = url+"OrderServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
+
+        try{
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result !=null){
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+                return  code;
+            }
+            else{
+                return -1;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    private static int OrderUpdate(JSONObject parameter){
+        int code;
+        String myUrl = url+"OrderServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
+
+        try{
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result !=null){
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+                return  code;
+            }
+            else{
+                return -1;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 
 }

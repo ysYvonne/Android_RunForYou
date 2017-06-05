@@ -42,7 +42,6 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
     private Context context;
     private List<LittleOrderBean> mList;
     JSONObject parameter;
-    private ProgressDialog dialog;
     Orders orders;
 
     public HomeAdapter(Context context) {
