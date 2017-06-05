@@ -25,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="5e2eeaf9912478d2d2b5f027a9d010ed168bc267">
+        sha1="77df576dbaaf58607cefbc131d6d604e12bf0d13">
         <dex dex="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_ae523a87291ba20a35878f6ed4d8e6a46ca36cd4/classes.dex" />
     </item>
     <item
@@ -54,6 +54,15 @@
         revision="25.0.0"
         sha1="08439bc8bee5b56959c0efa2d726ce040df654df">
         <dex dex="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/build/intermediates/transforms/dex/debug/folders/1000/2/imagepipeline-base-v0.9.0_3b29fc04c06754e6194ca8adbe6839e3a08d9989/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/libs/MobTools-2017.0321.1624.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="242b3a8f9b6b47d2ea8cf932cd978a5b6651d22a">
+        <dex dex="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/build/intermediates/transforms/dex/debug/folders/1000/2/MobTools-2017.0321.1624_90a0513000911bb0479e2552ee0f426e56f1711c/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -102,12 +111,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/libs/MobCommons-2017.0321.1624.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d49d36ec407502d69c217d81a87283eba9c746b2">
+        <dex dex="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/build/intermediates/transforms/dex/debug/folders/1000/2/MobCommons-2017.0321.1624_c4769cd6f0fb8f3c21ccf9a5e550799091e3ba26/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/libs/jackson-core-asl-1.9.9.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="0b198f9d20dcc5bd2fe211e10f4110639b8243d6">
         <dex dex="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/build/intermediates/transforms/dex/debug/folders/1000/2/jackson-core-asl-1.9.9_24f3a2ef885e2c259abc99cb59d2cc9f486041f6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/yisheng/.android/build-cache/1dba16d503a2ec3a975ce3d66d05488bb9600fab/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="29de8afd6edd30f246bb7de991037875d0787ec6">
+        <dex dex="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c5aab68b5e0e4771404e7a6234e31f0b68818e92/classes.dex" />
     </item>
     <item
         is-multidex="true"

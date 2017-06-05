@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 
+import cn.smssdk.SMSSDK;
 import xzh.com.materialdesign.adapter.HomeAdapter;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.base.MyBaseActivity;
@@ -41,6 +42,7 @@ public class MainActivity extends MyBaseActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        //SMSSDK.initSDK(this, "您的appkey", "您的appsecret");
         Log.v("dz","Main onCreate");
         super.onCreate(savedInstanceState);
 

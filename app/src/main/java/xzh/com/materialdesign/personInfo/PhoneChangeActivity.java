@@ -69,6 +69,7 @@ public class PhoneChangeActivity extends AppCompatActivity {
                     sendValidCode();
                     Looper.loop();
                     break;
+
                 case INVALID:
                     Looper.prepare();
                     new AlertDialog.Builder(mContext)
@@ -78,6 +79,7 @@ public class PhoneChangeActivity extends AppCompatActivity {
                             .show();
                     Looper.loop();
                     break;
+
                 default:
                     Looper.prepare();
                     connectFinish(code);
@@ -134,8 +136,7 @@ public class PhoneChangeActivity extends AppCompatActivity {
 
                 if(check() && checkV()){
                     Log.v("ys", "start changing nickname");
-
-                    phone = phoneChange.getText().toString();
+                    
                     pInfoBundle.putString("Phone", phone);
 
                     parameter=new JSONObject();
@@ -170,6 +171,8 @@ public class PhoneChangeActivity extends AppCompatActivity {
         Log.v("ys", "phone check exist");
 
         //完成对手机号的封装
+        phone = phoneChange.getText().toString();
+
         parameter=new JSONObject();
         try{
             parameter.put("type", "phoneExist");

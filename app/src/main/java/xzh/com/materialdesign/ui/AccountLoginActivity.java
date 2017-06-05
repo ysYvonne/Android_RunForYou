@@ -204,6 +204,7 @@ public class AccountLoginActivity extends AppCompatActivity {
     //连接完网络请求后需要做的事情
     private void connectFinish() {
         dialog.dismiss();
+
         if (user==null) {
 
             new AlertDialog.Builder(mContext)
