@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.api.MySharedPreferences;
@@ -32,13 +34,19 @@ import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 
+
+
 /**
  * Created by Towyer_pic on 2017/4/24.
  */
 
 public class PhoneLoginActivity extends AppCompatActivity {
+    private static String APPKEY = "1cb10bf97fef0";
+    private static String APPSECRET = "21af261eb64cf0f2fc73cbd9095d4ba8";
+
     final int LOGIN=0;
-    final int VALID=1;
+    final int INVALID= -1;
+    final int VALID = 1;
     private ProgressDialog dialog;
     private Context mContext;
     List list=new ArrayList();
@@ -56,6 +64,11 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                 case VALID:
                     Looper.prepare();
+                    sendValidCode();
+                    Looper.loop();
+                    break;
+                case INVALID:
+                    Looper.prepare();
                     builder.setTitle("提示" ) ;
                     builder.setMessage("手机号不存在，请重新输入" ) ;
                     builder.setPositiveButton("确定" ,  null );
@@ -65,6 +78,11 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 case LOGIN:
                     Looper.prepare();
                     connectFinish();
+                    Looper.loop();
+                    break;
+                default:
+                    Looper.prepare();
+                    logIn();
                     Looper.loop();
                     break;
             }
@@ -129,8 +147,12 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
                 //加入咱们自己的主界面
 
-                if(checkPhone() && checkValid())
-                    logIn();
+                if(checkPhone() && checkValid()){
+
+                    SMSSDK.submitVerificationCode("86", phone.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
+ //                   logIn();
+                }
+
             }
         });
 
@@ -161,34 +183,48 @@ public class PhoneLoginActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean checkPhone() {
-        if(phone.getText().toString().isEmpty()){
-            Log.v("dz","username is empty");
-            AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
-            builder.setTitle("提示" ) ;
-            builder.setMessage("请输入手机号") ;
-            builder.setPositiveButton("是" ,  null );
-            builder.show();
-            return false;
-        }
-        return true;
+    private void sendValidCode(){
+        Log.v("ys", "发送验证码啦！！！！！");
+
+        SMSSDK.initSDK(this, APPKEY, APPSECRET);
+//注册短信回调
+//EventHandler 在这个handler中可以查看到短信验证的结果
+        SMSSDK.registerEventHandler(new EventHandler() {
+            @Override
+            public void afterEvent(int event, int result, Object data) {
+                switch (event) {
+                    case SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE:
+                        if (result == SMSSDK.RESULT_COMPLETE) {
+                            Log.e("结果","验证成功");
+
+                            Message msg = handler.obtainMessage();
+                            msg.what = 2;
+
+                            handler.handleMessage(msg); //通知handler我完事儿啦
+                        } else {
+                            Log.e("结果","验证失败");
+                        }
+                        break;
+                    case SMSSDK.EVENT_GET_VERIFICATION_CODE:
+                        if (result == SMSSDK.RESULT_COMPLETE) {
+                            Log.e("结果","获取验证成功");
+                        } else {
+                            Log.e("结果","获取验证失败");
+                        }
+                        break;
+                }
+            }
+        });
+
+        SMSSDK.getVerificationCode("86", phone.getText().toString());//发送短信验证码到手机号  86表示的是中国
+
+
     }
 
-    private boolean checkValid(){
-        if(validationNum.getText().toString().isEmpty()){
-            AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
-            builder.setTitle("提示" ) ;
-            builder.setMessage("请输入密码" ) ;
-            builder.setPositiveButton("是" ,  null );
-            builder.show();
-            return false;
-        }
-        return true;
-    }
+
 
     private void checkPhoneExist(){
         Log.v("dz", "phone check exist");
-        dialog = new ProgressDialog(mContext);
 
         //完成对手机号的封装
         parameter=new JSONObject();
@@ -205,14 +241,17 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                 boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
                 if(exist){
-                    //发送验证码 第三方
-                    Log.v("dz","手机号存在");
+                    Log.v("ys","手机号存在,开始发送验证码");
 
-
-                }else{
-                    Log.v("dz","false");
                     Message msg = handler.obtainMessage();
                     msg.what=VALID;
+
+                    handler.handleMessage(msg); //通知handler我完事儿啦
+
+                }else{
+                    Log.v("ys","手机号不存在false");
+                    Message msg = handler.obtainMessage();
+                    msg.what=INVALID;
 
                     handler.handleMessage(msg); //通知handler我完事儿啦
                 }
@@ -254,8 +293,9 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                 user=(User)Proxy.getWebData(sc,parameter);
                 Message msg = handler.obtainMessage();
+                msg.what = LOGIN;
 
-                msg.obj = user;
+                msg.obj = LOGIN;
 
                 handler.handleMessage(msg); //通知handler我完事儿啦
 
@@ -300,6 +340,31 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    private boolean checkPhone() {
+        if(phone.getText().toString().isEmpty()){
+            Log.v("dz","phone is empty");
+            AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
+            builder.setTitle("提示" ) ;
+            builder.setMessage("请输入手机号") ;
+            builder.setPositiveButton("是" ,  null );
+            builder.show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkValid(){
+        if(validationNum.getText().toString().isEmpty()){
+            AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
+            builder.setTitle("提示" ) ;
+            builder.setMessage("请输入密码" ) ;
+            builder.setPositiveButton("是" ,  null );
+            builder.show();
+            return false;
+        }
+        return true;
     }
 }
 
