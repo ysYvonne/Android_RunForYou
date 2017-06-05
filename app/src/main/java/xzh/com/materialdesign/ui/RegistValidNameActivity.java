@@ -87,6 +87,7 @@ public class RegistValidNameActivity extends AppCompatActivity {
         validNum = (EditText)findViewById(R.id.validationNum_email);
 
         spinner = (Spinner)findViewById(R.id.RegisterSchool);
+
         emailTextList=(TextView)findViewById(R.id.email_suffix) ;
 
         init();

@@ -13,11 +13,8 @@ public class StateCode {
     public final static String GetCredit="GetCredit";
     public final static String OrderInfo="OrderInfo";
     public final static String Register="Register";
-<<<<<<< HEAD
 
     public final static String PersonalInfo="PersonalInfo";
-=======
->>>>>>> master
     public final static String ContactUs="ContactUs";
     public final static String UserIdNull="错误：userId为空";
 

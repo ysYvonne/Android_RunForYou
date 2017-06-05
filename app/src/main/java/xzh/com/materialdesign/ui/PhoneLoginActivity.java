@@ -38,7 +38,8 @@ import xzh.com.materialdesign.utils.ActivityHelper;
 
 public class PhoneLoginActivity extends AppCompatActivity {
     final int LOGIN=0;
-    final int VALID=1;
+    final int INVALID= -1;
+    final int VALID = 1;
     private ProgressDialog dialog;
     private Context mContext;
     List list=new ArrayList();
@@ -55,6 +56,11 @@ public class PhoneLoginActivity extends AppCompatActivity {
             switch (msg.what){
 
                 case VALID:
+                    Looper.prepare();
+                    sendValidCode();
+                    Looper.loop();
+                    break;
+                case INVALID:
                     Looper.prepare();
                     builder.setTitle("提示" ) ;
                     builder.setMessage("手机号不存在，请重新输入" ) ;
@@ -161,9 +167,14 @@ public class PhoneLoginActivity extends AppCompatActivity {
         return true;
     }
 
+    private void sendValidCode(){
+        Log.v("ys", "发送验证码啦！！！！！");
+
+    }
+
     private boolean checkPhone() {
         if(phone.getText().toString().isEmpty()){
-            Log.v("dz","username is empty");
+            Log.v("dz","phone is empty");
             AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
             builder.setTitle("提示" ) ;
             builder.setMessage("请输入手机号") ;
@@ -188,7 +199,6 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
     private void checkPhoneExist(){
         Log.v("dz", "phone check exist");
-        dialog = new ProgressDialog(mContext);
 
         //完成对手机号的封装
         parameter=new JSONObject();
@@ -205,14 +215,16 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                 boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
                 if(exist){
-                    //发送验证码 第三方
-                    Log.v("dz","手机号存在");
+                    Log.v("ys","手机号存在");
+                    Message msg = handler.obtainMessage();
+                    msg.what=VALID;
 
+                    handler.handleMessage(msg); //通知handler我完事儿啦
 
                 }else{
                     Log.v("dz","false");
                     Message msg = handler.obtainMessage();
-                    msg.what=VALID;
+                    msg.what=INVALID;
 
                     handler.handleMessage(msg); //通知handler我完事儿啦
                 }
@@ -254,8 +266,9 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                 user=(User)Proxy.getWebData(sc,parameter);
                 Message msg = handler.obtainMessage();
+                msg.what = LOGIN;
 
-                msg.obj = user;
+                msg.obj = LOGIN;
 
                 handler.handleMessage(msg); //通知handler我完事儿啦
 
