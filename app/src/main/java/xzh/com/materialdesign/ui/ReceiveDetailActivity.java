@@ -37,6 +37,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
     int code;
     private Context mContext;
     Orders ordersInfo;
+    Order_state orderState;
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -59,7 +60,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         ordersInfo = (Orders) intent.getSerializableExtra("orderInfo");
-        Order_state orderState = (Order_state) intent.getSerializableExtra("orderState");
+        orderState = (Order_state) intent.getSerializableExtra("orderState");
 
         if(ordersInfo != null){
             title.setText(ordersInfo.getOrderItem());
@@ -97,7 +98,12 @@ public class ReceiveDetailActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                connect();
+                if(orderState.getState() == 4 ){
+
+                }else {
+                    connect();
+                }
+
 
             }
         });
@@ -112,7 +118,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
                 try {
                     updateParameter.put("type","OrderUpdate");
                     updateParameter.put("orderId", ordersInfo.getOrderId());
-                    updateParameter.put("state",order_state.getState());
+                    updateParameter.put("state",order_state.getState()+1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
