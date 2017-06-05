@@ -59,6 +59,8 @@ public class Proxy {
 
             case StateCode.GetCredit:
                 return GetCredit(parameter);
+            case StateCode.PersonalInfo:
+                return PersonalInfo(parameter);
 
             case StateCode.OrderInfo:
                 return OrderInfo(parameter);
@@ -324,18 +326,45 @@ public class Proxy {
         return null;
     }
 
-
-    private static Orders OrderInfo(JSONObject parameter){
+    private static Orders OrderInfo(JSONObject parameter) {
         Orders orders;
-        String myUrl = url+"OrderServlet";
-        String retSrc = connectToServlet(myUrl,parameter);
+        String myUrl = url + "OrderServlet";
+        String retSrc = connectToServlet(myUrl, parameter);
+
+        try {
+            JSONObject result = new JSONObject(retSrc);
+            if (result != null) {
+                orders = JsonUtil.getEntity(result.getString("order"), Orders.class);
+                return orders;
+            } else {
+                return null;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private static User PersonalInfo(JSONObject parameter){
+        User user = new User();
+        int code = -1;
+        String myUrl = url+"InformationServlet";
+        String retSrc = connectToServlet(myUrl, parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
 
-            if(result !=null){
-                orders = JsonUtil.getEntity(result.getString("order"),Orders.class);
-                return  orders;
+            if(parameter.getString("type").equals("getUser") && result !=null){
+                user = JsonUtil.getEntity(result.getString("user"),User.class);
+                Log.v("ys", "个人信息测试用户：  " + user.getName());
+                return  user;
+            }
+            else if(parameter.getString("type").equals("updateInfomation") && result !=null){
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+                Log.v("ys", "个人信息测试更改是否成功：  " + code);
+                user.setSex(code) ;
+                return user;
             }
             else{
                 return null;

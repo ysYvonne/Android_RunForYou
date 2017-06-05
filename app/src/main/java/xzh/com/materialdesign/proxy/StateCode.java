@@ -13,6 +13,8 @@ public class StateCode {
     public final static String GetCredit="GetCredit";
     public final static String OrderInfo="OrderInfo";
     public final static String Register="Register";
+
+    public final static String PersonalInfo="PersonalInfo";
     public final static String ContactUs="ContactUs";
     public final static String OrderState="OrderState";
     public final static String OrderRecive="OrderRecive";

@@ -87,6 +87,7 @@ public class RegistValidNameActivity extends AppCompatActivity {
         validNum = (EditText)findViewById(R.id.validationNum_email);
 
         spinner = (Spinner)findViewById(R.id.RegisterSchool);
+
         emailTextList=(TextView)findViewById(R.id.email_suffix) ;
 
         init();
@@ -164,13 +165,8 @@ public class RegistValidNameActivity extends AppCompatActivity {
             parameter.put("type", "register");
             parameter.put("email", user.getEmail());
             parameter.put("name", user.getName());
-//            parameter.put("sex",user.getSex());
-//            parameter.put("age",user.getAge());
-//            parameter.put("nickname",user.getNickname());
             parameter.put("phoneNum", user.getPhoneNum());
             parameter.put("school", user.getSchool());
-//            parameter.put("password", user.getPassword());
-
 
         }catch (JSONException e) {
             e.printStackTrace();
@@ -190,6 +186,10 @@ public class RegistValidNameActivity extends AppCompatActivity {
             public void run() {
 
                 user=(User) Proxy.getWebData(StateCode.Register,parameter);
+
+                //错误产生一个是邮箱重复的话后段不会允许注册（手机号重复会允许，这应该也有问题）
+                //另一个对proxy返回空值没有判断，如果返回-1就会返回空值
+
                 Message msg = handler.obtainMessage();
 
                 msg.obj = user;
