@@ -49,7 +49,7 @@ public class MyOrderActivity extends MyBaseActivity {
         parameter=new JSONObject();
         try {
 
-            parameter.put("user_id", ControlUser.getUser(mContext).getUserId());
+            parameter.put("userId", ControlUser.getUser(mContext).getUserId());
             parameter.put("type","loadMoreOrders");
             parameter.put("order_id",String.valueOf(orderId));
 //            Log.v("dz","mainactiviy 发出user_id为"+ControlUser.getUser(mContext).getUserId());
@@ -92,7 +92,7 @@ public class MyOrderActivity extends MyBaseActivity {
         isLoadAll=false;
         try {
 
-            parameter.put("user_id", ControlUser.getUser(mContext).getUserId());
+            parameter.put("userId", ControlUser.getUser(mContext).getUserId());
             parameter.put("type","loadMyOrders");
 //            Log.v("dz","mainactiviy 发出user_id为"+ControlUser.getUser(mContext).getUserId());
         } catch (JSONException e) {
