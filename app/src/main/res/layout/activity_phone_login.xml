@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/password"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:background="@color/myPrimaryColor"
+            android:background="@color/light_gray"
             android:layout_gravity="center_horizontal"
             android:text="@string/login_button_signin"
             android:textSize="25dp"

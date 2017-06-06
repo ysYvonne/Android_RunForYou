@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -58,39 +59,39 @@ public class PhoneLoginActivity extends AppCompatActivity {
     Button btn,send;
     User user;
     private AlertDialog.Builder alertDialog;
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what){
-
-                case VALID:
-                    Looper.prepare();
-                    sendValidCode();
-                    Looper.loop();
-                    break;
-                case INVALID:
-                    Looper.prepare();
-                    builder.setTitle("提示" ) ;
-                    builder.setMessage("手机号不存在，请重新输入" ) ;
-                    builder.setPositiveButton("确定" ,  null );
-                    builder.show();
-                    Looper.loop();
-                    break;
-                case LOGIN:
-                    Looper.prepare();
-                    connectFinish();
-                    Looper.loop();
-                    break;
-                default:
-                    Looper.prepare();
-                    logIn();
-                    Looper.loop();
-                    break;
-            }
-
-
-        }
-    };
+//    Handler handler = new Handler() {
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            switch (msg.what){
+//
+//                case VALID:
+//                    Looper.prepare();
+//                    sendValidCode();
+//                    Looper.loop();
+//                    break;
+//                case INVALID:
+//                    Looper.prepare();
+//                    builder.setTitle("提示" ) ;
+//                    builder.setMessage("手机号不存在，请重新输入" ) ;
+//                    builder.setPositiveButton("确定" ,  null );
+//                    builder.show();
+//                    Looper.loop();
+//                    break;
+//                case LOGIN:
+//                    Looper.prepare();
+//                    connectFinish();
+//                    Looper.loop();
+//                    break;
+//                default:
+//                    Looper.prepare();
+//                    logIn();
+//                    Looper.loop();
+//                    break;
+//            }
+//
+//
+//        }
+//    };
 
     TextView register,account;
 
@@ -135,12 +136,16 @@ public class PhoneLoginActivity extends AppCompatActivity {
                     toast.show();
                 }else{
                     if(checkPhone())
+                        btn.setEnabled(true);
+                        btn.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myAccentColor));
                         checkPhoneExist();
 
 
                 }
             }
         });
+        btn.setEnabled(false);
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,13 +202,24 @@ public class PhoneLoginActivity extends AppCompatActivity {
                     case SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE:
                         if (result == SMSSDK.RESULT_COMPLETE) {
                             Log.e("结果","验证成功");
+                            PhoneLoginActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    logIn();
+                                }
+                            });
 
-                            Message msg = handler.obtainMessage();
-                            msg.what = 2;
-
-                            handler.handleMessage(msg); //通知handler我完事儿啦
                         } else {
                             Log.e("结果","验证失败");
+                            PhoneLoginActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    builder.setTitle("提示" ) ;
+                                    builder.setMessage("验证码错误" ) ;
+                                    builder.setPositiveButton("确定" ,  null );
+                                    builder.show();
+                                }
+                            });
                         }
                         break;
                     case SMSSDK.EVENT_GET_VERIFICATION_CODE:
@@ -243,18 +259,24 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
                 if(exist){
                     Log.v("ys","手机号存在,开始发送验证码");
+                    PhoneLoginActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            sendValidCode();
+                        }
+                    });
 
-                    Message msg = handler.obtainMessage();
-                    msg.what=VALID;
-
-                    handler.handleMessage(msg); //通知handler我完事儿啦
+//                    Message msg = handler.obtainMessage();
+//                    msg.what=VALID;
+//
+//                    handler.handleMessage(msg); //通知handler我完事儿啦
 
                 }else{
                     Log.v("ys","手机号不存在false");
-                    Message msg = handler.obtainMessage();
-                    msg.what=INVALID;
-
-                    handler.handleMessage(msg); //通知handler我完事儿啦
+                    builder.setTitle("提示" ) ;
+                    builder.setMessage("手机号不存在，请重新输入" ) ;
+                    builder.setPositiveButton("确定" ,  null );
+                    builder.show();
                 }
 
 
@@ -293,12 +315,12 @@ public class PhoneLoginActivity extends AppCompatActivity {
             public void run() {
 
                 user=(User)Proxy.getWebData(sc,parameter);
-                Message msg = handler.obtainMessage();
-                msg.what = LOGIN;
-
-                msg.obj = LOGIN;
-
-                handler.handleMessage(msg); //通知handler我完事儿啦
+                PhoneLoginActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        connectFinish();
+                    }
+                });
 
             };
         }.start();
@@ -360,7 +382,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
         if(validationNum.getText().toString().isEmpty()){
             AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
             builder.setTitle("提示" ) ;
-            builder.setMessage("请输入密码" ) ;
+            builder.setMessage("请输入验证码" ) ;
             builder.setPositiveButton("是" ,  null );
             builder.show();
             return false;

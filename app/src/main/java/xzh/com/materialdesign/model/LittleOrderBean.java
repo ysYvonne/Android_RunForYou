@@ -10,7 +10,7 @@ public class LittleOrderBean implements IEntity{
     private int orderType;//订单类型,积分1，现金2
     private float orderReward;// 悬赏价值（可以为积分或金钱）
     private String orderAddress;// 送货地址
-    private String orderShop;//取货地址
+    private String shop;//取货地址
     private String startTime;// 发起时间
     private int state;//订单状态，0未接单，1已接单，2正在配送，3到达地点，4订单完成，5评价完成。-1订单取消。
 
@@ -39,7 +39,7 @@ public class LittleOrderBean implements IEntity{
         orderType = Type;
     }
     public void setShop(String Shop){
-        orderShop = Shop;
+        shop = Shop;
     }
 
     public int getOrderId() {
@@ -64,7 +64,7 @@ public class LittleOrderBean implements IEntity{
         return startTime;
     }
     public String getShop( ){
-        return orderShop ;
+        return shop ;
     }
     public int getType(){
         return orderType;
