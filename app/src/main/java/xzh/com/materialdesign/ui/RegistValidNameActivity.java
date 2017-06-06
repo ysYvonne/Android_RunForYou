@@ -204,6 +204,17 @@ public class RegistValidNameActivity extends AppCompatActivity {
     private void connectFinish() {
 
         dialog.dismiss();
+        if(user==null){
+            new AlertDialog.Builder(mContext)
+
+                    .setTitle("注册失败")
+
+                    .setMessage(StateCode.UserIdNull)
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+        }else{
 
             //写入sharedPreferences
             if (user.getUserId() < 0) {
@@ -223,6 +234,8 @@ public class RegistValidNameActivity extends AppCompatActivity {
                 ActivityHelper.startActivity(mContext, MainActivity.class);
                 finish();
             }
+        }
+
     }
 
     private boolean checkN(){
