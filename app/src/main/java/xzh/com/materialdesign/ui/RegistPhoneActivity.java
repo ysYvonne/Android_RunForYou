@@ -80,12 +80,9 @@ public class RegistPhoneActivity extends AppCompatActivity {
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
                     }else{
+                        checkPhoneExist();
                         next.setEnabled(true);
                         next.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myAccentColor));
-                        checkPhoneExist();
-
-
-
                     }
                 }
 
@@ -257,11 +254,6 @@ public class RegistPhoneActivity extends AppCompatActivity {
                             sendValidCode();
                         }
                     });
-
-//                    Message msg = handler.obtainMessage();
-//                    msg.what=VALID;
-//
-//                    handler.handleMessage(msg); //通知handler我完事儿啦
 
                 }else{
                     new AlertDialog.Builder(mContext)

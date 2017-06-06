@@ -102,7 +102,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 pInfoBundle.putString("nickName",user.getNickname());
 
-                finish();
+//                finish();
                 ActivityHelper.startActivity(mContext,NicknameActivity.class, pInfoBundle);
 
             }
@@ -111,16 +111,16 @@ public class PersonalInfoActivity extends AppCompatActivity {
         pwdInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(user.getPassword().equals("未设置")){
-                    pInfoBundle.putString("pwd",user.getPassword());
+                pInfoBundle.putString("pwd",user.getPassword());
 
-                    finish();
+                if(user.getPassword().equals("未设置")){
+
+//                    finish();
                     ActivityHelper.startActivity(mContext,PwdSetActivity.class, pInfoBundle);
                 }
                 else{
-                    pInfoBundle.putString("pwd",user.getPassword());
 
-                    finish();
+//                    finish();
                     ActivityHelper.startActivity(mContext,PwdChangeActivity.class, pInfoBundle);
                 }
             }
@@ -138,7 +138,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 pInfoBundle.putString("Name",user.getName());
 
-                finish();
+ //               finish();
                 ActivityHelper.startActivity(mContext,NameChangeActivity.class, pInfoBundle);
             }
         });
@@ -153,9 +153,11 @@ public class PersonalInfoActivity extends AppCompatActivity {
         emailInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pInfoBundle.putString("School",user.getSchool());
+                pInfoBundle.putString("Email",user.getEmail());
 
-                finish();
-                ActivityHelper.startActivity(mContext,EmailChangeActivity.class);
+//                finish();
+                ActivityHelper.startActivity(mContext,EmailChangeActivity.class, pInfoBundle);
             }
         });
 
@@ -164,7 +166,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 pInfoBundle.putString("Phone",user.getPhoneNum());
 
-                finish();
+//                finish();
                 ActivityHelper.startActivity(mContext,PhoneChangeActivity.class, pInfoBundle);
             }
         });

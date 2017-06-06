@@ -137,13 +137,12 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 }else{
                     if(checkPhone())
                         btn.setEnabled(true);
-                        btn.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myAccentColor));
+                        btn.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myPrimaryColor));
                         checkPhoneExist();
-
-
                 }
             }
         });
+
         btn.setEnabled(false);
 
 
@@ -155,8 +154,9 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                 if(checkPhone() && checkValid()){
 
-                    SMSSDK.submitVerificationCode("86", phone.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
+//                    SMSSDK.submitVerificationCode("86", phone.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
 
+                    logIn();
                 }
 
             }
@@ -262,7 +262,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
                     PhoneLoginActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            sendValidCode();
+ //                           sendValidCode();
                         }
                     });
 

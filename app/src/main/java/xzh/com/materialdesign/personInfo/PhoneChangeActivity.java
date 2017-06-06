@@ -52,7 +52,6 @@ public class PhoneChangeActivity extends AppCompatActivity {
     @InjectView(R.id.phone_cancel_button)
     Button cancelButton;
 
-
     Bundle pInfoBundle;
 
     private Context mContext;
@@ -100,39 +99,23 @@ public class PhoneChangeActivity extends AppCompatActivity {
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }else{
-                    if(check())
+                    if(check()){
+                        okButton.setEnabled(true);
+                        okButton.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myPrimaryColor));
                         checkPhoneExist();
+                    }
+
                 }
             }
         });
+
+        okButton.setEnabled(false);
 
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(check() && checkV() && checkExist()){
-                    Log.v("ys", "start changing nickname");
-
-                    SMSSDK.submitVerificationCode("86", phone, validCode.getText().toString());//提交验证码
-
-                    phone = phoneChange.getText().toString();
-                    Log.v("ys", "更改后手机号码： "+ phone);
-                    pInfoBundle.putString("Phone", phone);
-
-                    parameter=new JSONObject();
-                    try{
-
-                        parameter.put("type","updateInfomation");
-                        parameter.put("userId",pInfoBundle.getString("userId"));
-                        parameter.put("column","phoneNum");
-                        parameter.put("value", phone);
-
-                    }catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    connect();
-                }
+                phoneChange();
             }
         });
 
@@ -230,6 +213,35 @@ public class PhoneChangeActivity extends AppCompatActivity {
         SMSSDK.getVerificationCode("86", phone);//发送短信验证码到手机号  86表示的是中国
 
     }
+
+    private void phoneChange(){
+
+        if(check() && checkV() && checkExist()){
+            Log.v("ys", "start 更改手机");
+
+            SMSSDK.submitVerificationCode("86", phone, validCode.getText().toString());//提交验证码
+
+            phone = phoneChange.getText().toString();
+            Log.v("ys", "更改后手机号码： "+ phone);
+            pInfoBundle.putString("Phone", phone);
+
+            parameter=new JSONObject();
+            try{
+
+                parameter.put("type","updateInfomation");
+                parameter.put("userId",pInfoBundle.getString("userId"));
+                parameter.put("column","phoneNum");
+                parameter.put("value", phone);
+
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            connect();
+        }
+
+    }
+
 
     private void connect(){
 

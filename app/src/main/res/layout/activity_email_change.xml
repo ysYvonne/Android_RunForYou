@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/editText2"
+
                 android:text=" @bjtu.edu.cn"
                 android:textColor="@color/base_color_text_black"
                 android:textSize="30px" />
