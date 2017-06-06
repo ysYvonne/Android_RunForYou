@@ -34,6 +34,7 @@ import xzh.com.materialdesign.personInfo.*;
 
 public class PersonalInfoActivity extends AppCompatActivity {
 
+    final int VALID = 1;
     @InjectView(R.id.nickname_info)
     RelativeLayout nicknameInfo;
     @InjectView(R.id.pwd_info)
@@ -58,16 +59,6 @@ public class PersonalInfoActivity extends AppCompatActivity {
     JSONObject parameter;
     User user;
 
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            Looper.prepare();
-            connectFinish();
-            Looper.loop();
-        }
-    };
-
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,22 +81,11 @@ public class PersonalInfoActivity extends AppCompatActivity {
         my_email=(TextView)findViewById(R.id.my_email);
         my_phone=(TextView)findViewById(R.id.my_phone);
 
+        buttonEvent();
         init();
     }
 
-    private void init(){
-        Log.v("ys", "Start Personal Information");
-        parameter=new JSONObject();
-        try{
-
-            parameter.put("type","getUser");
-            parameter.put("userId",mBundle.getString("userId"));
-
-        }catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        connect();
+    private void buttonEvent(){
 
         pInfoBundle.putString("userId", mBundle.getString("userId"));
 
@@ -121,7 +101,10 @@ public class PersonalInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 pInfoBundle.putString("nickName",user.getNickname());
+
+                finish();
                 ActivityHelper.startActivity(mContext,NicknameActivity.class, pInfoBundle);
+
             }
         });
 
@@ -130,10 +113,14 @@ public class PersonalInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(user.getPassword().equals("未设置")){
                     pInfoBundle.putString("pwd",user.getPassword());
+
+                    finish();
                     ActivityHelper.startActivity(mContext,PwdSetActivity.class, pInfoBundle);
                 }
                 else{
                     pInfoBundle.putString("pwd",user.getPassword());
+
+                    finish();
                     ActivityHelper.startActivity(mContext,PwdChangeActivity.class, pInfoBundle);
                 }
             }
@@ -150,13 +137,24 @@ public class PersonalInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 pInfoBundle.putString("Name",user.getName());
+
+                finish();
                 ActivityHelper.startActivity(mContext,NameChangeActivity.class, pInfoBundle);
+            }
+        });
+
+        ageInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
         emailInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                finish();
                 ActivityHelper.startActivity(mContext,EmailChangeActivity.class);
             }
         });
@@ -165,25 +163,46 @@ public class PersonalInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 pInfoBundle.putString("Phone",user.getPhoneNum());
+
+                finish();
                 ActivityHelper.startActivity(mContext,PhoneChangeActivity.class, pInfoBundle);
             }
         });
     }
 
+    private void init(){
+        Log.v("ys", "Start Personal Information");
+        parameter=new JSONObject();
+        try{
+
+            parameter.put("type","getUser");
+            parameter.put("userId",mBundle.getString("userId"));
+
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        connect();
+
+    }
+
     private void connect(){
-        new Thread(){
+
+        new Thread(new Runnable() {
+            @Override
             public void run() {
+                // TODO Auto-generated method stub
 
                 user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
-
-                Message msg = handler.obtainMessage();
-
-                msg.obj = user;
-
-                handler.handleMessage(msg); //通知handler我完事儿啦
-
-            };
-        }.start();
+                // 在下面这个方法里可以做任何更新UI的操作
+                PersonalInfoActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        connectFinish();
+                    }
+                });
+            }
+        }).start();
     }
 
     private void connectFinish(){
@@ -220,6 +239,9 @@ public class PersonalInfoActivity extends AppCompatActivity {
             my_age.setText(my_age.getText() + "   " + user.getAge());
             my_school.setText(my_school.getText() + "   " + user.getSchool());
             my_email.setText(my_email.getText() + "   " + user.getEmail());
+
+            pInfoBundle = getIntent().getExtras();
+//            my_phone.setText(my_phone.getText() + "   " + pInfoBundle.getString("Phone"));
             my_phone.setText(my_phone.getText() + "   " + user.getPhoneNum());
         }
 

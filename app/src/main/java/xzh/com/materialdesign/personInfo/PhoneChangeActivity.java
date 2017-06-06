@@ -1,4 +1,6 @@
 package xzh.com.materialdesign.personInfo;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
@@ -35,8 +37,13 @@ import xzh.com.materialdesign.utils.ActivityHelper;
 
 public class PhoneChangeActivity extends AppCompatActivity {
 
+    private static String APPKEY = "1cb10bf97fef0";
+    private static String APPSECRET = "21af261eb64cf0f2fc73cbd9095d4ba8";
+
     final int VALID=1;
     final int INVALID=-1;
+
+    int flag = -1;
 
     @InjectView(R.id.identify_button)
     Button sendButton;
@@ -57,37 +64,6 @@ public class PhoneChangeActivity extends AppCompatActivity {
 
     User user;
     int code = -1;
-
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            switch (msg.what){
-
-                case VALID:
-                    Looper.prepare();
-                    sendValidCode();
-                    Looper.loop();
-                    break;
-
-                case INVALID:
-                    Looper.prepare();
-                    new AlertDialog.Builder(mContext)
-                            .setTitle("提示" )
-                            .setMessage("手机号已存在，请重新输入" )
-                            .setPositiveButton("确定", null)
-                            .show();
-                    Looper.loop();
-                    break;
-
-                default:
-                    Looper.prepare();
-                    connectFinish(code);
-                    Looper.loop();
-                    break;
-            }
-        }
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -134,9 +110,13 @@ public class PhoneChangeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(check() && checkV()){
+                if(check() && checkV() && checkExist()){
                     Log.v("ys", "start changing nickname");
-                    
+
+                    SMSSDK.submitVerificationCode("86", phone, validCode.getText().toString());//提交验证码
+
+                    phone = phoneChange.getText().toString();
+                    Log.v("ys", "更改后手机号码： "+ phone);
                     pInfoBundle.putString("Phone", phone);
 
                     parameter=new JSONObject();
@@ -160,7 +140,7 @@ public class PhoneChangeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pInfoBundle.putString("Phone", phone);
+ //               pInfoBundle.putString("Phone", phone);
                 finish();
                 ActivityHelper.startActivity(PhoneChangeActivity.this,PersonalInfoActivity.class);
             }
@@ -189,44 +169,88 @@ public class PhoneChangeActivity extends AppCompatActivity {
                 if(exist){
                     //发送验证码 第三方
                     Log.v("ys","手机号存在");
-                    Message msg = handler.obtainMessage();
-                    msg.what=INVALID;
 
-                    handler.handleMessage(msg); //通知handler我完事儿啦
+                    PhoneChangeActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new AlertDialog.Builder(mContext)
+                                    .setTitle("提示" )
+                                    .setMessage("手机号已存在，请重新输入" )
+                                    .setPositiveButton("确定", null)
+                                    .show();
+                        }
+                    });
 
                 }else{
                     Log.v("ys","手机号不存在");
-                    Message msg = handler.obtainMessage();
-                    msg.what=VALID;
 
-                    handler.handleMessage(msg); //通知handler我完事儿啦
+                    PhoneChangeActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            sendValidCode();
+                        }
+                    });
                 }
 
 
             };
         }.start();
+
+        flag = 1;
     }
 
     private void sendValidCode(){
         Log.v("ys", "发送验证码啦！！！！！");
 
+        SMSSDK.initSDK(this, APPKEY, APPSECRET);
+//注册短信回调
+//EventHandler 在这个handler中可以查看到短信验证的结果
+        SMSSDK.registerEventHandler(new EventHandler() {
+            @Override
+            public void afterEvent(int event, int result, Object data) {
+                switch (event) {
+                    case SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE:
+                        if (result == SMSSDK.RESULT_COMPLETE) {
+                            Log.e("结果","验证成功");
+                        } else {
+                            Log.e("结果","验证失败");
+                        }
+                        break;
+                    case SMSSDK.EVENT_GET_VERIFICATION_CODE:
+                        if (result == SMSSDK.RESULT_COMPLETE) {
+                            Log.e("结果","获取验证成功");
+                        } else {
+                            Log.e("结果","获取验证失败");
+                        }
+                        break;
+                }
+            }
+        });
+
+        SMSSDK.getVerificationCode("86", phone);//发送短信验证码到手机号  86表示的是中国
+
     }
 
     private void connect(){
-        new Thread(){
+
+        new Thread(new Runnable() {
+            @Override
             public void run() {
+                // TODO Auto-generated method stub
 
                 user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
                 code = user.getSex();
 
-                Message msg = handler.obtainMessage();
+                // 在下面这个方法里可以做任何更新UI的操作
+                PhoneChangeActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        connectFinish(code);
+                    }
+                });
 
-                msg.obj = code;
-
-                handler.handleMessage(msg); //通知handler我完事儿啦
-
-            };
-        }.start();
+            }
+        }).start();
     }
 
     private void connectFinish(int code){
@@ -301,5 +325,30 @@ public class PhoneChangeActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    private boolean checkExist(){
+
+        if(flag == -1){
+            new AlertDialog.Builder(this)
+
+                    .setTitle("提示")
+
+                    .setMessage("未进行用手机号验证，请验证")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+            return false;
+
+        }else if(flag == 1){
+
+            return true;
+
+        }else{
+
+            return false;
+
+        }
     }
 }

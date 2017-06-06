@@ -22,6 +22,7 @@ import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
+import xzh.com.materialdesign.personInfo.PhoneChangeActivity;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
@@ -37,19 +38,10 @@ public class ContactActivity extends AppCompatActivity {
 
     private ProgressDialog dialog;
     JSONObject parameter;
-    User user;
+
+    boolean success;
 
     Bundle mBundle;
-
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            Looper.prepare();
-            connectFinish(msg.what);
-            Looper.loop();
-        }
-    };
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,27 +103,29 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private void connect(){
-        new Thread(){
+
+        new Thread(new Runnable() {
+            @Override
             public void run() {
+                // TODO Auto-generated method stub
 
-                boolean success = (boolean)Proxy.getWebData(StateCode.ContactUs,parameter);
-                Message msg = handler.obtainMessage();
-                if(success){
-                    Log.v("ys", "联系上传成功");
-                    msg.what = SUCCESS;
-                }else{
-                    Log.v("ys", "联系上传失败");
-                    msg.what = INSUCCESS;
-                }
-                handler.handleMessage(msg); //通知handler我完事儿啦
+                success = (boolean)Proxy.getWebData(StateCode.ContactUs,parameter);
 
-            };
-        }.start();
+                // 在下面这个方法里可以做任何更新UI的操作
+                ContactActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                            connectFinish(success);
+                    }
+                });
+
+            }
+        }).start();
     }
 
-    private void connectFinish(final int s) {
+    private void connectFinish(boolean s) {
 
-        if(s == 1){
+        if(s){
             new AlertDialog.Builder(mContext)
 
                     .setTitle("提示")
@@ -141,6 +135,9 @@ public class ContactActivity extends AppCompatActivity {
                     .setPositiveButton("确定", null)
 
                     .show();
+
+            finish();
+
         }else{
             new AlertDialog.Builder(mContext)
 

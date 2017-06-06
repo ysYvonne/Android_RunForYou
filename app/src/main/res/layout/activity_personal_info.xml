@@ -36,15 +36,6 @@
                 android:layout_margin="7dp"
                 android:src="@drawable/avatar" />
 
-            <ImageView
-                android:id="@+id/my_image_change"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/arrow1" />
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -66,15 +57,6 @@
                 android:text="昵称"
                 android:textColor="@color/gray"
                 android:textSize="40px" />
-
-            <ImageView
-                android:id="@+id/my_nickname_change"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/arrow1" />
 
         </RelativeLayout>
 
@@ -98,14 +80,6 @@
                 android:textColor="@color/gray"
                 android:textSize="40px" />
 
-            <ImageView
-                android:id="@+id/my_pwd_change"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/arrow1" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -128,14 +102,6 @@
                 android:textColor="@color/gray"
                 android:textSize="40px" />
 
-            <ImageView
-                android:id="@+id/my_sex_change"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/arrow1" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -158,15 +124,6 @@
                 android:text="姓名"
                 android:textColor="@color/gray"
                 android:textSize="40px" />
-
-            <ImageView
-                android:id="@+id/my_name_change"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/arrow1" />
 
         </RelativeLayout>
 
@@ -191,15 +148,6 @@
                 android:textColor="@color/gray"
                 android:textSize="40px" />
 
-            <ImageView
-                android:id="@+id/my_age_change"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/arrow1" />
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -223,14 +171,6 @@
                 android:textColor="@color/gray"
                 android:textSize="40px" />
 
-            <ImageView
-                android:id="@+id/my_school_change"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/arrow1" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -242,15 +182,6 @@
             android:background="@drawable/boarder"
             android:clickable="true"
             android:focusable="true">
-
-            <ImageView
-                android:id="@+id/my_email_change"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/arrow1" />
 
             <TextView
                 android:id="@+id/my_email"
@@ -273,15 +204,6 @@
             android:background="@drawable/boarder"
             android:clickable="true"
             android:focusable="true">
-
-            <ImageView
-                android:id="@+id/my_phone_change"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/arrow1" />
 
             <TextView
                 android:id="@+id/my_phone"
