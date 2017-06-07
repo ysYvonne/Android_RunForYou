@@ -126,7 +126,7 @@ public class RegistValidNameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // ActivityHelper.startActivity(AccountLoginActivity.this,MainActivity.class);
                 if(checkN() && checkE()){
-                    next.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myAccentColor));
+                    next.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myPrimaryColor));
                     //发送验证码
                 }
 
