@@ -286,7 +286,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
                 case 5:
                     //注销
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("注销").setMessage("确认注销？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    builder.setTitle("注销").setMessage("确认接单？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                         //确定按钮的点击事件

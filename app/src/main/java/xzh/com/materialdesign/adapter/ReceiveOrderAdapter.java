@@ -3,10 +3,15 @@ package xzh.com.materialdesign.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +19,13 @@ import java.util.List;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.Money_order;
+import xzh.com.materialdesign.model.Order_state;
+import xzh.com.materialdesign.model.Orders;
+import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.ui.DetailsActivity;
 import xzh.com.materialdesign.ui.ReceiveDetailActivity;
+import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.IntroUtils;
 
 /**
@@ -25,6 +35,9 @@ public class ReceiveOrderAdapter extends RecyclerView.Adapter<ReceiveOrderHolder
 
     private Context context;
     private List<LittleOrderBean> mList;
+    JSONObject parameter;
+    Orders orders;
+    Order_state order_state;
 
     public ReceiveOrderAdapter(Context context) {
         this.context=context;
@@ -40,16 +53,49 @@ public class ReceiveOrderAdapter extends RecyclerView.Adapter<ReceiveOrderHolder
 
     @Override
     public void onBindViewHolder(ReceiveOrderHolder orderHolder, int i) {
-
+        final Integer integer=mList.get(i).getOrderId();
         initIntro(orderHolder,i);
         orderHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ReceiveDetailActivity.class));
+//                    if(check())
+                showDetail(integer);
             }
         });
 
     }
+
+    private void showDetail(int orderId){
+        Log.v("tb","showDetail");
+
+        //完成对用户密码的包装
+        parameter=new JSONObject();
+        try {
+            parameter.put("type","OrderInfo");
+            parameter.put("orderId", orderId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        connect();
+
+    }
+
+    private void connect() {
+        new Thread(){
+            public void run() {
+                orders = (Orders) Proxy.getWebData(StateCode.OrderInfo,parameter);
+                order_state = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+                Intent intent = new Intent(context, ReceiveDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("orderInfo", orders);
+                bundle.putSerializable("orderState", order_state);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            };
+        }.start();
+    }
+
 
 
     @Override
