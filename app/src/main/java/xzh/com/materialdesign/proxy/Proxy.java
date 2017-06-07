@@ -76,6 +76,12 @@ public class Proxy {
 
             case StateCode.OrderUpdate:
                 return OrderUpdate(parameter);
+
+            case StateCode.OrderFinish:
+                return OrderFinish(parameter);
+
+            case StateCode.OrderReview:
+                return OrderReview(parameter);
         }
         return null;
 
@@ -474,5 +480,50 @@ public class Proxy {
         }
         return -1;
     }
+
+    private static int OrderFinish(JSONObject parameter){
+        int code;
+        String myUrl = url+"OrderServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
+
+        try{
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result !=null){
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+                return  code;
+            }
+            else{
+                return -1;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    private static int OrderReview(JSONObject parameter){
+        int code;
+        String myUrl = url+"OrderServlet";
+        String retSrc = connectToServlet(myUrl,parameter);
+
+        try{
+            JSONObject result = new JSONObject(retSrc);
+
+            if(result !=null){
+                code = JsonUtil.getEntity(result.getString("code"),int.class);
+                return  code;
+            }
+            else{
+                return -1;
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
 
 }

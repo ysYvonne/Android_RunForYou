@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.util.Log;
+import android.content.DialogInterface;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,12 +33,14 @@ import xzh.com.materialdesign.utils.ActivityHelper;
 public class ReceiveDetailActivity extends AppCompatActivity {
     ImageButton navBack,changeState;
     TextView title,name,money,time,info,reward,method,shop,des,state;
-    JSONObject parameter,updateParameter,newParameter;
+    JSONObject parameter,updateParameter,finishParemeter,reviewParemeter;
     Order_state order_state,newState;
-    int code;
+    int code,stateNum;
     private Context mContext;
     Orders ordersInfo;
     Order_state orderState;
+    int review;
+    private RatingDialog ratingDialog;
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -78,6 +81,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
             des.setText(ordersInfo.getOrderAddress());
             time.setText(ordersInfo.getOrderTime());
             changeState(orderState.getState());
+            stateNum = orderState.getState();
         }
 
         navBack.setOnClickListener(new View.OnClickListener() {
@@ -98,22 +102,58 @@ public class ReceiveDetailActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                if(orderState.getState() == 4 ){
-
+                if(stateNum == 3 ){
+                    orderFinish();
                 }else {
-                    connect();
+                    if(stateNum == 4 ){
+//                        orderReview();
+                        showDialog();
+                    }else {
+                        orderUpdate();
+                    }
                 }
-
 
             }
         });
     }
 
-    private void connect() {
+    private void orderFinish(){
+        new Thread(){
+            public void run() {
+
+                finishParemeter = new JSONObject();
+                try {
+                    finishParemeter.put("type","OrderFinish");
+                    finishParemeter.put("orderId", ordersInfo.getOrderId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                finishConnect();
+            };
+        }.start();
+    }
+
+    private void orderReview(){
+        new Thread(){
+            public void run() {
+                reviewParemeter = new JSONObject();
+                try {
+                    reviewParemeter.put("type","OrderJudge");
+                    reviewParemeter.put("orderId", ordersInfo.getOrderId());
+                    reviewParemeter.put("review",review);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                reviewConnect();
+            };
+        }.start();
+    }
+
+    private void orderUpdate() {
         new Thread(){
             public void run() {
                 order_state = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
-
+                stateNum = order_state.getState();
                 updateParameter = new JSONObject();
                 try {
                     updateParameter.put("type","OrderUpdate");
@@ -127,10 +167,28 @@ public class ReceiveDetailActivity extends AppCompatActivity {
         }.start();
     }
 
+    private void finishConnect() {
+        new Thread(){
+            public void run() {
+                code = (int) Proxy.getWebData(StateCode.OrderFinish,finishParemeter);
+                connectFinish();
+            };
+        }.start();
+    }
+
     private void updateConnect() {
         new Thread(){
             public void run() {
                 code = (int) Proxy.getWebData(StateCode.OrderUpdate,updateParameter);
+                connectFinish();
+            };
+        }.start();
+    }
+
+    private void reviewConnect() {
+        new Thread(){
+            public void run() {
+                code = (int) Proxy.getWebData(StateCode.OrderReview,reviewParemeter);
                 connectFinish();
             };
         }.start();
@@ -165,36 +223,48 @@ public class ReceiveDetailActivity extends AppCompatActivity {
                 new Thread(){
                     public void run() {
                         newState = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+                        stateNum = newState.getState();
                         ReceiveDetailActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                changeState(newState.getState());
+                                changeState(stateNum);
                             }
                         });
                     };
                 }.start();
                 }
 
-
             }
         }
 
     private void showDialog() {
 
-        RatingDialog ratingDialog = new RatingDialog.Builder(this)
-                .session(3)
-                .threshold(3)
+        ratingDialog = new RatingDialog.Builder(this)
                 .ratingBarColor(R.color.base_color_text_black)
-                .onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
+                .setPositiveButton(new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which) {
+                        ratingDialog.dismiss();
+                        orderReview();
+                    }
+                }).setCallBackListener(new RatingDialog.DialogCallBackListener() {
                     @Override
-                    public void onFormSubmitted(String feedback) {
-                        Log.i(TAG,"Feedback:" + feedback);
+                    public void callBack(float msg) {//具体接口的实现
+                            review = (int)msg;
+                    }
+                })
+                .setNegativeButton(new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which) {
+                        review = -1;
+                        ratingDialog.dismiss();
                     }
                 })
                 .build();
-
         ratingDialog.show();
+
+
     }
+
+
 
     private void changeState(int stateNum){
         switch (stateNum){
