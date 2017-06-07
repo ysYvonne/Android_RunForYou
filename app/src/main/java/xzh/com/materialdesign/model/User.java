@@ -10,7 +10,7 @@ import android.util.Log;
 public class User implements IEntity {
     private int userId = -1;//用户id
     private String name;//真实姓名
-    private int sex;//姓名，记1为男，2为女，0为未设置
+    private int sex;//姓名，记1为男，2为女，-1为未设置
     private int age;//年龄，记-1为未设置
     private String nickname;//昵称
     private String phoneNum;//电话

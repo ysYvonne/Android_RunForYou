@@ -3,20 +3,32 @@ package xzh.com.materialdesign.ui;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.renderscript.Sampler;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -41,6 +53,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
     RelativeLayout pwdInfo;
     @InjectView(R.id.sex_info)
     RelativeLayout sexInfo;
+    @InjectView(R.id.my_sex_spinner)
+    Spinner sexspinner;
     @InjectView(R.id.name_info)
     RelativeLayout nameInfo;
     @InjectView(R.id.age_info)
@@ -52,12 +66,20 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     TextView my_nickname, my_pwd,my_sex, my_name, my_age, my_school, my_email, my_phone;
 
+    private List<String> sexdata;
+    private ArrayAdapter<String> adapter;
+
     private Context mContext;
 
     Bundle mBundle,pInfoBundle;
 
     JSONObject parameter;
+
     User user;
+    int code = -1;
+
+    int newSex;
+    String newAge;
 
     @SuppressLint("NewApi")
     @Override
@@ -81,8 +103,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
         my_email=(TextView)findViewById(R.id.my_email);
         my_phone=(TextView)findViewById(R.id.my_phone);
 
-        buttonEvent();
         init();
+
     }
 
     private void buttonEvent(){
@@ -126,10 +148,27 @@ public class PersonalInfoActivity extends AppCompatActivity {
             }
         });
 
-        sexInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        initData();
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,sexdata);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sexspinner.setAdapter(adapter);
 
+        int i = 0;
+        Log.v("ys", "当前性别为： "+ user.getSex());
+        if(user.getSex() == -1){
+            sexspinner.setSelection(2, true);
+        }else{
+            i = user.getSex();
+            i--;
+            sexspinner.setSelection(i, true);
+        }
+        sexspinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                arg0.setVisibility(View.VISIBLE);
+                newSex = arg2+1;
+                changeSex();
+            }
+            public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
 
@@ -146,7 +185,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         ageInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                changeAge();
             }
         });
 
@@ -174,6 +213,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     private void init(){
         Log.v("ys", "Start Personal Information");
+
         parameter=new JSONObject();
         try{
 
@@ -185,8 +225,36 @@ public class PersonalInfoActivity extends AppCompatActivity {
         }
 
         connect();
+    }
+
+    private void changeSex(){
+        user.setSex(newSex);
+
+        Log.v("ys", "start 更改性别 :" + newSex);
+
+        parameter=new JSONObject();
+        try{
+
+            parameter.put("type", "updateInfomation");
+            parameter.put("userId",pInfoBundle.getString("userId"));
+            parameter.put("column","sex");
+            parameter.put("value", newSex);
+
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        connect();
 
     }
+
+    private void changeAge(){
+
+        Log.v("ys", "start 更改年龄");
+
+
+    }
+
 
     private void connect(){
 
@@ -196,11 +264,23 @@ public class PersonalInfoActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
 
                 user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
+
                 // 在下面这个方法里可以做任何更新UI的操作
                 PersonalInfoActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        connectFinish();
+                        try{
+                            if(parameter.getString("type").equals("getUser")){
+                                connectFinish();
+                            }
+                            else if(parameter.getString("type").equals("updateInfomation")){
+                                code = user.getSex();
+                                connectFinish(code);
+                            }
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+
                     }
                 });
             }
@@ -225,18 +305,6 @@ public class PersonalInfoActivity extends AppCompatActivity {
             my_nickname.setText(my_nickname.getText() + "   " + user.getNickname());
             my_pwd.setText(my_pwd.getText() + "   ******");
 
-            switch(user.getSex()) {
-                case 2:
-                    my_sex.setText(my_sex.getText() + "  ♂");
-                    break;
-                case 1:
-                    my_sex.setText(my_sex.getText() + "  ♀");
-                    break;
-                default:
-                    my_sex.setText(my_sex.getText()+ "  未设置");
-                    break;
-            }
-
             my_name.setText(my_name.getText() + "   " + user.getName());
             my_age.setText(my_age.getText() + "   " + user.getAge());
             my_school.setText(my_school.getText() + "   " + user.getSchool());
@@ -245,7 +313,42 @@ public class PersonalInfoActivity extends AppCompatActivity {
             pInfoBundle = getIntent().getExtras();
 //            my_phone.setText(my_phone.getText() + "   " + pInfoBundle.getString("Phone"));
             my_phone.setText(my_phone.getText() + "   " + user.getPhoneNum());
+
+            buttonEvent();
         }
 
+    }
+
+    private void connectFinish(int code){
+
+        if(code == 1){
+            new AlertDialog.Builder(mContext)
+
+                    .setTitle("提示")
+
+                    .setMessage("更改成功")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+
+        }else{
+            new AlertDialog.Builder(mContext)
+
+                    .setTitle("提示")
+
+                    .setMessage("更改失败")
+
+                    .setPositiveButton("确定", null)
+
+                    .show();
+        }
+    }
+
+    private void initData() {
+        sexdata = new ArrayList<String>();
+        sexdata.add("男");   //男
+        sexdata.add("女");   //女
+        sexdata.add("未设置");
     }
 }

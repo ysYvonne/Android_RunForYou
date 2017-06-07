@@ -215,7 +215,7 @@ public class PwdSetActivity extends AppCompatActivity {
         }else{
             new AlertDialog.Builder(mContext)
                     .setTitle("提示")
-                    .setMessage("更改失败")
+                    .setMessage("设定失败")
                     .setPositiveButton("确定", null)
                     .show();
         }

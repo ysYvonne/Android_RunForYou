@@ -137,7 +137,6 @@ public class EmailChangeActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 changeSchool();
-                changeEmail();
 
             }
         });
@@ -223,23 +222,6 @@ public class EmailChangeActivity extends AppCompatActivity {
 
     private void connectFinish(int code){
 
-//        if(code == 1){
-//            new AlertDialog.Builder(mContext)
-//
-//                    .setTitle("提示")
-//
-//                    .setMessage("更改成功")
-//
-//                    .setPositiveButton("确定", null)
-//
-//                    .show();
-//
-//            if(Flag == 1){
-//
-//                ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
-//                finish();
-//            }
-
             if(code == 1 && Flag == 1){
                 new AlertDialog.Builder(mContext)
 
@@ -254,17 +236,21 @@ public class EmailChangeActivity extends AppCompatActivity {
                     ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
                     finish();
 
+        }else if(code == 1 && Flag != 1){
+
+                changeEmail();
+
         }else{
-            new AlertDialog.Builder(mContext)
+                new AlertDialog.Builder(mContext)
 
-                    .setTitle("提示")
+                        .setTitle("提示")
 
-                    .setMessage("更改失败")
+                        .setMessage("更改失败")
 
-                    .setPositiveButton("确定", null)
+                        .setPositiveButton("确定", null)
 
-                    .show();
-        }
+                        .show();
+            }
 
     }
 
