@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -287,26 +286,26 @@ public class ReceiveDetailActivity extends AppCompatActivity {
             }
 
             case 3: {
-                state.setText("到达地点");
+                state.setText("已送达");
                 changeState.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_notice));
                 break;
             }
 
             case 4: {
-                state.setText("订单完成");
+                state.setText("待评价");
                 changeState.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_review));
                 break;
             }
 
             case 5: {
-                state.setText("评价完成");
+                state.setText("已评价");
                 changeState.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_review));
                 changeState.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;
             }
 
             case -1: {
-                state.setText("订单取消");
+                state.setText("已取消");
                 changeState.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_cancel));
                 changeState.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;
