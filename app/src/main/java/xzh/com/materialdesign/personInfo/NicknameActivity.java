@@ -48,16 +48,6 @@ public class NicknameActivity extends AppCompatActivity {
     User user;
     int code = -1;
 
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            Looper.prepare();
-            connectFinish(code);
-            Looper.loop();
-        }
-    };
-
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,11 +112,14 @@ public class NicknameActivity extends AppCompatActivity {
                 user=(User)Proxy.getWebData(StateCode.PersonalInfo,parameter);
                 code = user.getSex();
 
-                Message msg = handler.obtainMessage();
+                // 在下面这个方法里可以做任何更新UI的操作
+                NicknameActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        connectFinish(code);
+                    }
+                });
 
-                msg.obj = code;
-
-                handler.handleMessage(msg); //通知handler我完事儿啦
 
             };
         }.start();
