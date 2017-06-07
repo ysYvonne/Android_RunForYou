@@ -64,6 +64,10 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="noTitle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <!-- animation 样式 -->
     <style name="activityAnimation" parent="@android:style/Animation">
         <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>

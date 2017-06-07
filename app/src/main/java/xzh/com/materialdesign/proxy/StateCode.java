@@ -16,6 +16,13 @@ public class StateCode {
 
     public final static String PersonalInfo="PersonalInfo";
     public final static String ContactUs="ContactUs";
+    public final static String OrderState="OrderState";
+    public final static String OrderRecive="OrderRecive";
+    public final static String OrderUpdate="OrderUpdate";
+    public final static String OrderFinish="OrderFinish";
+    public final static String OrderReview="OrderReview";
+    public final static String GetReview="GetReview";
+    public final static String OrderDrawback = "OrderDrawback";
     public final static String UserIdNull="错误：userId为空";
 
     //订单状态，0未接单，1已接单，2正在配送，3到达地点，4订单完成，5评价完成。-1订单取消。
