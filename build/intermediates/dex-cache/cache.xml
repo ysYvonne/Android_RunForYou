@@ -2,6 +2,7 @@
 <items version="2" >
 
     <item
+<<<<<<< HEAD
         is-multidex="true"
         jar="/Users/botan/Desktop/RunForYou_Android/app/libs/android-support-design.jar"
         jumboMode="true"
@@ -189,6 +190,33 @@
         revision="25.0.0"
         sha1="242b3a8f9b6b47d2ea8cf932cd978a5b6651d22a">
         <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/MobTools-2017.0321.1624_133d90ccccfb4acc20ba3f94b5412019cbdba5ba/classes.dex" />
+=======
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\4\RunForYou_Android\app\libs\MobCommons-2017.0321.1624.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d49d36ec407502d69c217d81a87283eba9c746b2">
+        <dex dex="C:\Users\dz\androidApplication\4\RunForYou_Android\app\build\intermediates\pre-dexed\debug\MobCommons-2017.0321.1624_65f8e089afcdd426d7ba74befbe9d2bfdcd899e2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\androidApplication\4\RunForYou_Android\app\libs\MobTools-2017.0321.1624.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="242b3a8f9b6b47d2ea8cf932cd978a5b6651d22a">
+        <dex dex="C:\Users\dz\androidApplication\4\RunForYou_Android\app\build\intermediates\pre-dexed\debug\MobTools-2017.0321.1624_dbd28e489a2188d22adad0fd90c8abfc20da5fa2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dz\.android\build-cache\795fc1811e90b3b965847f6995589a935dc5cad5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="29de8afd6edd30f246bb7de991037875d0787ec6">
+        <dex dex="C:\Users\dz\androidApplication\4\RunForYou_Android\app\build\intermediates\pre-dexed\debug\classes_45e499f16189528b5171c2392a8d53ce2de434c5.jar" />
+>>>>>>> master
     </item>
 
 </items>
