@@ -6,6 +6,7 @@ import xzh.com.materialdesign.ui.*;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -137,8 +138,12 @@ public class NicknameActivity extends AppCompatActivity {
  //                   .setPositiveButton("确定", null)
 
                     .show();
+            Intent mIntent = new Intent(StateCode.BROAD_NICKNAME);
+            mIntent.putExtra(StateCode.BROAD_NICKNAME,nickName);
 
-            ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
+            //发送广播
+            sendBroadcast(mIntent);
+//            ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
             finish();
 
         }else{

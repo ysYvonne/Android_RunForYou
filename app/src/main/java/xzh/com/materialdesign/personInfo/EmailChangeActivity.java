@@ -6,6 +6,7 @@ import xzh.com.materialdesign.ui.*;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -232,8 +233,11 @@ public class EmailChangeActivity extends AppCompatActivity {
 //                        .setPositiveButton("确定", null)
 
                         .show();
+                Intent mIntent = new Intent(StateCode.BROAD_EMAIL);
+                mIntent.putExtra(StateCode.BROAD_EMAIL,newemail);
 
-                    ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
+                //发送广播
+                sendBroadcast(mIntent);
                     finish();
 
         }else if(code == 1 && Flag != 1){

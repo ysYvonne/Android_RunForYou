@@ -2,8 +2,11 @@ package xzh.com.materialdesign.ui;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -23,6 +26,8 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import junit.framework.Test;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,7 +109,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         my_phone=(TextView)findViewById(R.id.my_phone);
 
         init();
-
+        registerBroadcastReceiver();
     }
 
     private void buttonEvent(){
@@ -350,5 +355,59 @@ public class PersonalInfoActivity extends AppCompatActivity {
         sexdata.add("男");   //男
         sexdata.add("女");   //女
         sexdata.add("未设置");
+    }
+
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver(){
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+
+            String action = intent.getAction();
+            switch (action){
+                case StateCode.BROAD_NICKNAME:
+                    String nickName=intent.getStringExtra(StateCode.BROAD_NICKNAME);
+                    Log.v("dz","接收到的nickname为："+nickName);
+                    my_nickname.setText(nickName);
+                    break;
+
+                case StateCode.BROAD_EMAIL:
+                    String email=intent.getStringExtra(StateCode.BROAD_EMAIL);
+                    Log.v("dz","email："+email);
+                    my_email.setText(email);
+                    break;
+
+                case StateCode.BROAD_NAME:
+                    String name=intent.getStringExtra(StateCode.BROAD_NAME);
+                    Log.v("dz","name："+name);
+                    my_name.setText("真实姓名:"+name);
+                    break;
+
+                case StateCode.BROAD_PHONE:
+                    String phone=intent.getStringExtra(StateCode.BROAD_PHONE);
+                    Log.v("dz","phone："+phone);
+                    my_phone.setText(phone);
+                    break;
+
+                case StateCode.BROAD_PWD:
+                    String pwd=intent.getStringExtra(StateCode.BROAD_PWD);
+                    Log.v("dz","pwd："+pwd);
+                    my_pwd.setText(pwd);
+                    break;
+
+            }
+
+        }
+
+    };
+
+    public void registerBroadcastReceiver(){
+        IntentFilter myIntentFilter = new IntentFilter();
+        myIntentFilter.addAction(StateCode.BROAD_EMAIL);
+        myIntentFilter.addAction(StateCode.BROAD_NAME);
+        myIntentFilter.addAction(StateCode.BROAD_NICKNAME);
+        myIntentFilter.addAction(StateCode.BROAD_PHONE);
+        myIntentFilter.addAction(StateCode.BROAD_PWD);
+        //注册广播
+        registerReceiver(mBroadcastReceiver, myIntentFilter);
     }
 }

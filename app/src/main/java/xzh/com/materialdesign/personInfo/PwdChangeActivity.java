@@ -6,6 +6,7 @@ import xzh.com.materialdesign.ui.*;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -238,8 +239,11 @@ public class PwdChangeActivity extends AppCompatActivity {
                     .setMessage("更改成功")
                     //                   .setPositiveButton("确定", null)
                     .show();
+            Intent mIntent = new Intent(StateCode.BROAD_PWD);
+            mIntent.putExtra(StateCode.BROAD_PWD,newPwdS);
 
-            ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
+            //发送广播
+            sendBroadcast(mIntent);
             finish();
 
         }else{

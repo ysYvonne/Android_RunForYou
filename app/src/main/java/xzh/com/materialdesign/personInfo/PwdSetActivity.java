@@ -6,6 +6,7 @@ import xzh.com.materialdesign.ui.*;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -209,7 +210,11 @@ public class PwdSetActivity extends AppCompatActivity {
                     //                   .setPositiveButton("确定", null)
                     .show();
 
-            ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
+            Intent mIntent = new Intent(StateCode.BROAD_PWD);
+            mIntent.putExtra(StateCode.BROAD_PWD,newPwdS);
+
+            //发送广播
+            sendBroadcast(mIntent);
             finish();
 
         }else{
