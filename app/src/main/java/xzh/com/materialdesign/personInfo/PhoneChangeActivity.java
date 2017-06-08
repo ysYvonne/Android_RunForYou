@@ -9,6 +9,7 @@ import xzh.com.materialdesign.ui.*;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -277,8 +278,11 @@ public class PhoneChangeActivity extends AppCompatActivity {
                     //                   .setPositiveButton("确定", null)
 
                     .show();
+            Intent mIntent = new Intent(StateCode.BROAD_PHONE);
+            mIntent.putExtra(StateCode.BROAD_PHONE,phone);
 
-            ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
+            //发送广播
+            sendBroadcast(mIntent);
             finish();
 
         }else{
