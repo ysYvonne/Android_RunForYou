@@ -1,4 +1,5 @@
 package xzh.com.materialdesign.personInfo;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
@@ -6,6 +7,7 @@ import xzh.com.materialdesign.ui.*;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -203,13 +205,18 @@ public class PwdSetActivity extends AppCompatActivity {
     private void connectFinish(int code){
 
         if(code == 1){
-            new AlertDialog.Builder(mContext)
-                    .setTitle("提示")
-                    .setMessage("设定成功")
-                    //                   .setPositiveButton("确定", null)
-                    .show();
+//            new AlertDialog.Builder(mContext)
+//                    .setTitle("提示")
+//                    .setMessage("设定成功")
+//                    //                   .setPositiveButton("确定", null)
+//                    .show();
 
-            ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
+//            Intent mIntent = new Intent(StateCode.BROAD_PWD);
+//            mIntent.putExtra(StateCode.BROAD_PWD,newPwdS);
+//
+//            //发送广播
+//            sendBroadcast(mIntent);
+            ControlUser.ChangeUser(StateCode.BROAD_PWD,newPwdS,mContext);
             finish();
 
         }else{

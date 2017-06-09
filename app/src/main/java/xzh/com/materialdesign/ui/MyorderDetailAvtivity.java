@@ -3,6 +3,7 @@ package xzh.com.materialdesign.ui;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -18,6 +19,7 @@ import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.base.BaseActivity;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
+import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
 
@@ -26,15 +28,16 @@ import xzh.com.materialdesign.proxy.StateCode;
  */
 
 public class MyorderDetailAvtivity extends BaseActivity {
-    ImageButton navBack,drawBack;
+    ImageButton navBack,drawBack,phone;
     TextView title,name,money,time,info,reward,method,shop,des,state,orderReview;
-    JSONObject parameter,drawParameter;
+    JSONObject parameter,drawParameter,userParameter;
     Order_state order_state,newState;
-    int code,stateNum;
+    int code,stateNum,review;
+    String phoneNum;
     private Context mContext;
     Orders ordersInfo;
     Order_state orderState;
-    int review;
+    User user;
     private RatingDialog ratingDialog;
 
     @Override
@@ -55,6 +58,7 @@ public class MyorderDetailAvtivity extends BaseActivity {
         state = (TextView) findViewById(R.id.order_myorder_detail_state);
         drawBack = (ImageButton) findViewById(R.id.order_myorder_detail_cancel);
         orderReview = (TextView) findViewById(R.id.order_myorder_detail_review);
+        phone = (ImageButton) findViewById(R.id.order_myorder_detail_phone);
 
 
 
@@ -115,6 +119,22 @@ public class MyorderDetailAvtivity extends BaseActivity {
             }
         });
 
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stateNum == 1 || stateNum == 2 || stateNum == 3 || stateNum == 4) {
+                    userParameter = new JSONObject();
+                    try {
+                        userParameter.put("type", "getUser");
+                        userParameter.put("userId", orderState.getDeliveryId());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    getUser();
+                }
+            }
+        });
+
     }
 
     private void getReview() {
@@ -127,6 +147,17 @@ public class MyorderDetailAvtivity extends BaseActivity {
                         orderReview.setText(review+"星");
                     }
                 });
+            };
+        }.start();
+    }
+
+    private void getUser() {
+        new Thread(){
+            public void run() {
+                user = (User) Proxy.getWebData(StateCode.PersonalInfo,userParameter);
+                phoneNum = user.getPhoneNum();
+                Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ phoneNum ));
+                startActivity(phoneIntent);
             };
         }.start();
     }
@@ -217,12 +248,14 @@ public class MyorderDetailAvtivity extends BaseActivity {
 
             case 5: {
                 state.setText("已评价");
+                phone.setBackgroundResource(R.drawable.fab_finish_bg);
                 drawBack.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;
             }
 
             case -1: {
                 state.setText("已取消");
+                phone.setBackgroundResource(R.drawable.fab_finish_bg);
                 drawBack.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_cancel));
                 drawBack.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;

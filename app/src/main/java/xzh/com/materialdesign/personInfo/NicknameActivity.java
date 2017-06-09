@@ -1,4 +1,5 @@
 package xzh.com.materialdesign.personInfo;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
@@ -6,6 +7,7 @@ import xzh.com.materialdesign.ui.*;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -128,17 +130,18 @@ public class NicknameActivity extends AppCompatActivity {
     private void connectFinish(int code){
 
         if(code == 1){
-            new AlertDialog.Builder(mContext)
+//            new AlertDialog.Builder(mContext)
+//
+//                    .setTitle("提示")
+//
+//                    .setMessage("更改成功")
+//
+// //                   .setPositiveButton("确定", null)
+//
+//                    .show();
 
-                    .setTitle("提示")
-
-                    .setMessage("更改成功")
-
- //                   .setPositiveButton("确定", null)
-
-                    .show();
-
-            ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
+            ControlUser.ChangeUser(StateCode.BROAD_NICKNAME,nickName,mContext);
+//            ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
             finish();
 
         }else{

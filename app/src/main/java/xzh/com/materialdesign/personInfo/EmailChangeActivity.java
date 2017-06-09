@@ -1,4 +1,5 @@
 package xzh.com.materialdesign.personInfo;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
@@ -6,6 +7,7 @@ import xzh.com.materialdesign.ui.*;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -232,9 +234,9 @@ public class EmailChangeActivity extends AppCompatActivity {
 //                        .setPositiveButton("确定", null)
 
                         .show();
+                ControlUser.ChangeUser(StateCode.BROAD_EMAIL,newemail,mContext);
 
-                    ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
-                    finish();
+                finish();
 
         }else if(code == 1 && Flag != 1){
 
