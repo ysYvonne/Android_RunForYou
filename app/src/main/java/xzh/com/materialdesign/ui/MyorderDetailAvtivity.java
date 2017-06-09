@@ -120,7 +120,7 @@ public class MyorderDetailAvtivity extends BaseActivity {
     private void getReview() {
         new Thread(){
             public void run() {
-                review = (int) Proxy.getWebData(StateCode.OrderInfo,parameter);
+                review = (int) Proxy.getWebData(StateCode.GetReview,parameter);
                 MyorderDetailAvtivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
