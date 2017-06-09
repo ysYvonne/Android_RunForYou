@@ -96,8 +96,11 @@ public class RegistPhoneActivity extends AppCompatActivity {
 
                     if(checkV() && checkValid()){
 
-                        SMSSDK.submitVerificationCode("86", phoneAccount.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
+//                        SMSSDK.submitVerificationCode("86", phoneAccount.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
                         //                   logIn();
+                        String phone = phoneAccount.getText().toString();
+                        ActivityHelper.startActivity(mContext,RegistValidNameActivity.class,"phone",phone);
+
                     }
 
 
@@ -251,7 +254,7 @@ public class RegistPhoneActivity extends AppCompatActivity {
                     RegistPhoneActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            sendValidCode();
+ //                           sendValidCode();
                         }
                     });
 

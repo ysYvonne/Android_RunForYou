@@ -3,7 +3,6 @@ package xzh.com.materialdesign.proxy;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -18,7 +17,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import xzh.com.materialdesign.model.*;
+import xzh.com.materialdesign.model.Credit;
+import xzh.com.materialdesign.model.LittleOrderBean;
+import xzh.com.materialdesign.model.Order_state;
+import xzh.com.materialdesign.model.Orders;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.utils.JsonUtil;
 /**
@@ -224,8 +226,15 @@ public class Proxy {
 
             if(result != null){
                 user = JsonUtil.getEntity(result.getString("user"),User.class);
-                Log.v("dz","测试用户id"+user.getUserId());
-                return user;
+
+                if(user.getUserId() != -1){
+                    Log.v("dz","测试用户id"+user.getUserId());
+                    return user;
+                }else{
+                    user.setUserId(-1);
+                    return null;
+                }
+
             }else{
                 Log.v("ys", "注册失败");
                 return null;
