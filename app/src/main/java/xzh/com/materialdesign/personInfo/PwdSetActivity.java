@@ -1,4 +1,5 @@
 package xzh.com.materialdesign.personInfo;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
@@ -204,17 +205,18 @@ public class PwdSetActivity extends AppCompatActivity {
     private void connectFinish(int code){
 
         if(code == 1){
-            new AlertDialog.Builder(mContext)
-                    .setTitle("提示")
-                    .setMessage("设定成功")
-                    //                   .setPositiveButton("确定", null)
-                    .show();
+//            new AlertDialog.Builder(mContext)
+//                    .setTitle("提示")
+//                    .setMessage("设定成功")
+//                    //                   .setPositiveButton("确定", null)
+//                    .show();
 
-            Intent mIntent = new Intent(StateCode.BROAD_PWD);
-            mIntent.putExtra(StateCode.BROAD_PWD,newPwdS);
-
-            //发送广播
-            sendBroadcast(mIntent);
+//            Intent mIntent = new Intent(StateCode.BROAD_PWD);
+//            mIntent.putExtra(StateCode.BROAD_PWD,newPwdS);
+//
+//            //发送广播
+//            sendBroadcast(mIntent);
+            ControlUser.ChangeUser(StateCode.BROAD_PWD,newPwdS,mContext);
             finish();
 
         }else{

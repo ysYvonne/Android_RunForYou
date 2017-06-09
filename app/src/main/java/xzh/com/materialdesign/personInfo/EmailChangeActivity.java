@@ -1,4 +1,5 @@
 package xzh.com.materialdesign.personInfo;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
@@ -233,12 +234,9 @@ public class EmailChangeActivity extends AppCompatActivity {
 //                        .setPositiveButton("确定", null)
 
                         .show();
-                Intent mIntent = new Intent(StateCode.BROAD_EMAIL);
-                mIntent.putExtra(StateCode.BROAD_EMAIL,newemail);
+                ControlUser.ChangeUser(StateCode.BROAD_EMAIL,newemail,mContext);
 
-                //发送广播
-                sendBroadcast(mIntent);
-                    finish();
+                finish();
 
         }else if(code == 1 && Flag != 1){
 

@@ -42,9 +42,9 @@ public class StateCode {
 
     //广播参数
     //public final static String BROAD="发起广播";
-    public final static String BROAD_NICKNAME="修改昵称";
-    public final static String BROAD_EMAIL="修改邮箱";
-    public final static String BROAD_NAME="修改真实姓名";
-    public final static String BROAD_PHONE="修改手机";
-    public final static String BROAD_PWD="修改密码";
+    public final static String BROAD_NICKNAME="nickName";
+    public final static String BROAD_EMAIL="email";
+    public final static String BROAD_NAME="name";
+    public final static String BROAD_PHONE="phoneNum";
+    public final static String BROAD_PWD="password";
 }

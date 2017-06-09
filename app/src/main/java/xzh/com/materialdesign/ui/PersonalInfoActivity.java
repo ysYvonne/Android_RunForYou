@@ -120,6 +120,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                unregisterReceiver(mBroadcastReceiver);
                 finish();
             }
         });

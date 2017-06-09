@@ -1,9 +1,11 @@
 package xzh.com.materialdesign.api;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import xzh.com.materialdesign.model.User;
+import xzh.com.materialdesign.proxy.StateCode;
 
 /**
  * Created by dz on 2017/5/31.
@@ -55,5 +57,16 @@ public class ControlUser {
 
     public static void clearUser(Context context){
         new MySharedPreferences(preferenceName,context).clear();
+    }
+
+    public static void ChangeUser(String item,String value,Context context){
+
+        Intent mIntent = new Intent(item);
+        mIntent.putExtra(item,value);
+
+        //发送广播
+        context.sendBroadcast(mIntent);
+        MySharedPreferences msp = new MySharedPreferences(item, context);
+        msp.commit(item,value);
     }
 }
