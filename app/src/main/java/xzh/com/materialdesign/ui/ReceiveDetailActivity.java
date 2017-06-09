@@ -3,6 +3,7 @@ package xzh.com.materialdesign.ui;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.content.ContextCompat;
@@ -20,9 +21,11 @@ import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
+import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
+import xzh.com.materialdesign.utils.StringUtils;
 
 
 /**
@@ -30,16 +33,17 @@ import xzh.com.materialdesign.utils.ActivityHelper;
  */
 
 public class ReceiveDetailActivity extends AppCompatActivity {
-    ImageButton navBack,changeState;
+    ImageButton navBack,changeState,phone;
     TextView title,name,money,time,info,reward,method,shop,des,state;
-    JSONObject parameter,updateParameter,finishParemeter,reviewParemeter;
+    JSONObject parameter,updateParameter,finishParemeter,reviewParemeter,userParameter;
     Order_state order_state,newState;
-    int code,stateNum;
+    int code,stateNum,review;
+    String phoneNum;
     private Context mContext;
     Orders ordersInfo;
     Order_state orderState;
-    int review;
     private RatingDialog ratingDialog;
+    User user;
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -59,6 +63,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
         des = (TextView) findViewById(R.id.order_transport_detail_des);
         state = (TextView) findViewById(R.id.order_transport_detail_state);
         changeState = (ImageButton) findViewById(R.id.order_transport_detail_change);
+        phone = (ImageButton) findViewById(R.id.order_transport_detail_phone);
 
         Intent intent = getIntent();
         ordersInfo = (Orders) intent.getSerializableExtra("orderInfo");
@@ -114,6 +119,33 @@ public class ReceiveDetailActivity extends AppCompatActivity {
 
             }
         });
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stateNum == 1 || stateNum == 2 || stateNum == 3 || stateNum == 4) {
+                    userParameter = new JSONObject();
+                    try {
+                        userParameter.put("type", "getUser");
+                        userParameter.put("userId", orderState.getDeliveryId());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    getUser();
+                }
+            }
+        });
+    }
+
+    private void getUser() {
+        new Thread(){
+            public void run() {
+                user = (User) Proxy.getWebData(StateCode.PersonalInfo,userParameter);
+                phoneNum = user.getPhoneNum();
+                Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ phoneNum ));
+                startActivity(phoneIntent);
+            };
+        }.start();
     }
 
     private void orderFinish(){
