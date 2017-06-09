@@ -60,13 +60,18 @@ public class ControlUser {
     }
 
     public static void ChangeUser(String item,String value,Context context){
+//        User user=ControlUser.getUser(context);
+//        user.setNickname();
+//        ControlUser.clearUser(context);
 
         Intent mIntent = new Intent(item);
         mIntent.putExtra(item,value);
 
         //发送广播
         context.sendBroadcast(mIntent);
-        MySharedPreferences msp = new MySharedPreferences(item, context);
+        MySharedPreferences msp = new MySharedPreferences(preferenceName, context);
         msp.commit(item,value);
+        Log.v("dz","ControlUser.ChangUser+item+"+item);
+        Log.v("dz","ControlUser.ChangUser+"+ControlUser.getUser(context).getNickname());
     }
 }
