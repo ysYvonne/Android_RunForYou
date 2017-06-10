@@ -1,6 +1,7 @@
 package xzh.com.materialdesign.personInfo;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
@@ -9,6 +10,7 @@ import xzh.com.materialdesign.ui.*;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -268,17 +270,21 @@ public class PhoneChangeActivity extends AppCompatActivity {
     private void connectFinish(int code){
 
         if(code == 1){
-            new AlertDialog.Builder(mContext)
-
-                    .setTitle("提示")
-
-                    .setMessage("更改成功")
-
-                    //                   .setPositiveButton("确定", null)
-
-                    .show();
-
-            ActivityHelper.startActivity(mContext,PersonalInfoActivity.class, pInfoBundle);
+//            new AlertDialog.Builder(mContext)
+//
+//                    .setTitle("提示")
+//
+//                    .setMessage("更改成功")
+//
+//                    //                   .setPositiveButton("确定", null)
+//
+//                    .show();
+//            Intent mIntent = new Intent(StateCode.BROAD_PHONE);
+//            mIntent.putExtra(StateCode.BROAD_PHONE,phone);
+//
+//            //发送广播
+//            sendBroadcast(mIntent);
+            ControlUser.ChangeUser(StateCode.BROAD_PHONE,phone,mContext);
             finish();
 
         }else{

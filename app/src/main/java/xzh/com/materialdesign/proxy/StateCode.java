@@ -39,4 +39,12 @@ public class StateCode {
     public final static int OrderType_Money=2;
 
     public final static int ListMax=15;
+
+    //广播参数
+    //public final static String BROAD="发起广播";
+    public final static String BROAD_NICKNAME="nickName";
+    public final static String BROAD_EMAIL="email";
+    public final static String BROAD_NAME="name";
+    public final static String BROAD_PHONE="phoneNum";
+    public final static String BROAD_PWD="password";
 }

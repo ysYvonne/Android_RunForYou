@@ -1,9 +1,11 @@
 package xzh.com.materialdesign.base;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +30,7 @@ import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.api.MySharedPreferences;
 import xzh.com.materialdesign.model.User;
+import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.ui.AccountLoginActivity;
 import xzh.com.materialdesign.ui.ContactActivity;
 import xzh.com.materialdesign.ui.MainActivity;
@@ -52,6 +55,12 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
     private CharSequence mTitle;
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private PullToLoadView mPullToLoadView;
+
+    TextView nickname;
+    TextView email;
+    TextView phone;
+    TextView school;
+    TextView sex;
 
     Bundle mBundle;
 
@@ -138,16 +147,17 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
     }
 
     private void initUser() {
+        //加载个人信息
         user=ControlUser.getUser(mContext);
-        TextView nickname=(TextView)findViewById(R.id.info_nickname);
+        nickname=(TextView)findViewById(R.id.info_nickname);
         nickname.setText(user.getNickname());
-        TextView email=(TextView)findViewById(R.id.info_email);
+        email=(TextView)findViewById(R.id.info_email);
         email.setText(user.getEmail());
-        TextView phone=(TextView)findViewById(R.id.info_phone);
+        phone=(TextView)findViewById(R.id.info_phone);
         phone.setText(user.getPhoneNum());
-        TextView school=(TextView)findViewById(R.id.info_school);
+        school=(TextView)findViewById(R.id.info_school);
         school.setText(user.getSchool());
-        TextView sex=(TextView)findViewById(R.id.info_sex);
+        sex=(TextView)findViewById(R.id.info_sex);
         switch (user.getSex()){
             case 1:
                 sex.setText("♂");
@@ -159,8 +169,52 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
                 sex.setText("未设置");
                 break;
         }
+        registerBroadcastReceiver();
     }
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver(){
+        //个人信息改变的接收器
+        @Override
+        public void onReceive(Context context, Intent intent) {
 
+
+            String action = intent.getAction();
+            switch (action){
+                case StateCode.BROAD_NICKNAME:
+                    String nickName=intent.getStringExtra(StateCode.BROAD_NICKNAME);
+                    Log.v("dz","接收到的nickname为："+nickName);
+                    nickname.setText(nickName);
+                    break;
+
+                case StateCode.BROAD_EMAIL:
+                    String emailString=intent.getStringExtra(StateCode.BROAD_EMAIL);
+                    Log.v("dz","email："+emailString);
+                    email.setText(emailString);
+                    break;
+
+                case StateCode.BROAD_PHONE:
+                    String phoneString=intent.getStringExtra(StateCode.BROAD_PHONE);
+                    Log.v("dz","phone："+phoneString);
+                    phone.setText(phoneString);
+                    break;
+
+
+
+            }
+
+        }
+
+    };
+
+    public void registerBroadcastReceiver(){
+        IntentFilter myIntentFilter = new IntentFilter();
+        myIntentFilter.addAction(StateCode.BROAD_EMAIL);
+        myIntentFilter.addAction(StateCode.BROAD_NAME);
+        myIntentFilter.addAction(StateCode.BROAD_NICKNAME);
+        myIntentFilter.addAction(StateCode.BROAD_PHONE);
+        myIntentFilter.addAction(StateCode.BROAD_PWD);
+        //注册广播
+        registerReceiver(mBroadcastReceiver, myIntentFilter);
+    }
 
     private void initEvent() {
 //        设置个人信息修改跳转
@@ -367,6 +421,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
         }, 3000);
 
     }
+
 
 
 
