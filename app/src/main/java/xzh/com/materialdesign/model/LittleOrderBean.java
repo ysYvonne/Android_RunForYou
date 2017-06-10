@@ -58,7 +58,7 @@ public class LittleOrderBean implements IEntity{
         return orderItem;
     }
     public int getState( ){
-        return state ;
+        return state;
     }
     public String getStartTime(){
         return startTime;
