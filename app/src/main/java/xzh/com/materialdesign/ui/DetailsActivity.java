@@ -30,6 +30,7 @@ import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.Api;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.ModifyPerson;
+import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
@@ -82,6 +83,7 @@ public class DetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         final Orders ordersInfo = (Orders) intent.getSerializableExtra("order_info");
+        final Order_state orderState = (Order_state) intent.getSerializableExtra("orderState");
         if(ordersInfo != null){
             title.setText(ordersInfo.getOrderItem());
             name.setText(ordersInfo.getContactName());
@@ -98,6 +100,10 @@ public class DetailsActivity extends AppCompatActivity {
             des.setText(ordersInfo.getOrderAddress());
             time.setText(ordersInfo.getOrderTime());
 
+            if(ControlUser.getUser(mContext).getUserId() == orderState.getClientId()){
+                receiveBtn.setBackgroundResource(R.drawable.fab_finish_bg);
+            }
+
         }
 
         navBack.setOnClickListener(new View.OnClickListener() {
@@ -109,27 +115,29 @@ public class DetailsActivity extends AppCompatActivity {
 
         receiveBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setTitle("提醒").setMessage("确认接单？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //确定按钮的点击事件
-                        parameter = new JSONObject();
-                        try {
-                            parameter.put("userId",1);
-                            parameter.put("type", "OrderReceive");
-                            parameter.put("orderId", ordersInfo.getOrderId());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                if(ControlUser.getUser(mContext).getUserId() != orderState.getClientId()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setTitle("提醒").setMessage("确认接单？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //确定按钮的点击事件
+                            parameter = new JSONObject();
+                            try {
+                                parameter.put("userId", ControlUser.getUser(mContext).getUserId());
+                                parameter.put("type", "OrderReceive");
+                                parameter.put("orderId", ordersInfo.getOrderId());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            connect();
                         }
-                        connect();
-                    }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //取消按钮的点击事件
-                    }
-                }).show();
+                    }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //取消按钮的点击事件
+                        }
+                    }).show();
+                }
             }
         });
        // getDetailData();

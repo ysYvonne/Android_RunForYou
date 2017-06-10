@@ -100,7 +100,7 @@ public class OrderActivity extends BaseActivity {
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }else{
-                     if(credit.getCredit() < Integer.parseInt(selectMethod) && selectMethod.equals("1")){
+                     if(credit.getCredit() < Integer.parseInt(deliver.getText().toString()) && selectMethod.equals("1")){
                         new AlertDialog.Builder(mContext)
 
                                 .setTitle("警告")
@@ -188,7 +188,7 @@ public class OrderActivity extends BaseActivity {
         //完成对用户密码的包装
         parameter = new JSONObject();
         try {
-            parameter.put("userId",1);
+            parameter.put("userId",ControlUser.getUser(mContext).getUserId());
             parameter.put("type", "OrderPublish");
             parameter.put("name", name.getText());
             parameter.put("phone", phone.getText());
