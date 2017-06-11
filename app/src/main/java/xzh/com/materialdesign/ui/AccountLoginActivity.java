@@ -63,8 +63,8 @@ public class AccountLoginActivity extends AppCompatActivity {
         //如果已经登录过直接跳到主页面，全部完成之后直接取消注释就行
         if(ControlUser.getUser(mContext)!=null){
 //            Log.v("dz","AccountLogin userId is "+new MySharedPreferences("userId",this).getValue("userId"));
-//            ActivityHelper.startActivity(this, MainActivity.class);
-//            finish();
+            ActivityHelper.startActivity(this, MainActivity.class);
+            finish();
         }
         super.onCreate(savedInstanceState);
 
@@ -91,7 +91,7 @@ public class AccountLoginActivity extends AppCompatActivity {
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }else{
-//                    if(check())
+                    if(check())
                         logIn();
                 }
             }
@@ -151,11 +151,11 @@ public class AccountLoginActivity extends AppCompatActivity {
         try {
 
             parameter.put("type","emailLogin");
-//            parameter.put("email", userEmail.getText());
-//            parameter.put("password", password.getText());
+            parameter.put("email", userEmail.getText());
+            parameter.put("password", password.getText());
 
-            parameter.put("email", "123456@bjtu.edu.cn");
-            parameter.put("password", "123456");
+//            parameter.put("email", "123456@bjtu.edu.cn");
+//            parameter.put("password", "123456");
         } catch (JSONException e) {
             e.printStackTrace();
         }
