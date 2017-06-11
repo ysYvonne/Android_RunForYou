@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
@@ -24,11 +25,13 @@ import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.Money_order;
+import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
 import xzh.com.materialdesign.proxy.Proxy;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.ui.DetailsActivity;
 import xzh.com.materialdesign.ui.ModifyActivity;
+import xzh.com.materialdesign.ui.MyorderDetailAvtivity;
 import xzh.com.materialdesign.ui.OrderActivity;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.IntroUtils;
@@ -43,6 +46,7 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
     private List<LittleOrderBean> mList;
     JSONObject parameter;
     Orders orders;
+    Order_state orderState;
 
     public HomeAdapter(Context context) {
        this.context=context;
@@ -77,7 +81,6 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
     private void showDetail(int orderId){
         Log.v("tb","showDetail");
 
-        //完成对用户密码的包装
         parameter=new JSONObject();
         try {
 
@@ -95,7 +98,13 @@ public class HomeAdapter extends RecyclerView.Adapter<CellHolder> implements Bas
         new Thread(){
             public void run() {
                 orders = (Orders) Proxy.getWebData(StateCode.OrderInfo,parameter);
-                ActivityHelper.startActivity(context,DetailsActivity.class,"order_info",orders);
+                orderState = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+                Intent intent = new Intent(context, DetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("order_info", orders);
+                bundle.putSerializable("orderState", orderState);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
             };
         }.start();
     }
