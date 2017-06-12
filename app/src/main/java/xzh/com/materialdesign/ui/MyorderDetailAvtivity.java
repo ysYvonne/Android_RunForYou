@@ -77,14 +77,14 @@ public class MyorderDetailAvtivity extends BaseActivity {
 
         if(ordersInfo != null){
             title.setText(ordersInfo.getOrderItem());
-            reward.setText(String.valueOf(ordersInfo.getOrderReward()));
+            reward.setText(String.valueOf((int)ordersInfo.getOrderReward()));
 
             if(ordersInfo.getOrderType() == 1){
                 method.setText("分");
             }else
                 method.setText("元");
 
-            money.setText(String.valueOf(ordersInfo.getOrderPredict())+"元");
+            money.setText(String.valueOf((int)ordersInfo.getOrderPredict())+"元");
             info.setText(ordersInfo.getOrderDescribe());
             shop.setText(ordersInfo.getOrderDestination());
             des.setText(ordersInfo.getOrderAddress());
@@ -144,7 +144,7 @@ public class MyorderDetailAvtivity extends BaseActivity {
                 MyorderDetailAvtivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        orderReview.setText(review+"星");
+                        orderReview.setText(review+" 星");
                     }
                 });
             };
@@ -219,6 +219,7 @@ public class MyorderDetailAvtivity extends BaseActivity {
         switch (stateNum){
             case 0: {
                 state.setText("未接单");
+                phone.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;
             }
 
