@@ -7,7 +7,7 @@ package xzh.com.materialdesign.model;
 public class LittleOrderBean implements IEntity{
     private int orderId;// 订单id
     private String orderItem;// 商品类型（简称）
-    private int orderType;//订单类型,积分1，现金2
+    private int type;//订单类型,积分1，现金2
     private float orderReward;// 悬赏价值（可以为积分或金钱）
     private String orderAddress;// 送货地址
     private String shop;//取货地址
@@ -36,7 +36,7 @@ public class LittleOrderBean implements IEntity{
         startTime = startTime;
     }
     public void setType(int Type){
-        orderType = Type;
+        type = Type;
     }
     public void setShop(String Shop){
         shop = Shop;
@@ -67,7 +67,7 @@ public class LittleOrderBean implements IEntity{
         return shop ;
     }
     public int getType(){
-        return orderType;
+        return type;
     }
 
 }

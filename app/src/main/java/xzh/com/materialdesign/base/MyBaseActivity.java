@@ -344,6 +344,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
                         //确定按钮的点击事件
                             ControlUser.clearUser(mContext);
                             ActivityHelper.startActivity(mContext, AccountLoginActivity.class);
+                            unregisterReceiver(mBroadcastReceiver);
                             finish();
                         }
                     }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
