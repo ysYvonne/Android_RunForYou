@@ -168,26 +168,11 @@ public class AccountLoginActivity extends AppCompatActivity {
         dialog.show();
 
         connect();
-
     }
-
     private void connect() {
-//        new Thread(){
-//            public void run() {
-//                user=(User)Proxy.getWebData(StateCode.AccountLogin,parameter);
-//                Message msg = handler.obtainMessage();
-//
-//                msg.obj = user;
-////              handler.sendEmptyMessage(0);
-//                handler.handleMessage(msg); //通知handler我完事儿啦,实际并没有接收msg只是一个信号，在属性user里完成了对user 的操作
-//
-//            };
-//        }.start();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                // TODO Auto-generated method stub
-
                 user=(User)Proxy.getWebData(StateCode.AccountLogin,parameter);
                 // 在下面这个方法里可以做任何更新UI的操作
                 AccountLoginActivity.this.runOnUiThread(new Runnable() {

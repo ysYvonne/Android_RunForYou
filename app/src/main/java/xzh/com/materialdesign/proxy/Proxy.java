@@ -101,11 +101,6 @@ public class Proxy {
    
 
     private static User AccountLogin(JSONObject parameter) {
-//        String jsonReceive= "{\"destination\":\"首页标题测试8page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}\n{\"destination\":\"首页标题测试9page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}";
-//        String[] jsonArray=jsonReceive.split("\n");
-//        for(String s:jsonArray){
-//            list.add(JsonUtil.getEntity(s,String.class));
-//        }
         User user;
         String myUrl=url+"LoginServlet";
         String retSrc= HttpHelper.connectToServlet(myUrl,parameter);
