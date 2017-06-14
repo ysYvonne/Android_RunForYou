@@ -6,14 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -24,18 +20,14 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.base.BaseActivity;
 import xzh.com.materialdesign.model.Credit;
-import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.ModifyPerson;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
-import xzh.com.materialdesign.proxy.StateCode;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.utils.ActivityHelper;
 
 /**
@@ -175,7 +167,8 @@ public class OrderActivity extends BaseActivity {
 
         new Thread(){
             public void run() {
-                credit = (Credit) Proxy.getWebData(StateCode.GetCredit,parameterCredit);
+//                credit = (Credit) Proxy.getWebData(StateCode.GetCredit,parameterCredit);
+                credit=(Credit)new Command().getCredit(parameter);
 
             };
         }.start();
@@ -218,7 +211,8 @@ public class OrderActivity extends BaseActivity {
     private void connect() {
         new Thread(){
             public void run() {
-                code = (int) Proxy.getWebData(StateCode.OrderPublish,parameter);
+//                code = (int) Proxy.getWebData(StateCode.OrderPublish,parameter);
+                code=(int)new Command().orderPublish(parameter);
 
                 OrderActivity.this.runOnUiThread(new Runnable() {
                     @Override

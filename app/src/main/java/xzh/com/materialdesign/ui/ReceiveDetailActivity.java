@@ -10,22 +10,16 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.util.Log;
 import android.content.DialogInterface;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
-import xzh.com.materialdesign.proxy.StateCode;
-import xzh.com.materialdesign.utils.ActivityHelper;
-import xzh.com.materialdesign.utils.StringUtils;
+import xzh.com.materialdesign.proxy.Command;
 
 
 /**
@@ -140,7 +134,8 @@ public class ReceiveDetailActivity extends AppCompatActivity {
     private void getUser() {
         new Thread(){
             public void run() {
-                user = (User) Proxy.getWebData(StateCode.PersonalInfo,userParameter);
+//                user = (User) Proxy.getWebData(StateCode.PersonalInfo,userParameter);
+                user=(User)new Command().personalInfo(parameter);
                 phoneNum = user.getPhoneNum();
                 Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ phoneNum ));
                 startActivity(phoneIntent);
@@ -183,7 +178,8 @@ public class ReceiveDetailActivity extends AppCompatActivity {
     private void orderUpdate() {
         new Thread(){
             public void run() {
-                order_state = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+//                order_state = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+                order_state=(Order_state)new Command().orderState(parameter);
                 stateNum = order_state.getState();
                 updateParameter = new JSONObject();
                 try {
@@ -201,7 +197,8 @@ public class ReceiveDetailActivity extends AppCompatActivity {
     private void finishConnect() {
         new Thread(){
             public void run() {
-                code = (int) Proxy.getWebData(StateCode.OrderFinish,finishParemeter);
+//                code = (int) Proxy.getWebData(StateCode.OrderFinish,finishParemeter);
+                code=(int)new Command().orderFinish(parameter);
                 connectFinish();
             };
         }.start();
@@ -210,7 +207,8 @@ public class ReceiveDetailActivity extends AppCompatActivity {
     private void updateConnect() {
         new Thread(){
             public void run() {
-                code = (int) Proxy.getWebData(StateCode.OrderUpdate,updateParameter);
+//                code = (int) Proxy.getWebData(StateCode.OrderUpdate,updateParameter);
+                code=(int)new Command().orderUpdate(parameter);
                 connectFinish();
             };
         }.start();
@@ -219,7 +217,8 @@ public class ReceiveDetailActivity extends AppCompatActivity {
     private void reviewConnect() {
         new Thread(){
             public void run() {
-                code = (int) Proxy.getWebData(StateCode.OrderReview,reviewParemeter);
+//                code = (int) Proxy.getWebData(StateCode.OrderReview,reviewParemeter);
+                code=(int)new Command().orderReview(parameter);
                 connectFinish();
             };
         }.start();
@@ -253,7 +252,8 @@ public class ReceiveDetailActivity extends AppCompatActivity {
             } else {
                 new Thread(){
                     public void run() {
-                        newState = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+//                        newState = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+                        newState=(Order_state)new Command().orderState(parameter);
                         stateNum = newState.getState();
                         ReceiveDetailActivity.this.runOnUiThread(new Runnable() {
                             @Override

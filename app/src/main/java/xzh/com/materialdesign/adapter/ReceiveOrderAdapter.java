@@ -1,6 +1,5 @@
 package xzh.com.materialdesign.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,15 +17,11 @@ import java.util.List;
 
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.model.LittleOrderBean;
-import xzh.com.materialdesign.model.Money_order;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
-import xzh.com.materialdesign.proxy.Proxy;
-import xzh.com.materialdesign.proxy.StateCode;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.ui.DetailsActivity;
 import xzh.com.materialdesign.ui.ReceiveDetailActivity;
-import xzh.com.materialdesign.utils.ActivityHelper;
-import xzh.com.materialdesign.utils.IntroUtils;
 
 /**
  * Created by dz on 2017/5/2 on
@@ -84,8 +79,10 @@ public class ReceiveOrderAdapter extends RecyclerView.Adapter<ReceiveOrderHolder
     private void connect() {
         new Thread(){
             public void run() {
-                orders = (Orders) Proxy.getWebData(StateCode.OrderInfo,parameter);
-                order_state = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+                orders = (Orders)new Command().orderInfo(parameter);
+                order_state = (Order_state)new Command().orderState(parameter);
+//                orders = (Orders) Proxy.getWebData(StateCode.OrderInfo,parameter);
+//                order_state = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
                 Intent intent = new Intent(context, ReceiveDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("orderInfo", orders);

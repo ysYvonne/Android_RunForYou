@@ -4,30 +4,19 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.renderscript.Sampler;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import junit.framework.Test;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,9 +27,8 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
-import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.personInfo.*;
@@ -269,7 +257,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
             public void run() {
                 // TODO Auto-generated method stub
 
-                user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
+//                user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
+                user=(User)new Command().personalInfo(parameter);
 
                 // 在下面这个方法里可以做任何更新UI的操作
                 PersonalInfoActivity.this.runOnUiThread(new Runnable() {

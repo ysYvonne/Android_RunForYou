@@ -7,19 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,17 +19,11 @@ import org.json.JSONObject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import xzh.com.materialdesign.R;
-import xzh.com.materialdesign.api.Api;
 import xzh.com.materialdesign.api.ControlUser;
-import xzh.com.materialdesign.model.ModifyPerson;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
-import xzh.com.materialdesign.proxy.Proxy;
-import xzh.com.materialdesign.proxy.StateCode;
-import xzh.com.materialdesign.renjiade_model.DetailEntity;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.utils.ActivityHelper;
-import xzh.com.materialdesign.utils.JsonUtil;
-import xzh.com.materialdesign.view.UWebView;
 
 /**
  * Created by xiangzhihong on 2016/3/18 on 16:43.
@@ -146,7 +132,8 @@ public class DetailsActivity extends AppCompatActivity {
     private void connect() {
         new Thread(){
             public void run() {
-                code = (int) Proxy.getWebData(StateCode.OrderRecive,parameter);
+//                code = (int) Proxy.getWebData(StateCode.OrderRecive,parameter);
+                code=(int)new Command().orderReceive(parameter);
 
                 DetailsActivity.this.runOnUiThread(new Runnable() {
                     @Override

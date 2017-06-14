@@ -12,7 +12,6 @@ import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,10 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.model.*;
@@ -185,7 +183,8 @@ public class RegistValidNameActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 
-                user=(User) Proxy.getWebData(StateCode.Register,parameter);
+//                user=(User) Proxy.getWebData(StateCode.Register,parameter);
+                user=(User)new Command().register(parameter);
 
                 //错误产生一个是邮箱重复的话后段不会允许注册（手机号重复会允许，这应该也有问题）
                 //另一个对proxy返回空值没有判断，如果返回-1就会返回空值
