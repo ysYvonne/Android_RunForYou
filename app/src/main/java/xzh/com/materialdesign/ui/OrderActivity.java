@@ -97,7 +97,18 @@ public class OrderActivity extends BaseActivity {
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }else{
-                     if(credit.getCredit() < Integer.parseInt(deliver.getText().toString()) && selectMethod.equals("1")){
+                    if(short_info.getText().length() == 0 || long_info.getText().length() == 0 || time.getText().length() == 0 || money.getText().length() == 0 || deliver.getText().length() == 0){
+                        new AlertDialog.Builder(mContext)
+
+                                .setTitle("警告")
+
+                                .setMessage("请将信息填写完整"+"！")
+
+                                .setPositiveButton("确定", null)
+
+                                .show();
+                    }
+                     else if(credit.getCredit() < Integer.parseInt(deliver.getText().toString()) && selectMethod.equals("1")){
                         new AlertDialog.Builder(mContext)
 
                                 .setTitle("警告")
