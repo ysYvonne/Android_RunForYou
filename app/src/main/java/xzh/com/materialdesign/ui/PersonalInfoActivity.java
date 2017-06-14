@@ -239,7 +239,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ControlUser.ChangeUser(StateCode.BROAD_SEX,String.valueOf(newSex),mContext);
+        ControllUser.ChangeUser(StateCode.BROAD_SEX,String.valueOf(newSex),mContext);
         connect();
 
     }

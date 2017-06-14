@@ -158,14 +158,10 @@ public class AccountLoginActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-<<<<<<< HEAD
-                user=(User)Proxy.getWebData(StateCode.AccountLogin,parameter);
-=======
-                // TODO Auto-generated method stub
 
 //                user=(User)Proxy.getWebData(StateCode.AccountLogin,parameter);
                 user=(User)new Command().accountLogin(parameter);
->>>>>>> master
+
                 // 在下面这个方法里可以做任何更新UI的操作
                 AccountLoginActivity.this.runOnUiThread(new Runnable() {
                     @Override
