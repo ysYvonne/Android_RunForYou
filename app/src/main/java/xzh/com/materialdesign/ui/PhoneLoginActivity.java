@@ -5,9 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,14 +21,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.InjectView;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
-import xzh.com.materialdesign.api.MySharedPreferences;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 
@@ -45,11 +40,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
     private static String APPKEY = "1cb10bf97fef0";
     private static String APPSECRET = "21af261eb64cf0f2fc73cbd9095d4ba8";
 
-    final int LOGIN=0;
-    final int INVALID= -1;
-    final int VALID = 1;
-
-    private ProgressDialog dialog;
+//    private ProgressDialog dialog;
     private Context mContext;
     List list=new ArrayList();
     JSONObject parameter;
@@ -59,39 +50,6 @@ public class PhoneLoginActivity extends AppCompatActivity {
     Button btn,send;
     User user;
     private AlertDialog.Builder alertDialog;
-//    Handler handler = new Handler() {
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            switch (msg.what){
-//
-//                case VALID:
-//                    Looper.prepare();
-//                    sendValidCode();
-//                    Looper.loop();
-//                    break;
-//                case INVALID:
-//                    Looper.prepare();
-//                    builder.setTitle("提示" ) ;
-//                    builder.setMessage("手机号不存在，请重新输入" ) ;
-//                    builder.setPositiveButton("确定" ,  null );
-//                    builder.show();
-//                    Looper.loop();
-//                    break;
-//                case LOGIN:
-//                    Looper.prepare();
-//                    connectFinish();
-//                    Looper.loop();
-//                    break;
-//                default:
-//                    Looper.prepare();
-//                    logIn();
-//                    Looper.loop();
-//                    break;
-//            }
-//
-//
-//        }
-//    };
 
     TextView register,account;
 
@@ -138,6 +96,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
                     if(checkPhone())
                         btn.setEnabled(true);
                         btn.setBackgroundColor(ContextCompat.getColor(mContext, R.color.myPrimaryColor));
+
                         checkPhoneExist();
                 }
             }
@@ -154,8 +113,9 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                 if(checkPhone() && checkValid()){
 
-                    SMSSDK.submitVerificationCode("86", phone.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
+//                    SMSSDK.submitVerificationCode("86", phone.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
 
+                    logIn();
                 }
 
             }
@@ -255,20 +215,16 @@ public class PhoneLoginActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 
-                boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
+//                boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
+                boolean exist=(Boolean)new Command().phoneValid(parameter);
                 if(exist){
                     Log.v("ys","手机号存在,开始发送验证码");
                     PhoneLoginActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            sendValidCode();
+//                            sendValidCode();
                         }
                     });
-
-//                    Message msg = handler.obtainMessage();
-//                    msg.what=VALID;
-//
-//                    handler.handleMessage(msg); //通知handler我完事儿啦
 
                 }else{
                     PhoneLoginActivity.this.runOnUiThread(new Runnable() {
@@ -290,8 +246,9 @@ public class PhoneLoginActivity extends AppCompatActivity {
     }
 
     private void logIn(){
-        Log.v("dz","phone login");
-        dialog = new ProgressDialog(mContext);
+        Log.v("ys","手机登录中");
+
+//        dialog = new ProgressDialog(mContext);
 
         //完成对手机号和验证码的包装
         parameter=new JSONObject();
@@ -312,14 +269,15 @@ public class PhoneLoginActivity extends AppCompatActivity {
 //        dialog.show();
 
 
-        connect(StateCode.PhoneLogin);
+        connect();
 
     }
-    private void connect(final String sc){
+    private void connect(){
         new Thread(){
             public void run() {
 
-                user=(User)Proxy.getWebData(sc,parameter);
+//                user=(User)Proxy.getWebData(sc,parameter);
+                user=(User)new Command().phoneLogin(parameter);
                 PhoneLoginActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -334,7 +292,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
     //连接完网络请求后需要做的事情
     private void connectFinish() {
 
-        dialog.dismiss();
+//        dialog.dismiss();
 
         if (user==null) {
 

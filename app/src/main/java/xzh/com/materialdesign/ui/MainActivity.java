@@ -1,12 +1,8 @@
 package xzh.com.materialdesign.ui;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
-import android.os.Handler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,13 +10,11 @@ import org.json.JSONObject;
 import java.util.List;
 
 
-import cn.smssdk.SMSSDK;
 import xzh.com.materialdesign.adapter.HomeAdapter;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.base.MyBaseActivity;
 import xzh.com.materialdesign.model.LittleOrderBean;
-import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 
 
@@ -80,7 +74,8 @@ public class MainActivity extends MyBaseActivity {
             public void run() {
             // TODO Auto-generated method stub
              // 更新主线程ＵＩ
-                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+//                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+                list= (List<LittleOrderBean>)new Command().getLittleOrder(parameter);
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -124,7 +119,8 @@ public class MainActivity extends MyBaseActivity {
             public void run() {
                 // TODO Auto-generated method stub
                 // 更新主线程ＵＩ
-                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+//                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+                list= (List<LittleOrderBean>)new Command().getLittleOrder(parameter);
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

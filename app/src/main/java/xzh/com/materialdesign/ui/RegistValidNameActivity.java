@@ -6,13 +6,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,10 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.model.*;
@@ -56,16 +51,6 @@ public class RegistValidNameActivity extends AppCompatActivity {
     private ProgressDialog dialog;
     JSONObject parameter;
     User user;
-
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            Looper.prepare();
-            connectFinish();
-            Looper.loop();
-        }
-    };
 
     @SuppressLint("NewApi")
     @Override
@@ -185,16 +170,18 @@ public class RegistValidNameActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 
-                user=(User) Proxy.getWebData(StateCode.Register,parameter);
+//                user=(User) Proxy.getWebData(StateCode.Register,parameter);
+                user=(User)new Command().register(parameter);
 
                 //错误产生一个是邮箱重复的话后段不会允许注册（手机号重复会允许，这应该也有问题）
                 //另一个对proxy返回空值没有判断，如果返回-1就会返回空值
 
-                Message msg = handler.obtainMessage();
-
-                msg.obj = user;
-
-                handler.handleMessage(msg); //通知handler我完事儿啦
+                RegistValidNameActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        connectFinish();
+                    }
+                });
 
             };
         }.start();
@@ -204,6 +191,7 @@ public class RegistValidNameActivity extends AppCompatActivity {
     private void connectFinish() {
 
         dialog.dismiss();
+
         if(user==null){
             new AlertDialog.Builder(mContext)
 
@@ -221,9 +209,9 @@ public class RegistValidNameActivity extends AppCompatActivity {
 
                 new AlertDialog.Builder(mContext)
 
-                        .setTitle("警告")
+                        .setTitle("注册失败")
 
-                        .setMessage(StateCode.UserIdNull)
+                        .setMessage("邮箱已存在，请重新输入")
 
                         .setPositiveButton("确定", null)
 

@@ -1,17 +1,13 @@
 package xzh.com.materialdesign.personInfo;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.ui.*;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -111,7 +107,8 @@ public class NicknameActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 
-                user=(User)Proxy.getWebData(StateCode.PersonalInfo,parameter);
+//                user=(User)Proxy.getWebData(StateCode.PersonalInfo,parameter);
+                user=(User)new Command().personalInfo(parameter);
                 code = user.getSex();
 
                 // 在下面这个方法里可以做任何更新UI的操作

@@ -41,6 +41,7 @@ import xzh.com.materialdesign.ui.ReceiveOrderActivity;
 import xzh.com.materialdesign.ui.ThemColorChangeActivity;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.utils.UIHelper;
+import xzh.com.materialdesign.view.CircleImageView;
 import xzh.com.materialdesign.view.NavigationDrawerCallbacks;
 import xzh.com.materialdesign.view.NavigationDrawerFragment;
 import xzh.com.materialdesign.view.PullCallback;
@@ -61,6 +62,17 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
     TextView phone;
     TextView school;
     TextView sex;
+    CircleImageView head;
+
+    int[] image = {
+            R.drawable.img_user_head,
+            R.drawable.img_user_head_1,
+            R.drawable.img_user_head_2,
+            R.drawable.img_user_head_3,
+            R.drawable.img_user_head_4,
+            R.drawable.img_user_head_5,
+            R.drawable.img_user_head_6,
+    };
 
     Bundle mBundle;
 
@@ -69,7 +81,6 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
     private boolean isHasLoadedAll = false;
     private int nextPage;
     private boolean on_off = false;
-
 
     @SuppressLint("NewApi")
 
@@ -161,6 +172,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
     }
     private void initUser() {
         //加载个人信息
+
         user=ControlUser.getUser(mContext);
         nickname=(TextView)findViewById(R.id.info_nickname);
         nickname.setText(user.getNickname());
@@ -170,6 +182,7 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
         phone.setText(user.getPhoneNum());
         school=(TextView)findViewById(R.id.info_school);
         school.setText(user.getSchool());
+
         sex=(TextView)findViewById(R.id.info_sex);
         switch (user.getSex()){
             case 1:
@@ -183,6 +196,16 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
                 break;
         }
         registerBroadcastReceiver();
+
+        head = (CircleImageView)findViewById(R.id.info_image);
+        String s = "img_user_head";
+        int i = -1;
+        i = (user.getNickname().length() + user.getName().length() + user.getEmail().length())%7;
+        if(i>-1 && i<7){
+            Log.e("ys", "设置头像为： "+i);
+            head.setImageDrawable(getResources().getDrawable(image[i]));
+        }
+
     }
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver(){
         //个人信息改变的接收器
@@ -225,6 +248,8 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
         myIntentFilter.addAction(StateCode.BROAD_NICKNAME);
         myIntentFilter.addAction(StateCode.BROAD_PHONE);
         myIntentFilter.addAction(StateCode.BROAD_PWD);
+        myIntentFilter.addAction(StateCode.BROAD_SCHOOL);
+        myIntentFilter.addAction(StateCode.BROAD_SEX);
         //注册广播
         registerReceiver(mBroadcastReceiver, myIntentFilter);
     }

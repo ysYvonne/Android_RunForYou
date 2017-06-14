@@ -1,17 +1,15 @@
 package xzh.com.materialdesign.personInfo;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.ui.*;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -172,11 +170,11 @@ public class EmailChangeActivity extends AppCompatActivity {
 
             connect();
         }
-
-
     }
 
     private void changeEmail(){
+
+        Flag = -1;
 
         if(checkE()){
             newemail = email_editText.getText().toString()+email_text.getText().toString();
@@ -207,7 +205,8 @@ public class EmailChangeActivity extends AppCompatActivity {
             public void run() {
                 // TODO Auto-generated method stub
 
-                user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
+//                user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
+                user=(User)new Command().personalInfo(parameter);
                 code = user.getSex();
 
                 // 在下面这个方法里可以做任何更新UI的操作
@@ -234,7 +233,9 @@ public class EmailChangeActivity extends AppCompatActivity {
 //                        .setPositiveButton("确定", null)
 
                         .show();
+
                 ControlUser.ChangeUser(StateCode.BROAD_EMAIL,newemail,mContext);
+                ControlUser.ChangeUser(StateCode.BROAD_SCHOOL,schoolName,mContext);
 
                 finish();
 
@@ -300,7 +301,7 @@ public class EmailChangeActivity extends AppCompatActivity {
         emailData = new ArrayList<String>();
         emailData.add("@bjtu.edu.cn");
         emailData.add("@tsinghua.edu.cn");
-        emailData.add("@beili");
+        emailData.add("@beili.edu.cn");
         emailData.add("@pku.edu.cn");
 
 
