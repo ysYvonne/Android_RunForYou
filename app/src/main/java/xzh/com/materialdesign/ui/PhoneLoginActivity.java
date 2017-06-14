@@ -156,7 +156,6 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                     SMSSDK.submitVerificationCode("86", phone.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
 
-                    logIn();
                 }
 
             }
