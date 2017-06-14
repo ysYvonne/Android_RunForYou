@@ -142,10 +142,23 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
         setmAdapter();
 
         initViews();
-        initEvent();
+//        initEvent();
         initUser();
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.v("MyBaseActivity","onRusume");
+        if(ControlUser.getUser(mContext)==null) {
+            //禁止用户非法操作
+            ActivityHelper.startActivity(this, AccountLoginActivity.class);
+            finish();
+        }
+        mAdapter.clear();
+//        initViews();
+        initEvent();
+//        initUser();
+    }
     private void initUser() {
         //加载个人信息
         user=ControlUser.getUser(mContext);
@@ -343,9 +356,10 @@ public abstract class MyBaseActivity extends AppCompatActivity implements Naviga
                         public void onClick(DialogInterface dialog, int which) {
                         //确定按钮的点击事件
                             ControlUser.clearUser(mContext);
+                            finish();
                             ActivityHelper.startActivity(mContext, AccountLoginActivity.class);
                             unregisterReceiver(mBroadcastReceiver);
-                            finish();
+
                         }
                     }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override

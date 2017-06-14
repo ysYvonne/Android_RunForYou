@@ -261,6 +261,7 @@ public class OrderActivity extends BaseActivity {
             } else {
                 if(credit.getCredit() >= Integer.parseInt(selectMethod)){
                 ActivityHelper.startActivity(mContext, MainActivity.class);
+
                 finish();
                 }
 

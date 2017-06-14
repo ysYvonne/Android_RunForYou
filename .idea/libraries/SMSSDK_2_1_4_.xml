@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="SMSSDK-2.1.4-">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/d27fccd70e1a29f66b91071955aed53315fd977e/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/d27fccd70e1a29f66b91071955aed53315fd977e/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/795fc1811e90b3b965847f6995589a935dc5cad5/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/795fc1811e90b3b965847f6995589a935dc5cad5/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
