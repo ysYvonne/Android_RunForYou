@@ -7,7 +7,6 @@ import org.json.JSONObject;
  */
 
 public class Command {
-    private String url="http://112.74.124.48:8080/RunForYou/";
 
     AccountLogin _AccountLogin;
     PhoneValid _PhoneValid;
@@ -49,55 +48,55 @@ public class Command {
     }
 
     public Object accountLogin(JSONObject parameter){
-        return _AccountLogin.getWebData(url,parameter);
+        return _AccountLogin.getWebData(parameter);
     }
     public Object phoneValid(JSONObject parameter){
-        return _PhoneValid.getWebData(url,parameter);
+        return _PhoneValid.getWebData(parameter);
     }
     public Object phoneLogin(JSONObject parameter){
-        return _PhoneLogin.getWebData(url,parameter);
+        return _PhoneLogin.getWebData(parameter);
     }
     public Object register(JSONObject parameter){
-        return _Register.getWebData(url,parameter);
+        return _Register.getWebData(parameter);
     }
     public Object getLittleOrder(JSONObject parameter){
-        return _GetLittleOrder.getWebData(url,parameter);
+        return _GetLittleOrder.getWebData(parameter);
     }
     public Object orderPublish(JSONObject parameter){
-        return _OrderPublish.getWebData(url,parameter);
+        return _OrderPublish.getWebData(parameter);
     }
     public Object getCredit(JSONObject parameter){
-        return _GetCredit.getWebData(url,parameter);
+        return _GetCredit.getWebData(parameter);
     }
     public Object personalInfo(JSONObject parameter){
-        return _PersonalInfo.getWebData(url,parameter);
+        return _PersonalInfo.getWebData(parameter);
     }
     public Object orderInfo(JSONObject parameter){
-        return _OrderInfo.getWebData(url,parameter);
+        return _OrderInfo.getWebData(parameter);
     }
     public Object contactUs(JSONObject parameter){
-        return _ContactUs.getWebData(url,parameter);
+        return _ContactUs.getWebData(parameter);
     }
     public Object orderState(JSONObject parameter){
-        return _OrderState.getWebData(url,parameter);
+        return _OrderState.getWebData(parameter);
     }
     public Object orderReceive(JSONObject parameter){
-        return _OrderReceive.getWebData(url,parameter);
+        return _OrderReceive.getWebData(parameter);
     }
     public Object orderUpdate(JSONObject parameter){
-        return _OrderUpdate.getWebData(url,parameter);
+        return _OrderUpdate.getWebData(parameter);
     }
     public Object orderFinish(JSONObject parameter){
-        return _OrderFinish.getWebData(url,parameter);
+        return _OrderFinish.getWebData(parameter);
     }
     public Object orderReview(JSONObject parameter){
-        return _OrderReview.getWebData(url,parameter);
+        return _OrderReview.getWebData(parameter);
     }
     public Object getReview(JSONObject parameter){
-        return _GetReview.getWebData(url,parameter);
+        return _GetReview.getWebData(parameter);
     }
     public Object orderDrawback(JSONObject parameter){
-        return _OrderDrawback.getWebData(url,parameter);
+        return _OrderDrawback.getWebData(parameter);
     }
 
 }

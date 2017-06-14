@@ -14,32 +14,7 @@ import xzh.com.materialdesign.utils.JsonUtil;
 
 public class PhoneValid implements ProxyCommand {
     @Override
-    public Object getWebData(String url, JSONObject parameter) {
-        int code;
-        String myUrl=url+"LoginServlet";
-
-        String retSrc= HttpHelper.connectToServlet(myUrl,parameter);
-
-        try {
-
-            JSONObject result = new JSONObject(retSrc);
-
-            if(result!=null){
-                code = JsonUtil.getEntity(result.getString("code"),int.class);
-
-                Log.v("dz","测试用户手机 code"+code);
-                if(code == 1)
-                    return true;
-                else
-                    return false;
-
-            }else{
-                return false;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return false;
+    public Object getWebData( JSONObject parameter) {
+        return new Proxy().PhoneValid(parameter);
     }
 }

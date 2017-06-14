@@ -13,25 +13,7 @@ import xzh.com.materialdesign.utils.JsonUtil;
 
 public class GetCredit implements ProxyCommand {
     @Override
-    public Object getWebData(String url, JSONObject parameter) {
-        Credit credit;
-        String myUrl = url+"InformationServlet";
-        String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
-
-        try{
-            JSONObject result = new JSONObject(retSrc);
-
-            if(result !=null){
-                credit = JsonUtil.getEntity(result.getString("credit"),Credit.class);
-                return  credit;
-            }
-            else{
-                return null;
-            }
-        }
-        catch (JSONException e){
-            e.printStackTrace();
-        }
-        return null;
+    public Object getWebData( JSONObject parameter) {
+        return new Proxy().GetCredit(parameter);
     }
 }
