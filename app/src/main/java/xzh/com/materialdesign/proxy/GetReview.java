@@ -12,22 +12,7 @@ import xzh.com.materialdesign.utils.JsonUtil;
 
 public class GetReview implements ProxyCommand {
     @Override
-    public Object getWebData(String url, JSONObject parameter) {
-        int review;
-        String myUrl = url + "OrderServlet";
-        String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
-
-        try {
-            JSONObject result = new JSONObject(retSrc);
-            if (result != null) {
-                review = JsonUtil.getEntity(result.getString("review"), int.class);
-                return review;
-            } else {
-                return -1;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
+    public Object getWebData( JSONObject parameter) {
+        return new Proxy().GetReview(parameter);
     }
 }

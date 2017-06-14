@@ -7,5 +7,5 @@ import org.json.JSONObject;
  */
 
 public interface ProxyCommand {
-    public Object getWebData(String url,JSONObject parameter);
+    public Object getWebData(JSONObject parameter);
 }
