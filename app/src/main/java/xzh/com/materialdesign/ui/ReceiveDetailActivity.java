@@ -31,17 +31,6 @@ import xzh.com.materialdesign.view.CircleImageView;
 public class ReceiveDetailActivity extends AppCompatActivity {
     ImageButton navBack,changeState,phone;
     TextView title,name,money,time,info,reward,method,shop,des,state;
-    CircleImageView head;
-
-    int[] image = {
-            R.drawable.img_user_head,
-            R.drawable.img_user_head_1,
-            R.drawable.img_user_head_2,
-            R.drawable.img_user_head_3,
-            R.drawable.img_user_head_4,
-            R.drawable.img_user_head_5,
-            R.drawable.img_user_head_6,
-    };
 
     JSONObject parameter,updateParameter,finishParemeter,reviewParemeter,userParameter;
     Order_state order_state,newState;
@@ -72,14 +61,6 @@ public class ReceiveDetailActivity extends AppCompatActivity {
         state = (TextView) findViewById(R.id.order_transport_detail_state);
         changeState = (ImageButton) findViewById(R.id.order_transport_detail_change);
         phone = (ImageButton) findViewById(R.id.order_transport_detail_phone);
-
-        head = (CircleImageView)findViewById(R.id.order_transport_detail_image);
-        int i = -1;
-        i = (user.getNickname().length() + user.getName().length() + user.getEmail().length())%7;
-        if(i>-1 && i<7){
-            Log.e("ys", "设置头像为： "+i);
-            head.setImageDrawable(getResources().getDrawable(image[i]));
-        }
 
         Intent intent = getIntent();
         ordersInfo = (Orders) intent.getSerializableExtra("orderInfo");
@@ -124,15 +105,11 @@ public class ReceiveDetailActivity extends AppCompatActivity {
 
                 if(stateNum == 3 ){
                     orderFinish();
-                }else {
-                    if(stateNum == 4 ){
-//                        orderReview();
-                        showDialog();
-                    }else {
+                }else if(stateNum == 1 || stateNum == 2){
                         orderUpdate();
-                    }
-                }
+                }else{
 
+                }
             }
         });
 
@@ -348,6 +325,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
             case 4: {
                 state.setText("待评价");
                 changeState.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_review));
+                changeState.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;
             }
 

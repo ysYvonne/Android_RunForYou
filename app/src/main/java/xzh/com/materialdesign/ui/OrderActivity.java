@@ -2,8 +2,10 @@ package xzh.com.materialdesign.ui;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -29,6 +31,7 @@ import xzh.com.materialdesign.model.Credit;
 import xzh.com.materialdesign.model.ModifyPerson;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Command;
+import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 
 /**
@@ -48,12 +51,14 @@ public class OrderActivity extends BaseActivity {
     private ProgressDialog dialog;
     int code;
     Credit credit;
+    Intent intent;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.v("tb","OrderActivity onCreate");
         mContext = OrderActivity.this;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_layout);
         ButterKnife.inject(this);
@@ -177,21 +182,35 @@ public class OrderActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 ActivityHelper.startActivity(OrderActivity.this,ModifyActivity.class);
+
             }
         });
 
-        Intent intent = getIntent();
+        intent = getIntent();
         User user = (User) intent.getSerializableExtra("userInfo");
         name.setText(user.getNickname());
         phone.setText(user.getPhoneNum());
 
-        ModifyPerson modifyInfo = (ModifyPerson) intent.getSerializableExtra("modify_info");
-        if(modifyInfo != null){
-            name.setText(modifyInfo.getModifyname());
-            phone.setText(modifyInfo.getModifyphone());}
+        IntentFilter myIntentFilter = new IntentFilter();
+        myIntentFilter.addAction(StateCode.BROAD_CHANGENAME);
+        myIntentFilter.addAction(StateCode.BROAD_CHANGEPHONE);
+
+
+        //注册广播
+        registerReceiver(mBroadcastReceiver, myIntentFilter);
 
     }
 
+//    @Override
+//    public void onResume(){
+//        super.onResume();
+//        Log.v("OrderActivity","btn_modify.s");
+//        ModifyPerson modifyInfo = (ModifyPerson) intent.getSerializableExtra("modify_info");
+//        if(modifyInfo != null){
+//            Log.v("ys","g更改联系人啦啦啦啦啦啦： " + modifyInfo.getModifyname());
+//            name.setText(modifyInfo.getModifyname());
+//            phone.setText(modifyInfo.getModifyphone());}
+//    }
     // 检测网络
     private boolean checkNetwork() {
 
@@ -325,5 +344,35 @@ public class OrderActivity extends BaseActivity {
             myCredit.setText("(积分："+credit.getCredit()+"）");
         }
     }
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver(){
+        //个人信息改变的接收器
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+
+            String action = intent.getAction();
+            switch (action){
+                case StateCode.BROAD_CHANGENAME:
+                    Log.v("OrderActivity","change name");
+                    String nickName=intent.getStringExtra(StateCode.BROAD_CHANGENAME);
+                    Log.v("dz","接收到的nickname为："+nickName);
+                    name.setText(nickName);
+                    break;
+                case StateCode.BROAD_CHANGEPHONE:
+                    Log.v("OrderActivity","change phone");
+                    String changePhone=intent.getStringExtra(StateCode.BROAD_CHANGEPHONE);
+                    Log.v("dz","接收到的phone为："+changePhone);
+                    phone.setText(changePhone);
+                    break;
+
+
+
+
+
+            }
+
+        }
+
+    };
 
 }

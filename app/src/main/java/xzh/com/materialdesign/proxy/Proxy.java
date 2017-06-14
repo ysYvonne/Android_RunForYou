@@ -3,10 +3,7 @@ package xzh.com.materialdesign.proxy;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
-<<<<<<< HEAD
-=======
 import org.apache.http.client.ClientProtocolException;
->>>>>>> master
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -21,19 +18,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-import xzh.com.materialdesign.model.Credit;
-import xzh.com.materialdesign.model.LittleOrderBean;
-import xzh.com.materialdesign.model.Order_state;
-import xzh.com.materialdesign.model.Orders;
-
 import xzh.com.materialdesign.http.HttpHelper;
 import xzh.com.materialdesign.model.*;
-
-=======
-import xzh.com.materialdesign.http.HttpHelper;
-import xzh.com.materialdesign.model.*;
->>>>>>> master
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.utils.JsonUtil;
 /**
@@ -41,77 +27,6 @@ import xzh.com.materialdesign.utils.JsonUtil;
  */
 
 public class Proxy {
-<<<<<<< HEAD
-    private static String url="http://112.74.124.48:8080/RunForYou/";
-
-
-    public static Object  getWebData(String methodName,JSONObject parameter){
-//        JSONObject loginJson = new JSONObject();
-//        try {
-//            loginJson.put("method",methodName);
-//            loginJson.put("parameter",parameter);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-        switch(methodName){
-            case StateCode.AccountLogin:
-                return AccountLogin(parameter);
-
-            case StateCode.PhoneValid:
-                return PhoneValid(parameter);
-
-            case StateCode.PhoneLogin:
-                return PhoneLogin(parameter);
-
-            case StateCode.Register:
-                return Register(parameter);
-
-            case StateCode.GetLittleOrder:
-                return GetLittleOrder(parameter);
-
-            case StateCode.OrderPublish:
-                return OrderPublish(parameter);
-
-            case StateCode.GetCredit:
-                return GetCredit(parameter);
-            case StateCode.PersonalInfo:
-                return PersonalInfo(parameter);
-
-            case StateCode.OrderInfo:
-                return OrderInfo(parameter);
-
-            case StateCode.ContactUs:
-                return ContactUs(parameter);
-
-            case StateCode.OrderState:
-                return OrderState(parameter);
-
-            case StateCode.OrderRecive:
-                return  OrderReceive(parameter);
-
-            case StateCode.OrderUpdate:
-                return OrderUpdate(parameter);
-
-            case StateCode.OrderFinish:
-                return OrderFinish(parameter);
-
-            case StateCode.OrderReview:
-                return OrderReview(parameter);
-
-            case StateCode.GetReview:
-                return GetReview(parameter);
-
-            case StateCode.OrderDrawback:
-                return OrderDrawback(parameter);
-        }
-        return null;
-
-    }
-
-   
-
-    private static User AccountLogin(JSONObject parameter) {
-=======
 
 
     private  String url="http://112.74.124.48:8080/RunForYou/";
@@ -123,7 +38,6 @@ public class Proxy {
 //        for(String s:jsonArray){
 //            list.add(JsonUtil.getEntity(s,String.class));
 //        }
->>>>>>> master
         User user;
         String myUrl=url+"LoginServlet";
         String retSrc= HttpHelper.connectToServlet(myUrl,parameter);
@@ -133,11 +47,7 @@ public class Proxy {
             JSONObject result = new JSONObject(retSrc);
 
             if(result!=null){
-<<<<<<< HEAD
-               user = JsonUtil.getEntity(result.getString("user"),User.class);
-=======
                 user = JsonUtil.getEntity(result.getString("user"),User.class);
->>>>>>> master
 
                 Log.v("dz","测试用户id"+user.getUserId());
                 return user;
@@ -152,11 +62,7 @@ public class Proxy {
         return null;
     }
 
-<<<<<<< HEAD
-    private static Boolean PhoneValid(JSONObject parameter){
-=======
     public  Boolean PhoneValid(JSONObject parameter){
->>>>>>> master
 
         int code;
         String myUrl=url+"LoginServlet";
@@ -185,15 +91,9 @@ public class Proxy {
 
         return false;
     }
-<<<<<<< HEAD
-    private static User PhoneLogin(JSONObject parameter) {
-
-        User user=new User();
-=======
     public  User PhoneLogin(JSONObject parameter) {
 
         User user;
->>>>>>> master
         String myUrl=url+"LoginServlet";
 
         String retSrc=HttpHelper.connectToServlet(myUrl,parameter);
@@ -217,15 +117,9 @@ public class Proxy {
         return null;
     }
 
-<<<<<<< HEAD
-    private static User Register(JSONObject parameter){
-
-        User user = new User();
-=======
     public  User Register(JSONObject parameter){
 
         User user ;
->>>>>>> master
         String myUrl=url+"LoginServlet";
 
         String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
@@ -235,20 +129,8 @@ public class Proxy {
 
             if(result != null){
                 user = JsonUtil.getEntity(result.getString("user"),User.class);
-<<<<<<< HEAD
-
-                if(user.getUserId() != -1){
-                    Log.v("dz","测试用户id"+user.getUserId());
-                    return user;
-                }else{
-                    user.setUserId(-1);
-                    return null;
-                }
-
-=======
                 Log.v("dz","测试用户id"+user.getUserId());
                 return user;
->>>>>>> master
             }else{
                 Log.v("ys", "注册失败");
                 return null;
@@ -262,11 +144,7 @@ public class Proxy {
         return null;
     }
 
-<<<<<<< HEAD
-    private static List<LittleOrderBean> GetLittleOrder(JSONObject parameter) {
-=======
     public  List<LittleOrderBean> GetLittleOrder(JSONObject parameter) {
->>>>>>> master
         List<LittleOrderBean> list=new ArrayList<LittleOrderBean>();
         String myUrl=url+"OrderServlet";
         String retSrc=HttpHelper.connectToServlet(myUrl,parameter);
@@ -321,11 +199,7 @@ public class Proxy {
     }
 
 
-<<<<<<< HEAD
-    private static int OrderPublish(JSONObject parameter){
-=======
     public  int OrderPublish(JSONObject parameter){
->>>>>>> master
         int code;
         String myUrl = url+"OrderServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
@@ -347,11 +221,7 @@ public class Proxy {
         return -1;
     }
 
-<<<<<<< HEAD
-    private static Credit GetCredit(JSONObject parameter){
-=======
     public  Credit GetCredit(JSONObject parameter){
->>>>>>> master
         Credit credit;
         String myUrl = url+"InformationServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
@@ -373,11 +243,7 @@ public class Proxy {
         return null;
     }
 
-<<<<<<< HEAD
-    private static Orders OrderInfo(JSONObject parameter) {
-=======
     public  Orders OrderInfo(JSONObject parameter) {
->>>>>>> master
         Orders orders;
         String myUrl = url + "OrderServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
@@ -397,11 +263,7 @@ public class Proxy {
         return null;
     }
 
-<<<<<<< HEAD
-    private static User PersonalInfo(JSONObject parameter){
-=======
     public  User PersonalInfo(JSONObject parameter){
->>>>>>> master
         User user = new User();
         int code = -1;
         String myUrl = url+"InformationServlet";
@@ -434,11 +296,7 @@ public class Proxy {
 
 
 
-<<<<<<< HEAD
-    private static boolean ContactUs(JSONObject parameter){
-=======
     public  boolean ContactUs(JSONObject parameter){
->>>>>>> master
 
         String myUrl=url+"InformationServlet";
 
@@ -467,11 +325,7 @@ public class Proxy {
         return false;
     }
 
-<<<<<<< HEAD
-    private static Order_state OrderState(JSONObject parameter){
-=======
     public  Order_state OrderState(JSONObject parameter){
->>>>>>> master
         Order_state orders;
         String myUrl = url+"OrderServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
@@ -494,11 +348,7 @@ public class Proxy {
 
     }
 
-<<<<<<< HEAD
-    private static int OrderReceive(JSONObject parameter){
-=======
     public  int OrderReceive(JSONObject parameter){
->>>>>>> master
         int code;
         String myUrl = url+"OrderServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
@@ -520,11 +370,7 @@ public class Proxy {
         return -1;
     }
 
-<<<<<<< HEAD
-    private static int OrderUpdate(JSONObject parameter){
-=======
     public  int OrderUpdate(JSONObject parameter){
->>>>>>> master
         int code;
         String myUrl = url+"OrderServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
@@ -546,11 +392,7 @@ public class Proxy {
         return -1;
     }
 
-<<<<<<< HEAD
-    private static int OrderFinish(JSONObject parameter){
-=======
     public  int OrderFinish(JSONObject parameter){
->>>>>>> master
         int code;
         String myUrl = url+"OrderServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
@@ -572,11 +414,7 @@ public class Proxy {
         return -1;
     }
 
-<<<<<<< HEAD
-    private static int OrderReview(JSONObject parameter){
-=======
     public  int OrderReview(JSONObject parameter){
->>>>>>> master
         int code;
         String myUrl = url+"OrderServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
@@ -598,11 +436,7 @@ public class Proxy {
         return -1;
     }
 
-<<<<<<< HEAD
-    private static int GetReview(JSONObject parameter) {
-=======
     public  int GetReview(JSONObject parameter) {
->>>>>>> master
         int review;
         String myUrl = url + "OrderServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
@@ -621,11 +455,7 @@ public class Proxy {
         return -1;
     }
 
-<<<<<<< HEAD
-    private static int OrderDrawback(JSONObject parameter) {
-=======
     public  int OrderDrawback(JSONObject parameter) {
->>>>>>> master
         int code;
         String myUrl = url + "OrderServlet";
         String retSrc = HttpHelper.connectToServlet(myUrl, parameter);

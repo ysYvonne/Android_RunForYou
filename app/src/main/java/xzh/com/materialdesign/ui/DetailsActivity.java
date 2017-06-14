@@ -39,17 +39,6 @@ public class DetailsActivity extends AppCompatActivity {
     ImageButton receiveBtn;
     ImageView userImage,sex;
     TextView title,name,reward,method,info,shop,des,time,money;
-    CircleImageView head;
-
-    int[] image = {
-            R.drawable.img_user_head,
-            R.drawable.img_user_head_1,
-            R.drawable.img_user_head_2,
-            R.drawable.img_user_head_3,
-            R.drawable.img_user_head_4,
-            R.drawable.img_user_head_5,
-            R.drawable.img_user_head_6,
-    };
 
     JSONObject parameter;
     int code;
@@ -65,7 +54,7 @@ public class DetailsActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         title = (TextView) findViewById(R.id.order_nav_title);
-        userImage = (ImageView) findViewById(R.id.order_detail_image);
+ //       userImage = (ImageView) findViewById(R.id.order_detail_image);
         name = (TextView) findViewById(R.id.order_detail_name);
         reward = (TextView) findViewById(R.id.order_detail_money);
         method = (TextView) findViewById(R.id.order_detail_method);
@@ -77,14 +66,6 @@ public class DetailsActivity extends AppCompatActivity {
         receiveBtn = (ImageButton) findViewById(R.id.order_img_float_btn);
         sex = (ImageView) findViewById(R.id.order_detail_sex);
 
-        head = (CircleImageView)findViewById(R.id.order_detail_image);
-        String s = "img_user_head";
-        int i = -1;
-        i = (ControlUser.getUser(mContext).getNickname().length() + ControlUser.getUser(mContext).getName().length() + ControlUser.getUser(mContext).getEmail().length())%7;
-        if(i>-1 && i<7){
-            Log.e("ys", "设置头像为： "+i);
-            head.setImageDrawable(getResources().getDrawable(image[i]));
-        }
         mContext = DetailsActivity.this;
         init();
     }

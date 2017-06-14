@@ -2,6 +2,7 @@ package xzh.com.materialdesign.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ import xzh.com.materialdesign.proxy.Command;
 public class MyorderDetailAvtivity extends BaseActivity {
     ImageButton navBack,drawBack,phone;
     TextView title,name,money,time,info,reward,method,shop,des,state,orderReview;
-    JSONObject parameter,drawParameter,userParameter;
+    JSONObject parameter,drawParameter,userParameter,reviewParemeter;
     Order_state order_state,newState;
     int code,stateNum,review;
     String phoneNum;
@@ -112,6 +113,9 @@ public class MyorderDetailAvtivity extends BaseActivity {
                     }
                     drawbackOrder();
                 }
+                if(stateNum == 4){
+                    showDialog();
+                }
             }
         });
 
@@ -132,6 +136,61 @@ public class MyorderDetailAvtivity extends BaseActivity {
         });
 
     }
+
+    private void showDialog() {
+
+        ratingDialog = new RatingDialog.Builder(this)
+                .ratingBarColor(R.color.base_color_text_black)
+                .setPositiveButton(new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which) {
+                        ratingDialog.dismiss();
+                        orderReview();
+                    }
+                }).setCallBackListener(new RatingDialog.DialogCallBackListener() {
+                    @Override
+                    public void callBack(float msg) {//具体接口的实现
+                        review = (int)msg;
+                    }
+                })
+                .setNegativeButton(new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which) {
+                        review = -1;
+                        ratingDialog.dismiss();
+                    }
+                })
+                .build();
+        ratingDialog.show();
+
+
+    }
+
+    private void orderReview(){
+        new Thread(){
+            public void run() {
+                reviewParemeter = new JSONObject();
+                try {
+                    reviewParemeter.put("type","OrderJudge");
+                    reviewParemeter.put("orderId", ordersInfo.getOrderId());
+                    reviewParemeter.put("review",review);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                reviewConnect();
+            };
+        }.start();
+    }
+
+    private void reviewConnect() {
+        new Thread(){
+            public void run() {
+//                code = (int) Proxy.getWebData(StateCode.OrderReview,reviewParemeter);
+                code=(int)new Command().orderReview(reviewParemeter);
+                connectFinish();
+            };
+        }.start();
+    }
+
+
 
     private void getReview() {
         new Thread(){
@@ -243,13 +302,15 @@ public class MyorderDetailAvtivity extends BaseActivity {
 
             case 4: {
                 state.setText("待评价");
-                drawBack.setBackgroundResource(R.drawable.fab_finish_bg);
+                drawBack.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_review));
+                drawBack.setBackgroundResource(R.drawable.fab_deliver_bg);
                 break;
             }
 
             case 5: {
                 state.setText("已评价");
                 phone.setBackgroundResource(R.drawable.fab_finish_bg);
+                drawBack.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_review));
                 drawBack.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;
             }
