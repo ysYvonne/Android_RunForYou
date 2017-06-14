@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Command;
+import xzh.com.materialdesign.view.CircleImageView;
 
 
 /**
@@ -29,6 +31,18 @@ import xzh.com.materialdesign.proxy.Command;
 public class ReceiveDetailActivity extends AppCompatActivity {
     ImageButton navBack,changeState,phone;
     TextView title,name,money,time,info,reward,method,shop,des,state;
+    CircleImageView head;
+
+    int[] image = {
+            R.drawable.img_user_head,
+            R.drawable.img_user_head_1,
+            R.drawable.img_user_head_2,
+            R.drawable.img_user_head_3,
+            R.drawable.img_user_head_4,
+            R.drawable.img_user_head_5,
+            R.drawable.img_user_head_6,
+    };
+
     JSONObject parameter,updateParameter,finishParemeter,reviewParemeter,userParameter;
     Order_state order_state,newState;
     int code,stateNum,review;
@@ -58,6 +72,14 @@ public class ReceiveDetailActivity extends AppCompatActivity {
         state = (TextView) findViewById(R.id.order_transport_detail_state);
         changeState = (ImageButton) findViewById(R.id.order_transport_detail_change);
         phone = (ImageButton) findViewById(R.id.order_transport_detail_phone);
+
+        head = (CircleImageView)findViewById(R.id.order_transport_detail_image);
+        int i = -1;
+        i = (user.getNickname().length() + user.getName().length() + user.getEmail().length())%7;
+        if(i>-1 && i<7){
+            Log.e("ys", "设置头像为： "+i);
+            head.setImageDrawable(getResources().getDrawable(image[i]));
+        }
 
         Intent intent = getIntent();
         ordersInfo = (Orders) intent.getSerializableExtra("orderInfo");

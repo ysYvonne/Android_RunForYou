@@ -23,8 +23,10 @@ import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
+import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.utils.ActivityHelper;
+import xzh.com.materialdesign.view.CircleImageView;
 
 /**
  * Created by xiangzhihong on 2016/3/18 on 16:43.
@@ -37,6 +39,18 @@ public class DetailsActivity extends AppCompatActivity {
     ImageButton receiveBtn;
     ImageView userImage,sex;
     TextView title,name,reward,method,info,shop,des,time,money;
+    CircleImageView head;
+
+    int[] image = {
+            R.drawable.img_user_head,
+            R.drawable.img_user_head_1,
+            R.drawable.img_user_head_2,
+            R.drawable.img_user_head_3,
+            R.drawable.img_user_head_4,
+            R.drawable.img_user_head_5,
+            R.drawable.img_user_head_6,
+    };
+
     JSONObject parameter;
     int code;
 
@@ -62,6 +76,15 @@ public class DetailsActivity extends AppCompatActivity {
         time = (TextView) findViewById(R.id.order_detail_time);
         receiveBtn = (ImageButton) findViewById(R.id.order_img_float_btn);
         sex = (ImageView) findViewById(R.id.order_detail_sex);
+
+        head = (CircleImageView)findViewById(R.id.order_detail_image);
+        String s = "img_user_head";
+        int i = -1;
+        i = (ControlUser.getUser(mContext).getNickname().length() + ControlUser.getUser(mContext).getName().length() + ControlUser.getUser(mContext).getEmail().length())%7;
+        if(i>-1 && i<7){
+            Log.e("ys", "设置头像为： "+i);
+            head.setImageDrawable(getResources().getDrawable(image[i]));
+        }
         mContext = DetailsActivity.this;
         init();
     }
