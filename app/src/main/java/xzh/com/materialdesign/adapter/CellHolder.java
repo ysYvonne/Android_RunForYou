@@ -55,10 +55,10 @@ public class CellHolder extends RecyclerView.ViewHolder {
         item_des.setText(lob.getOrderAddress());
         switch (lob.getType()){
             case StateCode.OrderType_Money:
-                item_money.setText(String.valueOf(lob.getOrderReward())+"元");
+                item_money.setText(String.valueOf((int)lob.getOrderReward())+"元");
                 break;
             case StateCode.OrderType_Score:
-                item_money.setText(String.valueOf(lob.getOrderReward())+"积分");
+                item_money.setText(String.valueOf((int)lob.getOrderReward())+"分");
                 break;
 
         }

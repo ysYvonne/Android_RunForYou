@@ -3,6 +3,7 @@
 
     <item
         is-multidex="true"
+<<<<<<< HEAD
         jar="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -180,6 +181,14 @@
         revision="25.0.0"
         sha1="95c892d244f49414bbdf92c2235a32ea06bc68aa">
         <dex dex="/Users/yisheng/Documents/AndroidStudioProject/Android_RunForYou/app/build/intermediates/transforms/dex/debug/folders/1000/2/android-support-v7-recyclerview_3cde7a8e67f60abd20e401265014389cb54e719f/classes.dex" />
+=======
+        jar="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="06823554f02c7e10f2f74d32da57856a9e5c1e1d">
+        <dex dex="/Users/botan/Desktop/RunForYou_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_28574f93deecd152b046c7e49186a4f6e6d0c0c7/classes.dex" />
+>>>>>>> master
     </item>
 
 </items>

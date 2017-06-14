@@ -118,9 +118,9 @@
 
                 <TextView
                     android:id="@+id/order_myorder_detail_money"
-                    android:layout_width="30dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5"
+                    android:text=" 5 "
                     android:textColor="@color/colorTex"
                     android:textSize="18sp" />
 
@@ -261,7 +261,7 @@
                     android:id="@+id/order_myorder_detail_review"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="40dp"
                     android:text=" "
                     android:textColor="@color/swiperefresh_color2"
                     android:textSize="18sp" />

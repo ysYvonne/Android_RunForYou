@@ -72,14 +72,14 @@ public class ReceiveDetailActivity extends AppCompatActivity {
         if(ordersInfo != null){
             title.setText(ordersInfo.getOrderItem());
             name.setText(ordersInfo.getContactName());
-            reward.setText(String.valueOf(ordersInfo.getOrderReward()));
+            reward.setText(String.valueOf((int)ordersInfo.getOrderReward()));
 
             if(ordersInfo.getOrderType() == 1){
                 method.setText("分");
             }else
                 method.setText("元");
 
-            money.setText(String.valueOf(ordersInfo.getOrderPredict())+"元");
+            money.setText(String.valueOf((int)ordersInfo.getOrderPredict())+"元");
             info.setText(ordersInfo.getOrderDescribe());
             shop.setText(ordersInfo.getOrderDestination());
             des.setText(ordersInfo.getOrderAddress());
