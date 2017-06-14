@@ -143,7 +143,7 @@ public class OrderActivity extends BaseActivity {
 
                                  .setTitle("警告")
 
-                                 .setMessage("订单概述过长"+"！")
+                                 .setMessage("订单详情过长"+"！")
 
                                  .setPositiveButton("确定", null)
 
