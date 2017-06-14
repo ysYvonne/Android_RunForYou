@@ -174,7 +174,7 @@ public class RegistValidNameActivity extends AppCompatActivity {
 
         //弹出processdialog,必须要使用线程，不然无法显示
         dialog.setTitle("提示");
-        dialog.setMessage("正在登陆，请稍后...");
+        dialog.setMessage("正在登录，请稍后...");
         dialog.setCancelable(false);
         dialog.show();
 
@@ -230,9 +230,9 @@ public class RegistValidNameActivity extends AppCompatActivity {
                         .show();
             } else {
                 ControlUser.addUser(user,mContext);
-
-                ActivityHelper.startActivity(mContext, MainActivity.class);
                 finish();
+                ActivityHelper.startActivity(mContext, MainActivity.class);
+
             }
         }
 

@@ -175,6 +175,7 @@ public class RegistPhoneActivity extends AppCompatActivity {
                                 public void run() {
                                     String phone = phoneAccount.getText().toString();
                                     ActivityHelper.startActivity(mContext,RegistValidNameActivity.class,"phone",phone);
+                                    finish();
                                 }
                             });
 
@@ -256,15 +257,21 @@ public class RegistPhoneActivity extends AppCompatActivity {
                     });
 
                 }else{
-                    new AlertDialog.Builder(mContext)
+                    RegistPhoneActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new AlertDialog.Builder(mContext)
 
-                            .setTitle("提示")
+                                    .setTitle("提示")
 
-                            .setMessage("手机号已存在请直接登录")
+                                    .setMessage("手机号已存在请直接登录")
 
-                            .setPositiveButton("确定", null)
+                                    .setPositiveButton("确定", null)
 
-                            .show();
+                                    .show();
+                        }
+                    });
+
                 }
 
 

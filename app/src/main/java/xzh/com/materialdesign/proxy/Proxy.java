@@ -18,6 +18,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import xzh.com.materialdesign.http.HttpHelper;
 import xzh.com.materialdesign.model.*;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.utils.JsonUtil;
@@ -27,7 +28,6 @@ import xzh.com.materialdesign.utils.JsonUtil;
 
 public class Proxy {
     private static String url="http://112.74.124.48:8080/RunForYou/";
-    private String retSrc;
 
 
     public static Object  getWebData(String methodName,JSONObject parameter){
@@ -93,39 +93,7 @@ public class Proxy {
 
     }
 
-    private static String connectToServlet(String myUrl,JSONObject parameter ){
-
-        String retSrc="";
-        Log.v("Proxy.connectToServlet","myUrl is "+myUrl);
-        HttpPost request = new HttpPost(myUrl);
-// 先封装一个 JSON 对象
-// 绑定到请求 Entry
-        StringEntity se = null;
-        HttpResponse httpResponse=null;
-
-        Log.v("Proxy.connectToServlet","parameter is "+parameter.toString());
-
-        try {
-            se = new StringEntity(parameter.toString(),HTTP.UTF_8);
-            request.setEntity(se);
-// 发送请求
-            DefaultHttpClient dfHttpClient=new DefaultHttpClient();
-
-            httpResponse = dfHttpClient.execute(request);
-// 得到应答的字符串，这也是一个 JSON 格式保存的数据
-            retSrc = EntityUtils.toString(httpResponse.getEntity());
-            Log.v("Proxy.connectToServlet","接收到的http回应为：\n"+retSrc);
-        }catch (UnsupportedEncodingException e) {
-            Log.v("Proxy.connectToServlet","StringEntity 转化出错");
-            e.printStackTrace();
-        } catch (IOException e) {
-            Log.v("Proxy.connectToServlet","httpResponse 转化出错");
-            e.printStackTrace();
-        }
-
-        return retSrc;
-
-    }
+   
 
     private static User AccountLogin(JSONObject parameter) {
 //        String jsonReceive= "{\"destination\":\"首页标题测试8page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}\n{\"destination\":\"首页标题测试9page1\",\"moy_predict\":0.0,\"order_id\":0,\"money_reward\":0.0}";
@@ -135,7 +103,7 @@ public class Proxy {
 //        }
         User user;
         String myUrl=url+"LoginServlet";
-        String retSrc=connectToServlet(myUrl,parameter);
+        String retSrc= HttpHelper.connectToServlet(myUrl,parameter);
 
 // 生成 JSON 对象
         try{
@@ -162,7 +130,7 @@ public class Proxy {
         int code;
         String myUrl=url+"LoginServlet";
 
-        String retSrc=connectToServlet(myUrl,parameter);
+        String retSrc=HttpHelper.connectToServlet(myUrl,parameter);
 
         try {
 
@@ -191,7 +159,7 @@ public class Proxy {
         User user=new User();
         String myUrl=url+"LoginServlet";
 
-        String retSrc=connectToServlet(myUrl,parameter);
+        String retSrc=HttpHelper.connectToServlet(myUrl,parameter);
 
         try {
 
@@ -217,7 +185,7 @@ public class Proxy {
         User user = new User();
         String myUrl=url+"LoginServlet";
 
-        String retSrc = connectToServlet(myUrl, parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -242,7 +210,7 @@ public class Proxy {
     private static List<LittleOrderBean> GetLittleOrder(JSONObject parameter) {
         List<LittleOrderBean> list=new ArrayList<LittleOrderBean>();
         String myUrl=url+"OrderServlet";
-        String retSrc=connectToServlet(myUrl,parameter);
+        String retSrc=HttpHelper.connectToServlet(myUrl,parameter);
         Log.v("Proxy.GetLittleOrder ","retSrc is "+retSrc);
         //http请求结束
 
@@ -297,7 +265,7 @@ public class Proxy {
     private static int OrderPublish(JSONObject parameter){
         int code;
         String myUrl = url+"OrderServlet";
-        String retSrc = connectToServlet(myUrl,parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -319,7 +287,7 @@ public class Proxy {
     private static Credit GetCredit(JSONObject parameter){
         Credit credit;
         String myUrl = url+"InformationServlet";
-        String retSrc = connectToServlet(myUrl,parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -341,7 +309,7 @@ public class Proxy {
     private static Orders OrderInfo(JSONObject parameter) {
         Orders orders;
         String myUrl = url + "OrderServlet";
-        String retSrc = connectToServlet(myUrl, parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
 
         try {
             JSONObject result = new JSONObject(retSrc);
@@ -362,7 +330,7 @@ public class Proxy {
         User user = new User();
         int code = -1;
         String myUrl = url+"InformationServlet";
-        String retSrc = connectToServlet(myUrl, parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -395,7 +363,7 @@ public class Proxy {
 
         String myUrl=url+"InformationServlet";
 
-        String retSrc = connectToServlet(myUrl, parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -423,7 +391,7 @@ public class Proxy {
     private static Order_state OrderState(JSONObject parameter){
         Order_state orders;
         String myUrl = url+"OrderServlet";
-        String retSrc = connectToServlet(myUrl,parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -446,7 +414,7 @@ public class Proxy {
     private static int OrderReceive(JSONObject parameter){
         int code;
         String myUrl = url+"OrderServlet";
-        String retSrc = connectToServlet(myUrl,parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -468,7 +436,7 @@ public class Proxy {
     private static int OrderUpdate(JSONObject parameter){
         int code;
         String myUrl = url+"OrderServlet";
-        String retSrc = connectToServlet(myUrl,parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -490,7 +458,7 @@ public class Proxy {
     private static int OrderFinish(JSONObject parameter){
         int code;
         String myUrl = url+"OrderServlet";
-        String retSrc = connectToServlet(myUrl,parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -512,7 +480,7 @@ public class Proxy {
     private static int OrderReview(JSONObject parameter){
         int code;
         String myUrl = url+"OrderServlet";
-        String retSrc = connectToServlet(myUrl,parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl,parameter);
 
         try{
             JSONObject result = new JSONObject(retSrc);
@@ -534,7 +502,7 @@ public class Proxy {
     private static int GetReview(JSONObject parameter) {
         int review;
         String myUrl = url + "OrderServlet";
-        String retSrc = connectToServlet(myUrl, parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
 
         try {
             JSONObject result = new JSONObject(retSrc);
@@ -553,7 +521,7 @@ public class Proxy {
     private static int OrderDrawback(JSONObject parameter) {
         int code;
         String myUrl = url + "OrderServlet";
-        String retSrc = connectToServlet(myUrl, parameter);
+        String retSrc = HttpHelper.connectToServlet(myUrl, parameter);
 
         try {
             JSONObject result = new JSONObject(retSrc);
