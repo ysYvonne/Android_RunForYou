@@ -17,15 +17,14 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
 import xzh.com.materialdesign.model.Credit;
 import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
-=======
+
 import xzh.com.materialdesign.http.HttpHelper;
 import xzh.com.materialdesign.model.*;
->>>>>>> master
+
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.utils.JsonUtil;
 /**
