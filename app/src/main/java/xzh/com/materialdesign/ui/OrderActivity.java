@@ -206,7 +206,7 @@ public class OrderActivity extends BaseActivity {
         new Thread(){
             public void run() {
 //                credit = (Credit) Proxy.getWebData(StateCode.GetCredit,parameterCredit);
-                credit=(Credit)new Command().getCredit(parameter);
+                credit=(Credit)new Command().getCredit(parameterCredit);
 
             };
         }.start();
