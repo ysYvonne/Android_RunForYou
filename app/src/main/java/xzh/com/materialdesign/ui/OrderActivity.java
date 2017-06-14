@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -83,6 +84,10 @@ public class OrderActivity extends BaseActivity {
         myCredit = (TextView) findViewById(R.id.order_layout_deliver_credit);
         selectMethod = change_method.getText().toString();
 
+        long_info.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        long_info.setGravity(Gravity.TOP);
+        long_info.setSingleLine(false);
+        long_info.setHorizontallyScrolling(false);
 
         init();
 
@@ -111,6 +116,39 @@ public class OrderActivity extends BaseActivity {
 
                                 .show();
                     }
+                    else if(short_info.getText().length() > 8){
+                         new AlertDialog.Builder(mContext)
+
+                                 .setTitle("警告")
+
+                                 .setMessage("订单概述过长"+"！")
+
+                                 .setPositiveButton("确定", null)
+
+                                 .show();
+                     }
+                     else if(des.getText().length() == 0 ){
+                         new AlertDialog.Builder(mContext)
+
+                                 .setTitle("警告")
+
+                                 .setMessage("请输入收货地址"+"！")
+
+                                 .setPositiveButton("确定", null)
+
+                                 .show();
+                     }
+                     else if(long_info.getText().length() > 20){
+                         new AlertDialog.Builder(mContext)
+
+                                 .setTitle("警告")
+
+                                 .setMessage("订单详情过长"+"！")
+
+                                 .setPositiveButton("确定", null)
+
+                                 .show();
+                     }
                     else {
                          //if(check())
                          Order();

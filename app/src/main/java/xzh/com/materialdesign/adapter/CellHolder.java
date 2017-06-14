@@ -53,6 +53,7 @@ public class CellHolder extends RecyclerView.ViewHolder {
 
     public void loadInfo(LittleOrderBean lob){
         item_des.setText(lob.getOrderAddress());
+
         switch (lob.getType()){
             case StateCode.OrderType_Money:
                 item_money.setText(String.valueOf((int)lob.getOrderReward())+"元");

@@ -332,6 +332,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
             case 5: {
                 state.setText("已评价");
                 changeState.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_review));
+                phone.setBackgroundResource(R.drawable.fab_finish_bg);
                 changeState.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;
             }
@@ -339,6 +340,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
             case -1: {
                 state.setText("已取消");
                 changeState.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_cancel));
+                phone.setBackgroundResource(R.drawable.fab_finish_bg);
                 changeState.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;
             }
