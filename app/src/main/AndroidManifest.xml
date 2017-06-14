@@ -30,21 +30,27 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.PhoneLoginActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.RegistPhoneActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.RegistValidNameActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.DetailsActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.ThemColorChangeActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.OrderActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.ModifyActivity"
@@ -52,6 +58,7 @@
             android:theme="@style/dialogstyle" />
         <activity
             android:name=".ui.MyOrderActivity"
+
             android:label="我的订单"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
@@ -62,9 +69,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.ReceiveDetailActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.ContactActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.MyorderDetailAvtivity" />
         <activity android:name=".ui.PersonalInfoActivity"

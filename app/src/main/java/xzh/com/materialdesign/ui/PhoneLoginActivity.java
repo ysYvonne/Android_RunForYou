@@ -154,9 +154,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                 if(checkPhone() && checkValid()){
 
-//                    SMSSDK.submitVerificationCode("86", phone.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
+                    SMSSDK.submitVerificationCode("86", phone.getText().toString(), validationNum.getText().toString());//提交验证码  在eventHandler里面查看验证结果
 
-                    logIn();
                 }
 
             }
@@ -262,7 +261,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
                     PhoneLoginActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
- //                           sendValidCode();
+                            sendValidCode();
                         }
                     });
 
@@ -272,11 +271,17 @@ public class PhoneLoginActivity extends AppCompatActivity {
 //                    handler.handleMessage(msg); //通知handler我完事儿啦
 
                 }else{
-                    Log.v("ys","手机号不存在false");
-                    builder.setTitle("提示" ) ;
-                    builder.setMessage("手机号不存在，请重新输入" ) ;
-                    builder.setPositiveButton("确定" ,  null );
-                    builder.show();
+                    PhoneLoginActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.v("ys","手机号不存在false");
+                            builder.setTitle("提示" ) ;
+                            builder.setMessage("手机号不存在，请重新输入" ) ;
+                            builder.setPositiveButton("确定" ,  null );
+                            builder.show();
+                        }
+                    });
+
                 }
 
 
@@ -301,10 +306,10 @@ public class PhoneLoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         //弹出processdialog,必须要使用线程，不然无法显示
-        dialog.setTitle("提示");
-        dialog.setMessage("正在登陆，请稍后...");
-        dialog.setCancelable(false);
-        dialog.show();
+//        dialog.setTitle("提示");
+//        dialog.setMessage("正在登陆，请稍后...");
+//        dialog.setCancelable(false);
+//        dialog.show();
 
 
         connect(StateCode.PhoneLogin);

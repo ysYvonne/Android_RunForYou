@@ -15,12 +15,16 @@
     </content>
 <<<<<<< HEAD:Android_RunForYou.iml
 <<<<<<< HEAD:Android_RunForYou.iml
+<<<<<<< HEAD:Android_RunForYou.iml
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
 =======
     <orderEntry type="jdk" jdkName="JDK" jdkType="JavaSDK" />
 >>>>>>> master:RunForYou_Android.iml
 =======
     <orderEntry type="jdk" jdkName="1.8 (2)" jdkType="JavaSDK" />
+>>>>>>> master:RunForYou_Android.iml
+=======
+    <orderEntry type="jdk" jdkName="JDK" jdkType="JavaSDK" />
 >>>>>>> master:RunForYou_Android.iml
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
