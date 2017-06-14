@@ -47,4 +47,6 @@ public class StateCode {
     public final static String BROAD_NAME="name";
     public final static String BROAD_PHONE="phoneNum";
     public final static String BROAD_PWD="password";
+    public final static String BROAD_SCHOOL="school";
+    public final static String BROAD_SEX="sex";
 }

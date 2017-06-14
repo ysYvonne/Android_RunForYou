@@ -155,6 +155,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         });
 
         initData();
+
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,sexdata);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sexspinner.setAdapter(adapter);
@@ -250,6 +251,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        ControlUser.ChangeUser(StateCode.BROAD_SEX,String.valueOf(newSex),mContext);
         connect();
 
     }
@@ -257,7 +259,6 @@ public class PersonalInfoActivity extends AppCompatActivity {
     private void changeAge(){
 
         Log.v("ys", "start 更改年龄");
-
 
     }
 
@@ -368,31 +369,48 @@ public class PersonalInfoActivity extends AppCompatActivity {
                 case StateCode.BROAD_NICKNAME:
                     String nickName=intent.getStringExtra(StateCode.BROAD_NICKNAME);
                     Log.v("dz","接收到的nickname为："+nickName);
-                    my_nickname.setText(nickName);
+                    my_nickname.setText(my_nickname.getText() + nickName);
                     break;
 
                 case StateCode.BROAD_EMAIL:
                     String email=intent.getStringExtra(StateCode.BROAD_EMAIL);
                     Log.v("dz","email："+email);
-                    my_email.setText(email);
+                    my_email.setText(my_email.getText() + email);
                     break;
 
                 case StateCode.BROAD_NAME:
                     String name=intent.getStringExtra(StateCode.BROAD_NAME);
                     Log.v("dz","name："+name);
-                    my_name.setText("真实姓名:"+name);
+                    my_name.setText(my_name.getText() +name);
                     break;
 
                 case StateCode.BROAD_PHONE:
                     String phone=intent.getStringExtra(StateCode.BROAD_PHONE);
                     Log.v("dz","phone："+phone);
-                    my_phone.setText(phone);
+                    my_phone.setText(my_phone.getText() + phone);
                     break;
 
                 case StateCode.BROAD_PWD:
                     String pwd=intent.getStringExtra(StateCode.BROAD_PWD);
                     Log.v("dz","pwd："+pwd);
-                    my_pwd.setText(pwd);
+                    my_pwd.setText(my_pwd.getText() + "   ******");
+                    break;
+
+                case StateCode.BROAD_SCHOOL:
+                    String sc = intent.getStringExtra(StateCode.BROAD_SCHOOL);
+                    Log.v("ys", "school: "+ sc);
+                    my_school.setText(my_school.getText() + "   " + sc);
+                    break;
+
+                case StateCode.BROAD_SEX:
+                    String sexxxx = intent.getStringExtra(StateCode.BROAD_SEX);
+                    if(sexxxx.equals("1"))
+                        sexspinner.setSelection(0, true);
+                    else if(sexxxx.equals("2"))
+                        sexspinner.setSelection(1, true);
+                    else
+                        sexspinner.setSelection(2, true);
+
                     break;
 
             }
@@ -408,6 +426,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
         myIntentFilter.addAction(StateCode.BROAD_NICKNAME);
         myIntentFilter.addAction(StateCode.BROAD_PHONE);
         myIntentFilter.addAction(StateCode.BROAD_PWD);
+        myIntentFilter.addAction(StateCode.BROAD_SCHOOL);
+        myIntentFilter.addAction(StateCode.BROAD_SEX);
         //注册广播
         registerReceiver(mBroadcastReceiver, myIntentFilter);
     }
