@@ -292,7 +292,7 @@
                 android:layout_toRightOf="@+id/textView11"
                 android:ems="10"
                 android:inputType="time"
-                android:text="20min"
+                android:text="20"
                 android:textColor="@color/base_color_text_black"
                 android:textSize="18sp" />
 
