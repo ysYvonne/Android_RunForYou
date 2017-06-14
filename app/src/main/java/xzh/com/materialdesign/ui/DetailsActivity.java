@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -34,7 +35,7 @@ public class DetailsActivity extends AppCompatActivity {
     @InjectView(R.id.nav_back)
     ImageButton navBack;
     ImageButton receiveBtn;
-    ImageView userImage;
+    ImageView userImage,sex;
     TextView title,name,reward,method,info,shop,des,time,money;
     JSONObject parameter;
     int code;
@@ -60,6 +61,7 @@ public class DetailsActivity extends AppCompatActivity {
         des = (TextView) findViewById(R.id.order_detail_des);
         time = (TextView) findViewById(R.id.order_detail_time);
         receiveBtn = (ImageButton) findViewById(R.id.order_img_float_btn);
+        sex = (ImageView) findViewById(R.id.order_detail_sex);
         mContext = DetailsActivity.this;
         init();
     }
@@ -84,7 +86,12 @@ public class DetailsActivity extends AppCompatActivity {
             info.setText(ordersInfo.getOrderDescribe());
             shop.setText(ordersInfo.getOrderDestination());
             des.setText(ordersInfo.getOrderAddress());
-            time.setText(ordersInfo.getOrderTime());
+            time.setText(ordersInfo.getOrderTime()+" min");
+
+            if(ControlUser.getUser(mContext).getSex() == 2){
+                sex.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.female));
+            }else
+                sex.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.male));
 
             if(ControlUser.getUser(mContext).getUserId() == orderState.getClientId()){
                 receiveBtn.setBackgroundResource(R.drawable.fab_finish_bg);

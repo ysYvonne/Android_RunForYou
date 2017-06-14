@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import butterknife.ButterKnife;
 import xzh.com.materialdesign.R;
+import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.base.BaseActivity;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
@@ -57,9 +58,6 @@ public class MyorderDetailAvtivity extends BaseActivity {
         drawBack = (ImageButton) findViewById(R.id.order_myorder_detail_cancel);
         orderReview = (TextView) findViewById(R.id.order_myorder_detail_review);
         phone = (ImageButton) findViewById(R.id.order_myorder_detail_phone);
-
-
-
 
         Intent intent = getIntent();
         ordersInfo = (Orders) intent.getSerializableExtra("orderInfo");

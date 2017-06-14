@@ -170,11 +170,11 @@ public class EmailChangeActivity extends AppCompatActivity {
 
             connect();
         }
-
-
     }
 
     private void changeEmail(){
+
+        Flag = -1;
 
         if(checkE()){
             newemail = email_editText.getText().toString()+email_text.getText().toString();
@@ -233,7 +233,9 @@ public class EmailChangeActivity extends AppCompatActivity {
 //                        .setPositiveButton("确定", null)
 
                         .show();
+
                 ControlUser.ChangeUser(StateCode.BROAD_EMAIL,newemail,mContext);
+                ControlUser.ChangeUser(StateCode.BROAD_SCHOOL,schoolName,mContext);
 
                 finish();
 
@@ -299,7 +301,7 @@ public class EmailChangeActivity extends AppCompatActivity {
         emailData = new ArrayList<String>();
         emailData.add("@bjtu.edu.cn");
         emailData.add("@tsinghua.edu.cn");
-        emailData.add("@beili");
+        emailData.add("@beili.edu.cn");
         emailData.add("@pku.edu.cn");
 
 

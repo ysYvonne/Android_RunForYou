@@ -158,7 +158,7 @@
                         android:layout_width="match_parent"
                         android:textColorHint="#cdcdcd"
                         android:maxLines="1"
-                        android:hint="一句话描述你的需求吧"
+                        android:hint="一句话描述你的需求吧(最多8个字)"
                         android:textColor="@color/base_color_text_black"
                         android:inputType="text"
                         android:layout_marginTop="11dp"
@@ -185,7 +185,7 @@
                         android:textColorHint="#cdcdcd"
                         android:textColor="@color/base_color_text_black"
                         android:maxLines="3"
-                        android:hint="订单详情"
+                        android:hint="订单详情(最多20个字)"
                         android:inputType="text"
                         android:layout_marginTop="11dp"
                         android:layout_marginBottom="11dp"
@@ -211,10 +211,10 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -227,34 +227,33 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginRight="16dp"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="0.78"
                         android:background="#f7f7f9"
-                        android:layout_weight="0.78">
+                        android:orientation="vertical">
 
                         <EditText
                             android:id="@+id/order_layout_des"
-                            android:layout_height="match_parent"
                             android:layout_width="match_parent"
-                            android:textColorHint="#cdcdcd"
-                            android:maxLines="1"
-                            android:hint="选择收货地"
-                            android:textColor="@color/base_color_text_black"
-                            android:inputType="text"
-                            android:layout_marginTop="11dp"
+                            android:layout_height="match_parent"
                             android:layout_marginBottom="11dp"
                             android:layout_marginLeft="16dp"
+                            android:layout_marginTop="11dp"
                             android:background="#00000000"
-                            />
+                            android:hint="选择收货地"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@color/base_color_text_black"
+                            android:textColorHint="#cdcdcd" />
                     </LinearLayout>
 
                     <ImageView
                         android:id="@+id/order_layout_shop_map"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/chose_map"
-                        android:layout_weight="0.06" />
+                        android:layout_weight="0.06"
+                        android:src="@drawable/chose_map" />
 
                 </LinearLayout>
 
@@ -265,10 +264,10 @@
 
 
                 <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -281,34 +280,33 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginRight="16dp"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="0.78"
                         android:background="#f7f7f9"
-                        android:layout_weight="0.78">
+                        android:orientation="vertical">
 
                         <EditText
                             android:id="@+id/order_layout_shop"
-                            android:layout_height="match_parent"
                             android:layout_width="match_parent"
-                            android:textColorHint="#cdcdcd"
-                            android:maxLines="1"
-                            android:hint="选择指派地"
-                            android:textColor="@color/base_color_text_black"
-                            android:inputType="text"
-                            android:layout_marginTop="11dp"
+                            android:layout_height="match_parent"
                             android:layout_marginBottom="11dp"
                             android:layout_marginLeft="16dp"
+                            android:layout_marginTop="11dp"
                             android:background="#00000000"
-                            />
+                            android:hint="选择指派地"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@color/base_color_text_black"
+                            android:textColorHint="#cdcdcd" />
                     </LinearLayout>
 
                     <ImageView
                         android:id="@+id/order_layout_des_map"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/chose_map"
-                        android:layout_weight="0.06" />
+                        android:layout_weight="0.06"
+                        android:src="@drawable/chose_map" />
 
                 </LinearLayout>
 
@@ -358,9 +356,10 @@
                             android:layout_marginTop="11dp"
                             android:background="#00000000"
                             android:hint="选择订单持续时间"
-                            android:textColor="@color/base_color_text_black"
-                            android:inputType="text"
+
+                            android:inputType="number"
                             android:maxLines="1"
+                            android:textColor="@color/base_color_text_black"
                             android:textColorHint="#cdcdcd" />
                     </LinearLayout>
 
@@ -413,10 +412,10 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="11dp"
                             android:background="#00000000"
-                            android:textColor="@color/base_color_text_black"
                             android:hint="估计物品金额        "
-                            android:inputType="text"
+                            android:inputType="text|number"
                             android:maxLines="1"
+                            android:textColor="@color/base_color_text_black"
                             android:textColorHint="#cdcdcd" />
                     </LinearLayout>
 
