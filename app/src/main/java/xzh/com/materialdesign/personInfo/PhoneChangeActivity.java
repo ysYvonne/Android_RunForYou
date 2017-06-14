@@ -3,18 +3,13 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.ui.*;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -150,7 +145,8 @@ public class PhoneChangeActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 
-                boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
+//                boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
+                boolean exist=(Boolean)new Command().phoneValid(parameter);
                 if(exist){
                     //发送验证码 第三方
                     Log.v("ys","手机号存在");
@@ -252,7 +248,8 @@ public class PhoneChangeActivity extends AppCompatActivity {
             public void run() {
                 // TODO Auto-generated method stub
 
-                user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
+//                user=(User) Proxy.getWebData(StateCode.PersonalInfo,parameter);
+                user=(User)new Command().personalInfo(parameter);
                 code = user.getSex();
 
                 // 在下面这个方法里可以做任何更新UI的操作

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -21,8 +20,7 @@ import xzh.com.materialdesign.base.BaseActivity;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
-import xzh.com.materialdesign.proxy.StateCode;
+import xzh.com.materialdesign.proxy.Command;
 
 /**
  * Created by dz on 2017/5/10.
@@ -138,7 +136,8 @@ public class MyorderDetailAvtivity extends BaseActivity {
     private void getReview() {
         new Thread(){
             public void run() {
-                review = (int) Proxy.getWebData(StateCode.GetReview,parameter);
+//                review = (int) Proxy.getWebData(StateCode.GetReview,parameter);
+                review=(int)new Command().getReview(parameter);
                 MyorderDetailAvtivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -152,7 +151,8 @@ public class MyorderDetailAvtivity extends BaseActivity {
     private void getUser() {
         new Thread(){
             public void run() {
-                user = (User) Proxy.getWebData(StateCode.PersonalInfo,userParameter);
+//                user = (User) Proxy.getWebData(StateCode.PersonalInfo,userParameter);
+                user=(User)new Command().personalInfo(parameter);
                 phoneNum = user.getPhoneNum();
                 Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ phoneNum ));
                 startActivity(phoneIntent);
@@ -163,7 +163,8 @@ public class MyorderDetailAvtivity extends BaseActivity {
     private void drawbackOrder() {
         new Thread(){
             public void run() {
-                code = (int) Proxy.getWebData(StateCode.OrderDrawback,drawParameter);
+//                code = (int) Proxy.getWebData(StateCode.OrderDrawback,drawParameter);
+                code=(int)new Command().orderDrawback(parameter);
                 connectFinish();
             };
         }.start();
@@ -197,7 +198,8 @@ public class MyorderDetailAvtivity extends BaseActivity {
             } else {
                 new Thread(){
                     public void run() {
-                        newState = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+//                        newState = (Order_state) Proxy.getWebData(StateCode.OrderState,parameter);
+                        newState=(Order_state)new Command().orderState(parameter);
                         stateNum = newState.getState();
                         MyorderDetailAvtivity.this.runOnUiThread(new Runnable() {
                             @Override

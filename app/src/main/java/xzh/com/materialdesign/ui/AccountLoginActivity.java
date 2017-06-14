@@ -3,12 +3,8 @@ package xzh.com.materialdesign.ui;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,27 +13,16 @@ import android.widget.EditText;
 import android.app.ProgressDialog;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
-import xzh.com.materialdesign.api.MySharedPreferences;
-import xzh.com.materialdesign.model.LittleOrderBean;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
-import xzh.com.materialdesign.thread.AccountLoginThread;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import android.widget.Toast;
 import android.view.Gravity;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
-import android.os.Handler;
-import android.content.SharedPreferences;
-import android.app.Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by yisheng on 2017/4/23.
@@ -173,7 +158,14 @@ public class AccountLoginActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+<<<<<<< HEAD
                 user=(User)Proxy.getWebData(StateCode.AccountLogin,parameter);
+=======
+                // TODO Auto-generated method stub
+
+//                user=(User)Proxy.getWebData(StateCode.AccountLogin,parameter);
+                user=(User)new Command().accountLogin(parameter);
+>>>>>>> master
                 // 在下面这个方法里可以做任何更新UI的操作
                 AccountLoginActivity.this.runOnUiThread(new Runnable() {
                     @Override

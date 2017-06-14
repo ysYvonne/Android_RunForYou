@@ -5,9 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,14 +21,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.InjectView;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
-import xzh.com.materialdesign.api.MySharedPreferences;
 import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 
@@ -220,7 +215,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 
-                boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
+//                boolean exist=(Boolean)Proxy.getWebData(StateCode.PhoneValid,parameter);
+                boolean exist=(Boolean)new Command().phoneValid(parameter);
                 if(exist){
                     Log.v("ys","手机号存在,开始发送验证码");
                     PhoneLoginActivity.this.runOnUiThread(new Runnable() {
@@ -273,14 +269,15 @@ public class PhoneLoginActivity extends AppCompatActivity {
 //        dialog.show();
 
 
-        connect(StateCode.PhoneLogin);
+        connect();
 
     }
-    private void connect(final String sc){
+    private void connect(){
         new Thread(){
             public void run() {
 
-                user=(User)Proxy.getWebData(sc,parameter);
+//                user=(User)Proxy.getWebData(sc,parameter);
+                user=(User)new Command().phoneLogin(parameter);
                 PhoneLoginActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

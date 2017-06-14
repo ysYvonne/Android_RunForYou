@@ -3,29 +3,19 @@ package xzh.com.materialdesign.ui;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import xzh.com.materialdesign.R;
-import xzh.com.materialdesign.api.ControlUser;
-import xzh.com.materialdesign.model.User;
-import xzh.com.materialdesign.personInfo.PhoneChangeActivity;
-import xzh.com.materialdesign.proxy.Proxy;
-import xzh.com.materialdesign.proxy.StateCode;
-import xzh.com.materialdesign.utils.ActivityHelper;
+import xzh.com.materialdesign.proxy.Command;
 
 public class ContactActivity extends AppCompatActivity {
 
@@ -109,7 +99,8 @@ public class ContactActivity extends AppCompatActivity {
             public void run() {
                 // TODO Auto-generated method stub
 
-                success = (boolean)Proxy.getWebData(StateCode.ContactUs,parameter);
+//                success = (boolean)Proxy.getWebData(StateCode.ContactUs,parameter);
+                success=(boolean)new Command().contactUs(parameter);
 
                 // 在下面这个方法里可以做任何更新UI的操作
                 ContactActivity.this.runOnUiThread(new Runnable() {

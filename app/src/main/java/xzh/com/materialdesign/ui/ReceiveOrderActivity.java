@@ -9,14 +9,11 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import xzh.com.materialdesign.adapter.HomeAdapter;
-import xzh.com.materialdesign.adapter.MyOrderAdapter;
 import xzh.com.materialdesign.adapter.ReceiveOrderAdapter;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.base.MyBaseActivity;
 import xzh.com.materialdesign.model.LittleOrderBean;
-import xzh.com.materialdesign.model.Money_order;
-import xzh.com.materialdesign.proxy.Proxy;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 
 
@@ -60,7 +57,8 @@ public class ReceiveOrderActivity extends MyBaseActivity {
             public void run() {
                 // TODO Auto-generated method stub
                 // 更新主线程ＵＩ
-                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+//                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+                list= (List<LittleOrderBean>) new Command().getLittleOrder(parameter);
                 ReceiveOrderActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -102,7 +100,8 @@ public class ReceiveOrderActivity extends MyBaseActivity {
             public void run() {
                 // TODO Auto-generated method stub
                 // 更新主线程ＵＩ
-                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+//                list= (List<LittleOrderBean>) Proxy.getWebData(StateCode.GetLittleOrder,parameter);
+                list= (List<LittleOrderBean>)new Command().getLittleOrder(parameter);
                 ReceiveOrderActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

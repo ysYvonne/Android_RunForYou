@@ -5,32 +5,22 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.ypy.eventbus.EventBus;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import butterknife.ButterKnife;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import xzh.com.materialdesign.R;
-import xzh.com.materialdesign.proxy.Proxy;
-import xzh.com.materialdesign.proxy.StateCode;
+import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.utils.ActivityHelper;
-import xzh.com.materialdesign.view.NavigationDrawerFragment;
-import xzh.com.materialdesign.view.PullToLoadView;
-import xzh.com.materialdesign.view.ThemeManager;
 
 /**
  /**
@@ -249,7 +239,8 @@ public class RegistPhoneActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 
-                boolean exist=(Boolean) Proxy.getWebData(StateCode.PhoneValid,parameter);
+//                boolean exist=(Boolean) Proxy.getWebData(StateCode.PhoneValid,parameter);
+                boolean exist=(Boolean)new Command().phoneValid(parameter);
                 if(!exist){
                     Log.v("ys","手机号不存在,可以注册");
                     RegistPhoneActivity.this.runOnUiThread(new Runnable() {
