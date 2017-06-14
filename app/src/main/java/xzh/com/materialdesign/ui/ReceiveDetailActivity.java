@@ -198,7 +198,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 //                code = (int) Proxy.getWebData(StateCode.OrderFinish,finishParemeter);
-                code=(int)new Command().orderFinish(parameter);
+                code=(int)new Command().orderFinish(finishParemeter);
                 connectFinish();
             };
         }.start();
@@ -208,7 +208,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 //                code = (int) Proxy.getWebData(StateCode.OrderUpdate,updateParameter);
-                code=(int)new Command().orderUpdate(parameter);
+                code=(int)new Command().orderUpdate(updateParameter);
                 connectFinish();
             };
         }.start();
@@ -218,7 +218,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
         new Thread(){
             public void run() {
 //                code = (int) Proxy.getWebData(StateCode.OrderReview,reviewParemeter);
-                code=(int)new Command().orderReview(parameter);
+                code=(int)new Command().orderReview(reviewParemeter);
                 connectFinish();
             };
         }.start();
