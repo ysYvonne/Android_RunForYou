@@ -1,5 +1,7 @@
 package xzh.com.materialdesign.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,6 +15,7 @@ import butterknife.InjectView;
 import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.base.BaseActivity;
 import xzh.com.materialdesign.model.ModifyPerson;
+import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.view.TitleBar;
 
@@ -32,7 +35,7 @@ public class ModifyActivity extends BaseActivity {
     Button modify_confirm;
     public String name,phone;
     ModifyPerson modify;
-
+    Context mContext;
 
 
 
@@ -40,6 +43,7 @@ public class ModifyActivity extends BaseActivity {
         Log.v("dz","Modify onCreate");
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        mContext=this;
 
         setContentView(R.layout.modify_custom);
         ButterKnife.inject(this);
@@ -51,7 +55,16 @@ public class ModifyActivity extends BaseActivity {
                 name = modify_name.getText().toString();
                 phone = modify_phone.getText().toString();
                 modify = new ModifyPerson(name,phone);
-                ActivityHelper.startActivity(ModifyActivity.this,OrderActivity.class,"modify_info",modify);
+                Intent mIntent = new Intent(StateCode.BROAD_CHANGENAME);
+                mIntent.putExtra(StateCode.BROAD_CHANGENAME,name);
+                Intent sIntent = new Intent(StateCode.BROAD_CHANGEPHONE);
+                sIntent.putExtra(StateCode.BROAD_CHANGEPHONE,phone);
+
+
+                //发送广播
+                mContext.sendBroadcast(mIntent);
+                mContext.sendBroadcast(sIntent);
+                ActivityHelper.startActivity(ModifyActivity.this,OrderActivity.class);
             }
         });
     }

@@ -33,6 +33,8 @@ import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.proxy.StateCode;
 import xzh.com.materialdesign.utils.ActivityHelper;
 import xzh.com.materialdesign.personInfo.*;
+import xzh.com.materialdesign.api.ControlUser;
+import xzh.com.materialdesign.view.CircleImageView;
 
 /**
  * Created by Flora on 2017/4/24.
@@ -59,6 +61,18 @@ public class PersonalInfoActivity extends AppCompatActivity {
     RelativeLayout phoneInfo;
 
     TextView my_nickname, my_pwd,my_sex, my_name, my_age, my_school, my_email, my_phone;
+    CircleImageView head;
+
+    int[] image = {
+            R.drawable.img_user_head,
+            R.drawable.img_user_head_1,
+            R.drawable.img_user_head_2,
+            R.drawable.img_user_head_3,
+            R.drawable.img_user_head_4,
+            R.drawable.img_user_head_5,
+            R.drawable.img_user_head_6,
+    };
+
 
     private List<String> sexdata;
     private ArrayAdapter<String> adapter;
@@ -310,6 +324,15 @@ public class PersonalInfoActivity extends AppCompatActivity {
             pInfoBundle = getIntent().getExtras();
 //            my_phone.setText(my_phone.getText() + "   " + pInfoBundle.getString("Phone"));
             my_phone.setText(my_phone.getText() + "   " + user.getPhoneNum());
+
+            head = (CircleImageView)findViewById(R.id.my_image);
+            String s = "img_user_head";
+            int i = -1;
+            i = (user.getNickname().length() + user.getName().length() + user.getEmail().length())%7;
+            if(i>-1 && i<7){
+                Log.e("ys", "设置头像为： "+i);
+                head.setImageDrawable(getResources().getDrawable(image[i]));
+            }
 
             buttonEvent();
         }

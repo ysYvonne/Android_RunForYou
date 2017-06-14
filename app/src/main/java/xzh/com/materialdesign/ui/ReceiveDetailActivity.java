@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
 import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Command;
+import xzh.com.materialdesign.view.CircleImageView;
 
 
 /**
@@ -29,6 +31,7 @@ import xzh.com.materialdesign.proxy.Command;
 public class ReceiveDetailActivity extends AppCompatActivity {
     ImageButton navBack,changeState,phone;
     TextView title,name,money,time,info,reward,method,shop,des,state;
+
     JSONObject parameter,updateParameter,finishParemeter,reviewParemeter,userParameter;
     Order_state order_state,newState;
     int code,stateNum,review;
@@ -102,15 +105,11 @@ public class ReceiveDetailActivity extends AppCompatActivity {
 
                 if(stateNum == 3 ){
                     orderFinish();
-                }else {
-                    if(stateNum == 4 ){
-//                        orderReview();
-                        showDialog();
-                    }else {
+                }else if(stateNum == 1 || stateNum == 2){
                         orderUpdate();
-                    }
-                }
+                }else{
 
+                }
             }
         });
 
@@ -326,6 +325,7 @@ public class ReceiveDetailActivity extends AppCompatActivity {
             case 4: {
                 state.setText("待评价");
                 changeState.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.fab_review));
+                changeState.setBackgroundResource(R.drawable.fab_finish_bg);
                 break;
             }
 

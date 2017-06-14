@@ -49,4 +49,6 @@ public class StateCode {
     public final static String BROAD_PWD="password";
     public final static String BROAD_SCHOOL="school";
     public final static String BROAD_SEX="sex";
+    public final static String BROAD_CHANGENAME="changeName";
+    public final static String BROAD_CHANGEPHONE="changePhone";
 }

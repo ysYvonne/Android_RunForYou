@@ -23,8 +23,10 @@ import xzh.com.materialdesign.R;
 import xzh.com.materialdesign.api.ControlUser;
 import xzh.com.materialdesign.model.Order_state;
 import xzh.com.materialdesign.model.Orders;
+import xzh.com.materialdesign.model.User;
 import xzh.com.materialdesign.proxy.Command;
 import xzh.com.materialdesign.utils.ActivityHelper;
+import xzh.com.materialdesign.view.CircleImageView;
 
 /**
  * Created by xiangzhihong on 2016/3/18 on 16:43.
@@ -37,6 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
     ImageButton receiveBtn;
     ImageView userImage,sex;
     TextView title,name,reward,method,info,shop,des,time,money;
+
     JSONObject parameter;
     int code;
 
@@ -51,7 +54,7 @@ public class DetailsActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         title = (TextView) findViewById(R.id.order_nav_title);
-        userImage = (ImageView) findViewById(R.id.order_detail_image);
+ //       userImage = (ImageView) findViewById(R.id.order_detail_image);
         name = (TextView) findViewById(R.id.order_detail_name);
         reward = (TextView) findViewById(R.id.order_detail_money);
         method = (TextView) findViewById(R.id.order_detail_method);
@@ -62,6 +65,7 @@ public class DetailsActivity extends AppCompatActivity {
         time = (TextView) findViewById(R.id.order_detail_time);
         receiveBtn = (ImageButton) findViewById(R.id.order_img_float_btn);
         sex = (ImageView) findViewById(R.id.order_detail_sex);
+
         mContext = DetailsActivity.this;
         init();
     }
