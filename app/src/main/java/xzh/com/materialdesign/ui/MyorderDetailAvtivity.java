@@ -152,7 +152,7 @@ public class MyorderDetailAvtivity extends BaseActivity {
         new Thread(){
             public void run() {
 //                user = (User) Proxy.getWebData(StateCode.PersonalInfo,userParameter);
-                user=(User)new Command().personalInfo(parameter);
+                user=(User)new Command().personalInfo(userParameter);
                 phoneNum = user.getPhoneNum();
                 Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ phoneNum ));
                 startActivity(phoneIntent);
@@ -164,7 +164,7 @@ public class MyorderDetailAvtivity extends BaseActivity {
         new Thread(){
             public void run() {
 //                code = (int) Proxy.getWebData(StateCode.OrderDrawback,drawParameter);
-                code=(int)new Command().orderDrawback(parameter);
+                code=(int)new Command().orderDrawback(drawParameter);
                 connectFinish();
             };
         }.start();
